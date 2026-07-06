@@ -1,94 +1,97 @@
-import {TimerSettings} from "./TimerSettings.js";
-import {Events} from "./Events.js";
-import {showScenario, showDifficulty, goToScenarioSelection} from "./UIManager.js";
-import {SoundManager} from "./SoundManager.js";
+import { TimerSettings } from "./TimerSettings.js";
+import { Events } from "./Events.js";
+import { showScenario, showDifficulty, goToScenarioSelection } from "./UIManager.js";
+import { SoundManager } from "./SoundManager.js";
+import { sound_effects } from "./sound_effects.js";
 
-export class GameManager{
+export class GameManager {
 
-constructor(
-    scenario,
-    difficulty,
-    country
-    
-){
+    constructor(
+        scenario,
+        difficulty,
+        country
 
-this.scenario=scenario
-this.difficulty=difficulty
-this.country=country
-this.sound=new SoundManager();
-this.siren=null
+    ) {
 
-this.gameOver=false
+        this.scenario = scenario
+        this.difficulty = difficulty
+        this.country = country
+        this.sound = new SoundManager();
+        this.noise = new sound_effects(); //sound effect = noise
 
-this.timer=new TimerSettings(difficulty.startTime, this.sound);
+        this.siren = null
 
-this.events= new Events(scenario.events);
-}
+        this.gameOver = false
 
-start(){
-    console.log(
-        "Begin the Clockpocalypse",
-        this.scenario.name
-    );
+        this.timer = new TimerSettings(difficulty.startTime, this.sound);
 
-    this.currentEvent= this.events.spawn();
-
-    if(!this.currentEvent){
-        this.winGame();
-        return;
+        this.events = new Events(scenario.events);
     }
 
-    this.displayEvent();
-    this.loadCountrySound();
+    start() {
+        console.log(
+            "Begin the Clockpocalypse",
+            this.scenario.name
+        );
 
-    this.timer.start(
-        (time)=>{
+        this.currentEvent = this.events.spawn();
 
-            console.log("Ui updated with time:", time);
-            
-            let timerDisplay = 
-            document.getElementById("timer");
-
-            if(timerDisplay){
-                timerDisplay.innerText = 
-                "Time: " + time;
-            }
-        },
-        ()=>{
-            this.loseGame();
+        if (!this.currentEvent) {
+            this.winGame();
+            return;
         }
-    );
-}
 
-async loadCountrySound(){
+        this.displayEvent();
+        this.loadCountrySound();
 
-    //Check sirens location call
-    console.log("Loading country sound for", this.country);
+        this.timer.start(
+            (time) => {
 
-    if(!this.country){
-        return;
+                console.log("Ui updated with time:", time);
+
+                let timerDisplay =
+                    document.getElementById("timer");
+
+                if (timerDisplay) {
+                    timerDisplay.innerText =
+                        "Time: " + time;
+                }
+            },
+            () => {
+                this.loseGame();
+            }
+        );
     }
 
-    await this.sound.load("siren", this.country.siren);
+    async loadCountrySound() {
 
-    this.siren = await this.sound.play("siren", true);
-}
+        //Check sirens location call
+        console.log("Loading country sound for", this.country);
 
-displayEvent(){
+        if (!this.country) {
+            return;
+        }
 
-    if(this.gameOver){
-        return;
+        await this.sound.load("siren", this.country.siren);
+
+        this.siren = await this.sound.play("siren", true);
     }
 
-    let event = this.currentEvent;
+    displayEvent() {
 
-    if(!event){
-        this.winGame();
-        return;
-    }
+        if (this.gameOver) {
+            return;
+        }
+
+        let event = this.currentEvent;
+
+        if (!event) {
+            this.winGame();
+            return;
+        }
 
 
-    document.getElementById("app").innerHTML = `
+        document.getElementById("app").innerHTML = `
 
         <h1>${this.scenario.name}</h1>
 
@@ -107,59 +110,63 @@ displayEvent(){
             Time: ${this.timer.time}
         </h3>
     `;
-// Complete event or Skip button framework
+        // Complete event or Skip button framework
 
-    document
-    .getElementById("complete")
-    .onclick = ()=>{
+        document
+            .getElementById("complete")
+            .onclick = () => {
 
-        if(this.gameOver){
-            return;
-        }
+                if (this.gameOver) {
+                    return;
+                }
 
-        this.completeEvent(
-            this.currentEvent
-        );
-        this.nextEvent();
-    };
+                this.completeEvent(
+                    this.currentEvent
+                );
+                this.noise.play('complete');
+                this.nextEvent();
+            };
 
-    document
-    .getElementById("skip")
-    .onclick = ()=>{
+        document
+            .getElementById("skip")
+            .onclick = () => {
 
-        if(this.gameOver){
-            return;
-        }
+                if (this.gameOver) {
+                    return;
+                }
 
-        this.skipEvent(
-            this.currentEvent
-        );
-        this.nextEvent();
-    };
-}
-
-
-nextEvent(){
-
-    if(this.gameOver){
-        return;
+                this.skipEvent(
+                    this.currentEvent
+                );
+                this.noise.play('skip');
+                this.nextEvent();
+            };
     }
 
-    this.currentEvent =
-    this.events.spawn();
 
-    if(!this.currentEvent){
+    nextEvent() {
 
-        this.gameOver=true;
+        if (this.gameOver) {
+            return;
+        }
 
-        this.timer.stop();
+        this.currentEvent =
+            this.events.spawn();
 
-        this.sound.resetSiren();
+        if (!this.currentEvent) {
 
-        document.getElementById("app").innerHTML = `
+            this.gameOver = true;
 
-        <h1>${this.scenario.victory}</h1>
-        <h2> You Survived! </h2>
+            this.timer.stop();
+
+            this.sound.resetSiren();
+
+            this.noise.play('victory');
+
+            document.getElementById("app").innerHTML = `
+
+        <h1 class="victory_screen" id="victory-line">${this.scenario.victory}</h1>
+        <h2 class="victory_screen"> You Survived! </h2>
         
 
         <button id="backScenario">
@@ -168,24 +175,25 @@ nextEvent(){
 
         `;
 
-        document
-        .getElementById("backScenario")
-        .onclick = ()=>{
-            this.cleanrestart();
-            showScenario();
-        };
-        return;
-    }       
-    this.displayEvent();
-}
+            document
+                .getElementById("backScenario")
+                .onclick = () => {
+                    this.cleanrestart();
+                    showScenario();
+                };
+            return;
+        }
+        this.displayEvent();
+    }
 
-loseGame(){
+    loseGame() {
 
-    this.gameOver = true;
-    this.timer.stop();
-    this.sound.resetSiren();
+        this.gameOver = true;
+        this.timer.stop();
+        this.sound.resetSiren();
+        this.noise.play('fail');
 
-    document.getElementById("app").innerHTML =`
+        document.getElementById("app").innerHTML = `
 
     <h1>${this.currentEvent.title ?? "Game Over"}</h1>
     <h2>You Lose!</h2>
@@ -201,78 +209,78 @@ loseGame(){
     </button>
     `;
 
-    document
-    .getElementById("restart")
-    .onclick = ()=>{
-        
-        this.resetGame();
-        this.start();
-    };
+        document
+            .getElementById("restart")
+            .onclick = () => {
 
-    document
-    .getElementById("backScenario")
-    .onclick = ()=>{
-        this.cleanrestart();
-        showScenario();
-    };
-}
+                this.resetGame();
+                this.start();
+            };
 
-
-
-completeEvent(event){
-    
-    this.events.complete(event);
-
-    this.timer.add(
-        this.difficulty.reward
-    );
-}
-
-skipEvent(event){
-
-    this.events.complete(event);
-
-    this.timer.remove(
-        this.difficulty.penalty
-    );
-    if(this.timer.time <=0){
-        this.loseGame();
-        return;
-    }
-}
-
-resetGame(){
-
-    this.gameOver=false;
-
-    this.events = new Events(this.scenario.events);
-
-    this.timer = new TimerSettings(
-        this.difficulty.startTime,
-        this.sound
-    );  
-    this.currentEvent = null;
-
-}
-
-cleanrestart(){
-
-    this.gameOver = true;
-
-    if(this.timer){
-        this.timer.stop();
+        document
+            .getElementById("backScenario")
+            .onclick = () => {
+                this.cleanrestart();
+                showScenario();
+            };
     }
 
-    if(this.sound){
-        this.sound.resetSiren();
+
+
+    completeEvent(event) {
+
+        this.events.complete(event);
+
+        this.timer.add(
+            this.difficulty.reward
+        );
     }
 
-    const app = document.getElementById("app");
-    if(app){
-        app.innerHTML = "";
+    skipEvent(event) {
+
+        this.events.complete(event);
+
+        this.timer.remove(
+            this.difficulty.penalty
+        );
+        if (this.timer.time <= 0) {
+            this.loseGame();
+            return;
+        }
     }
 
-    this.currentEvent = null; 
-}
+    resetGame() {
+
+        this.gameOver = false;
+
+        this.events = new Events(this.scenario.events);
+
+        this.timer = new TimerSettings(
+            this.difficulty.startTime,
+            this.sound
+        );
+        this.currentEvent = null;
+
+    }
+
+    cleanrestart() {
+
+        this.gameOver = true;
+
+        if (this.timer) {
+            this.timer.stop();
+        }
+
+        if (this.sound) {
+            this.sound.resetSiren();
+        }
+
+        const app = document.getElementById("app");
+        if (app) {
+            app.innerHTML = "";
+        }
+
+        this.currentEvent = null;
+    }
 
 }

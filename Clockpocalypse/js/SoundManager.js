@@ -1,25 +1,25 @@
-export class SoundManager{
+export class SoundManager {
 
-    constructor(){
+    constructor() {
 
         this.context = new AudioContext();
 
         //Create one section to mix Audio in. 
 
         this.masterGain = this.context.createGain();
-        this.masterGain.gain.value= 1;
+        this.masterGain.gain.value = 1;
 
         this.sfxGain = this.context.createGain();
-        this.sfxGain.gain.value=1;
-         
+        this.sfxGain.gain.value = 1;
+
         this.alarmGain = this.context.createGain();
-        this.alarmGain.gain.value=1;
+        this.alarmGain.gain.value = 1;
 
         this.musicGain = this.context.createGain();
-        this.musicGain.gain.value = 1; 
+        this.musicGain.gain.value = 1;
 
         this.uiGain = this.context.createGain();
-        this.uiGain.gain.value=1; 
+        this.uiGain.gain.value = 1;
 
         // connect as a mastergain
         this.sfxGain.connect(this.masterGain);
@@ -28,22 +28,22 @@ export class SoundManager{
         this.uiGain.connect(this.masterGain);
 
         this.masterGain.connect(this.context.destination);
-        
+
         this.sounds = {};
 
         this.sirenSource = null;
-        this.sirenGain= null;
+        this.sirenGain = null;
 
     }
 
-    async load(name, url){
-        
+    async load(name, url) {
+
         //checking if the url is empty or null
         console.log("Loading sound", name, "from", url);
 
         let response = await fetch(url);
 
-        if(!response.ok){
+        if (!response.ok) {
             console.error("Failed to load sound", url);
             return;
         }
@@ -58,19 +58,19 @@ export class SoundManager{
     }
 
 
-    async play(name, loop = false){
+    async play(name, loop = false) {
 
         console.log("Playing sound", name, loop);
         console.log("Buffer", this.sounds[name]);
 
-        if(this.context.state === "suspended"){
+        if (this.context.state === "suspended") {
             await this.context.resume();
         }
 
         let source = this.context.createBufferSource();
         let gain = this.context.createGain();
-        
-        
+
+
         console.log(this.sounds);
         source.buffer = this.sounds[name];
         source.loop = loop;
@@ -80,7 +80,7 @@ export class SoundManager{
 
         source.start();
 
-        if(loop){
+        if (loop) {
             this.sirenSource = source;
             this.sirenGain = gain;
 
@@ -90,26 +90,26 @@ export class SoundManager{
         return source;
     }
 
-    stop(source){
+    stop(source) {
 
-        if(source){
+        if (source) {
             source.stop();
         }
     }
 
-    
+
     //Tick on the Timer from Timer Settings
-     tick(){
+    tick() {
 
         let oscillator = this.context.createOscillator();
 
-        let gain= this.context.createGain();
+        let gain = this.context.createGain();
 
-        oscillator.type="sine";
+        oscillator.type = "sine";
 
-        oscillator.frequency.value= 900;
+        oscillator.frequency.value = 900;
 
-        gain.gain.value=0.5;
+        gain.gain.value = 0.5;
 
         oscillator.connect(gain);
         gain.connect(this.sfxGain);
@@ -121,33 +121,33 @@ export class SoundManager{
     }
 
 
-    updateSirenVolume(time){
+    updateSirenVolume(time) {
 
         //console.log("Siren:", time, this.sirenGain.gain.value);
 
-        if(!this.sirenGain){
+        if (!this.sirenGain) {
             return;
         }
         let gain = 0;
 
         //Siren off until time 
-        if(time <= 30){
-        
+        if (time <= 30) {
+
             //Siren volume increases as time decreases
-            let rampTime = 30 - time; 
+            let rampTime = 30 - time;
 
             // stepped increase every 5 seconds
-            let step = Math.floor(rampTime / 5 );
+            let step = Math.floor(rampTime / 5);
             gain = step / 6;
 
-           
+
             gain = Math.pow(gain, 1.4);
-            gain= Math.min(1, gain);
+            gain = Math.min(1, gain);
 
         }
 
         //turn off Sound
-        if(time > 30){
+        if (time > 30) {
             this.sirenGain.gain.setTargetAtTime(
                 0,
                 this.context.currentTime,
@@ -165,15 +165,15 @@ export class SoundManager{
         );
     }
 
-    resetSiren(){
+    resetSiren() {
 
-        if(this.sirenGain){
-            try{
+        if (this.sirenGain) {
+            try {
                 this.sirenSource.stop();
-            } catch(e){}
+            } catch (e) { }
         }
 
-        this.sirenGain = null; 
+        this.sirenGain = null;
         this.sirenSource = null;
     }
 }

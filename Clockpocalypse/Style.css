@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Digital-7';
+    src: url(Font/digital-7-font/Digital7-rg1mL.ttf);
+}
+
+div h1 {
+    color: rgb(228, 21, 21);
+    font-family: 'Digital-7';
+}
+
+.victory_screen {
+    color: rgba(21, 228, 59, 0.854);
+    font-size: 40px;
+    font-family: 'Digital-7';
+    text-align: center;
+}
+
+#victory-line {
+    color: rgb(21, 228, 59);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    font-style: italic;
+}

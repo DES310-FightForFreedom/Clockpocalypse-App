@@ -6,7 +6,7 @@ const app = document.getElementById("app");
 //Changes to the add flags and adjust difficulty settings.
 
 
-export function showMenu(){
+export function showMenu() {
 
     app.innerHTML = `
         
@@ -20,27 +20,27 @@ export function showMenu(){
         </div>
     `;
 
-document
-    .getElementById("start")
-    .onclick = () => {
-        showScenario();
-    };
+    document
+        .getElementById("start")
+        .onclick = () => {
+            showScenario();
+        };
 
 
-document
-    .getElementById("settings")
-    .onclick = ()=>{
-        console.log("Settings clicked");
-    };
+    document
+        .getElementById("settings")
+        .onclick = () => {
+            console.log("Settings clicked");
+        };
 }
 
 // to implement scenarios
 
-export function showScenario(){
-       
+export function showScenario() {
+
     let scenarioHTML = "";
 
-    for (const key in scenarios){
+    for (const key in scenarios) {
 
         scenarioHTML += `
 
@@ -70,11 +70,11 @@ export function showScenario(){
 // to be updated later by PNG and Audio files
 // Edited as Const 
 
-export function showDifficulty(){
+export function showDifficulty() {
 
     let FlagsHTML = "";
 
-    difficultyFlags.forEach((item)=>{
+    difficultyFlags.forEach((item) => {
         FlagsHTML += `
 
         <button
@@ -114,9 +114,9 @@ export function showDifficulty(){
     `;
 }
 
-export function goToScenarioSelection(){
-    selectedScenario= null;
-    selectedDifficulty= null;
-    
+export function goToScenarioSelection() {
+    selectedScenario = null;
+    selectedDifficulty = null;
+
     showScenario();
 }

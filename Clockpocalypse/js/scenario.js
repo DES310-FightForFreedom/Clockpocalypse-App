@@ -6,7 +6,7 @@ export const scenarios = {
 
         // IMAGES NEEDED HERE
         image: "PNG here",
-        
+
         // EDIT FOR VICTORY STYLING HERE
         victory: "VICTORY CONDITION HERE- Dark Ages ",
 
@@ -14,8 +14,8 @@ export const scenarios = {
         // defeat: "You Lose!",
 
         //Ensure 10 events
-        events:[
-    
+        events: [
+
             // Challenge 1
             {
                 title: "Solar Flare",
@@ -87,7 +87,7 @@ export const scenarios = {
             }
 
         ]
-    }, 
+    },
 
     // // COPY TO ADD NEW SCENARIOS HERE
 
@@ -97,13 +97,13 @@ export const scenarios = {
 
     //     // IMAGES NEEDED HERE
     //     image: "PNG here",
-        
+
     //     // EDIT FOR VICTORY STYLING HERE
     //     victory: "VICTORY CONDITION HERE",
 
     //     //Ensure 10 events
     //     events:[
-    
+
     //         // Challenge 1
     //         {
     //             title: "Name ",
@@ -176,22 +176,22 @@ export const scenarios = {
 
     //     ]
     // }, 
-Armageddon: {
+    Armageddon: {
 
         name: "Armegeddon",
 
         // IMAGES NEEDED HERE
-        image: "PNG here",
-        
+        image: "☄️🌋",
+
         // EDIT FOR VICTORY STYLING HERE
-        victory: "VICTORY CONDITION HERE- Armegeddon",
+        victory: "Once the dust settled, you looked around to see scorched land all around you. You survived, but the wildlife around you sure didn’t.",
 
         // EDIT FOR LOSS WORDING HERE (Specific to scenario?) Changed to be specific to challenges, not scenario.
         // defeat: "You Lose!",
 
         //Ensure 10 events
-        events:[
-    
+        events: [
+
             // Challenge 1
             {
                 title: "Meteor",
@@ -244,7 +244,7 @@ Armageddon: {
             //Challenge 8
             {
                 title: "Geo-Magnetic Storm",
-                challenge: "Everyone point North", 
+                challenge: "Everyone point North",
                 defeat: "That was South",
             },
 
@@ -263,7 +263,7 @@ Armageddon: {
             }
 
         ]
-    }, 
+    },
 
     TheDeepState: {
 
@@ -271,7 +271,7 @@ Armageddon: {
 
         // IMAGES NEEDED HERE
         image: "PNG here",
-        
+
         // EDIT FOR VICTORY STYLING HERE
         victory: "VICTORY CONDITION HERE- DeepState",
 
@@ -279,8 +279,8 @@ Armageddon: {
         // defeat: "You Lose!",
 
         //Ensure 10 events
-        events:[
-    
+        events: [
+
             // Challenge 1
             {
                 title: "The Bees are dying",
@@ -305,7 +305,7 @@ Armageddon: {
             //Challenge 4 
             {
                 title: "Doomsday Cult",
-                challenge: "Pick the member most likely to join a cult!", 
+                challenge: "Pick the member most likely to join a cult!",
                 defeat: "Too Slow! And Really? What did they ever do to you! ",
             },
 
@@ -327,13 +327,13 @@ Armageddon: {
             {
                 title: "Fertility Crisis",
                 challenge: "Pick one player to be heavily pregnant",
-                defeat:  "Took too long",
+                defeat: "Took too long",
             },
 
             //Challenge 8
             {
                 title: "Get to the Bottom of this",
-                challenge: "Find out whos really pulling the Strings", 
+                challenge: "Find out whos really pulling the Strings",
                 defeat: "Theres always a bigger boss",
             },
 
@@ -352,7 +352,7 @@ Armageddon: {
             }
 
         ]
-    }, 
+    },
 
     OverLordSupremacy: {
 
@@ -360,7 +360,7 @@ Armageddon: {
 
         // IMAGES NEEDED HERE
         image: "PNG here",
-        
+
         // EDIT FOR VICTORY STYLING HERE
         victory: "VICTORY CONDITION HERE- OverLord",
 
@@ -368,8 +368,8 @@ Armageddon: {
         // defeat: "You Lose!",
 
         //Ensure 10 events
-        events:[
-    
+        events: [
+
             // Challenge 1
             {
                 title: "Clankers",
@@ -422,7 +422,7 @@ Armageddon: {
             //Challenge 8
             {
                 title: "Robot Overlords",
-                challenge: "Everyone Complement the Computers", 
+                challenge: "Everyone Complement the Computers",
                 defeat: "You were the first to insult them werent you?",
             },
 
@@ -441,7 +441,7 @@ Armageddon: {
             }
 
         ]
-    }, 
+    },
 
     HellAndHighWater: {
 
@@ -449,7 +449,7 @@ Armageddon: {
 
         // IMAGES NEEDED HERE
         image: "PNG here",
-        
+
         // EDIT FOR VICTORY STYLING HERE
         victory: "VICTORY CONDITION HERE- Hell and High Water",
 
@@ -457,8 +457,8 @@ Armageddon: {
         // defeat: "You Lose!",
 
         //Ensure 10 events
-        events:[
-    
+        events: [
+
             // Challenge 1
             {
                 title: "Rising Tides",
@@ -511,7 +511,7 @@ Armageddon: {
             //Challenge 8
             {
                 title: "Return to the Old Gods",
-                challenge: "Make a sacrifice", 
+                challenge: "Make a sacrifice",
                 defeat: "The Old Gods Didnt want you anyway",
             },
 
@@ -530,7 +530,7 @@ Armageddon: {
             }
 
         ]
-    }, 
+    },
 
     Castaway: {
 
@@ -538,7 +538,7 @@ Armageddon: {
 
         // IMAGES NEEDED HERE
         image: "PNG here",
-        
+
         // EDIT FOR VICTORY STYLING HERE
         victory: "VICTORY CONDITION HERE- Castaway",
 
@@ -546,8 +546,8 @@ Armageddon: {
         // defeat: "You Lose!",
 
         //Ensure 10 events
-        events:[
-    
+        events: [
+
             // Challenge 1
             {
                 title: "Get Out of Dodge",
@@ -572,7 +572,7 @@ Armageddon: {
             //Challenge 4 
             {
                 title: "Crash Landing",
-                challenge: "BRACE FOR IMPACT! BRACE BRACE", 
+                challenge: "BRACE FOR IMPACT! BRACE BRACE",
                 defeat: "You did not survive the crash",
             },
 
@@ -600,7 +600,7 @@ Armageddon: {
             //Challenge 8
             {
                 title: "Look the Part",
-                challenge: "Find some tribal markings for your native friend", 
+                challenge: "Find some tribal markings for your native friend",
                 defeat: "Cultural Appropriation? Really?",
             },
 
@@ -620,14 +620,14 @@ Armageddon: {
 
         ]
     },
-    
+
     PatientZero: {
 
         name: "Patient Zero",
 
         // IMAGES NEEDED HERE
         image: "PNG here",
-        
+
         // EDIT FOR VICTORY STYLING HERE
         victory: "VICTORY CONDITION HERE- Patient Zero",
 
@@ -635,8 +635,8 @@ Armageddon: {
         // defeat: "You Lose!",
 
         //Ensure 10 events
-        events:[
-    
+        events: [
+
             // Challenge 1
             {
                 title: "Patient Zero",
@@ -661,7 +661,7 @@ Armageddon: {
             //Challenge 4 
             {
                 title: "Panic Buying",
-                challenge: "Find a roll of toilet paper, just in case", 
+                challenge: "Find a roll of toilet paper, just in case",
                 defeat: "What are we gonna do without toilet paper!",
             },
 
@@ -708,7 +708,7 @@ Armageddon: {
             }
 
         ]
-    }, 
+    },
 
     TimeTravel: {
 
@@ -716,7 +716,7 @@ Armageddon: {
 
         // IMAGES NEEDED HERE
         image: "PNG here",
-        
+
         // EDIT FOR VICTORY STYLING HERE
         victory: "VICTORY CONDITION HERE- Time Travel",
 
@@ -724,8 +724,8 @@ Armageddon: {
         // defeat: "You Lose!",
 
         //Ensure 10 events
-        events:[
-    
+        events: [
+
             // Challenge 1
             {
                 title: "Blank One",
@@ -750,7 +750,7 @@ Armageddon: {
             //Challenge 4 
             {
                 title: "Winter is Coming",
-                challenge: "Find a lighter", 
+                challenge: "Find a lighter",
                 defeat: " Too Bad ",
             },
 
@@ -778,7 +778,7 @@ Armageddon: {
             //Challenge 8
             {
                 title: "War for the planet of the Apes",
-                challenge: "Split into two warring ape troops", 
+                challenge: "Split into two warring ape troops",
                 defeat: " Too bad ",
             },
 
@@ -797,6 +797,6 @@ Armageddon: {
             }
 
         ]
-    }, 
+    },
 
 }
