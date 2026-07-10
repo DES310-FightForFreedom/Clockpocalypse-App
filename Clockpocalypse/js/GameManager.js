@@ -11,23 +11,23 @@ export class GameManager {
         difficulty,
         country
 
-    )   {
+    ) {
 
-            this.scenario = scenario
-            this.difficulty = difficulty
-            this.country = country
-            this.sound = new SoundManager();
-            this.noise = new sound_effects(); //sound effect = noise
+        this.scenario = scenario
+        this.difficulty = difficulty
+        this.country = country
+        this.sound = new SoundManager();
+        this.noise = new sound_effects(); //sound effect = noise
 
-            this.siren = null
+        this.siren = null
 
-            this.gameOver = false
+        this.gameOver = false
 
-            this.timer = new TimerSettings(difficulty.startTime, this.sound);
+        this.timer = new TimerSettings(difficulty.startTime, this.sound);
 
-            this.events = new Events(scenario.events);
-            this.spawnTimer= null;
-        }
+        this.events = new Events(scenario.events);
+        this.spawnTimer = null;
+    }
 
     start() {
         console.log(
@@ -37,7 +37,7 @@ export class GameManager {
 
         showGameScreen();
 
-        let firstEvent= this.events.spawn();
+        let firstEvent = this.events.spawn();
 
         if (!firstEvent) {
             this.winGame();
@@ -156,27 +156,27 @@ export class GameManager {
             return;
         }
 
-   
+
         if (
             this.events.active.length === 0 &&
             this.events.currentIndex >= this.events.pool.length
-        ){
+        ) {
 
             this.winGame();
             return;
         }
 
         this.refreshEvents
-        
-            this.gameOver = true;
 
-            this.timer.stop();
+        this.gameOver = true;
 
-            this.sound.resetSiren();
+        this.timer.stop();
 
-            this.noise.play('victory');
+        this.sound.resetSiren();
 
-            document.getElementById("app").innerHTML = `
+        this.noise.play('victory');
+
+        document.getElementById("app").innerHTML = `
 
         <h1 class="victory_screen" id="victory-line">${this.scenario.victory}</h1>
         <h2 class="victory_screen"> You Survived! </h2>
@@ -188,25 +188,25 @@ export class GameManager {
 
         `;
 
-            document
-                .getElementById("backScenario")
-                .onclick = () => {
-                    this.cleanrestart();
-                    showScenario();
-                };
-            return;
-        };
-    
+        document
+            .getElementById("backScenario")
+            .onclick = () => {
+                this.cleanrestart();
+                showScenario();
+            };
+        return;
+    };
+
 
     loseGame(failedEvent = null) {
 
-        if(this.gameOver){
+        if (this.gameOver) {
             return;
         }
         console.log("LOSE GAME CALLED")
         this.gameOver = true;
-        
-        if(this.spawnTimer){
+
+        if (this.spawnTimer) {
             clearTimeout(this.spawnTimer);
         }
 
@@ -214,9 +214,9 @@ export class GameManager {
         this.sound.resetSiren();
         this.noise.play('fail');
 
-    const event = failedEvent ?? this.events.active[0];
-    
-    document.getElementById("app").innerHTML = `
+        const event = failedEvent ?? this.events.active[0];
+
+        document.getElementById("app").innerHTML = `
 
     <h1>${event?.title ?? "Game Over"}</h1>
     <h2>You Lose!</h2>
@@ -261,23 +261,23 @@ export class GameManager {
 
     skipEvent(event) {
         const isLastEvent =
-        this.events.active.length === 1 &&
-        this.events.currentIndex >= this.events.pool.length;
+            this.events.active.length === 1 &&
+            this.events.currentIndex >= this.events.pool.length;
 
         this.events.complete(event);
         this.timer.remove(
             this.difficulty.penalty
         );
 
-        if(this.timer.time <= 0){
+        if (this.timer.time <= 0) {
             this.loseGame(event);
             return;
         }
 
-        if(isLastEvent){
+        if (isLastEvent) {
             this.loseGame(event);
             return;
-        }   
+        }
     }
 
     resetGame() {
@@ -314,110 +314,110 @@ export class GameManager {
         this.currentEvent = null;
     }
 
-    setupEventButtons(){
+    setupEventButtons() {
 
         const container =
-        document.getElementById("event-bubble");
-        if(!container){
+            document.getElementById("event-bubble");
+        if (!container) {
             return;
         }
 
         container.onclick = null;
-        container.onclick = (click)=>{
+        container.onclick = (click) => {
 
-        if(click.target.classList.contains("complete")){
-            click.stopPropagation();
+            if (click.target.classList.contains("complete")) {
+                click.stopPropagation();
 
-            const notification =
-                click.target.closest(".notification");
+                const notification =
+                    click.target.closest(".notification");
 
-            const eventID =
-                Number(notification.dataset.eventId);
+                const eventID =
+                    Number(notification.dataset.eventId);
 
-            const selectedEvent =
-                this.events.active.find(
-                    event => event.id ===eventID
-                );
+                const selectedEvent =
+                    this.events.active.find(
+                        event => event.id === eventID
+                    );
 
-            if(selectedEvent){
+                if (selectedEvent) {
 
-            this.completeEvent(selectedEvent);
-            this.noise.play("complete");
-            this.ensureActiveEvent(true);
-            
+                    this.completeEvent(selectedEvent);
+                    this.noise.play('complete');
+                    this.ensureActiveEvent(true);
+
+                }
             }
+
+            if (click.target.classList.contains("skip")) {
+                click.stopPropagation();
+
+                const notification =
+                    click.target.closest(".notification");
+
+                const eventID =
+                    Number(notification.dataset.eventId)
+
+                const selectedEvent =
+                    this.events.active.find(
+                        event => event.id === eventID
+                    );
+
+                if (selectedEvent) {
+
+                    this.skipEvent(selectedEvent);
+                    this.noise.play('skip');
+                    this.ensureActiveEvent(true);
+                }
+
+            };
         }
-
-        if(click.target.classList.contains("skip")){
-            click.stopPropagation();
-
-            const notification =
-                click.target.closest(".notification");
-
-            const eventID =
-                Number(notification.dataset.eventId)
-
-            const selectedEvent =
-                this.events.active.find(
-                    event => event.id === eventID
-                );
-
-            if(selectedEvent){
-
-                this.skipEvent(selectedEvent);
-                this.noise.play("skip");
-                this.ensureActiveEvent(true);
-            }
-    
-        };
     }
-}
-    startEventSpawner(){
+    startEventSpawner() {
 
         const spawnDelay = () => {
 
-        let time = 
-            Math.floor(
-                Math.random() * (20000 - 10000) + 10000
-            );
+            let time =
+                Math.floor(
+                    Math.random() * (20000 - 10000) + 10000
+                );
 
-            this.spawnTimer = setTimeout(()=>{
-            console.log("Spawn Timer Fired")
-            if(this.gameOver){
-                return;
-            }
-            
-
-            if(this.events.active.length < 3){
-
-                let event =
-                    this.events.spawn();
-                if(event){
-                    console.log("Active Events",this.events.active);
-
-                    showEvents(
-                        this.events.active
-                    );
-                    this.setupEventButtons();
+            this.spawnTimer = setTimeout(() => {
+                console.log("Spawn Timer Fired")
+                if (this.gameOver) {
+                    return;
                 }
-            }
-            
+
+
+                if (this.events.active.length < 3) {
+
+                    let event =
+                        this.events.spawn();
+                    if (event) {
+                        console.log("Active Events", this.events.active);
+
+                        showEvents(
+                            this.events.active
+                        );
+                        this.setupEventButtons();
+                    }
+                }
+
                 spawnDelay();
-             }, time);
-         };
-         spawnDelay();
+            }, time);
+        };
+        spawnDelay();
     };
 
-    ensureActiveEvent(force=false){
-        if(this.gameOver){
+    ensureActiveEvent(force = false) {
+        if (this.gameOver) {
             return;
         }
-        if(force && this.events.active.length === 0){
+        if (force && this.events.active.length === 0) {
             const newEvent = this.events.spawn();
 
-            if(newEvent){
-                console.log("Replace Event:", 
-                newEvent
+            if (newEvent) {
+                console.log("Replace Event:",
+                    newEvent
                 );
 
             }
@@ -426,7 +426,7 @@ export class GameManager {
         this.refreshEvents();
     }
 
-    refreshEvents(){
+    refreshEvents() {
 
         showEvents(this.events.active);
 

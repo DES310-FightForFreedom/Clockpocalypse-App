@@ -83,13 +83,14 @@ export function showDifficulty() {
 
         <style>
             .flag img {
-                width: 50px;
+                width: 200px;
                 height: auto;
                 object-fit: cover;
             }
             .flag { 
             cursor: pointer;
             margin: 10px;
+            font-size: 30px;
             }
         </style>
 
@@ -121,7 +122,7 @@ export function goToScenarioSelection() {
     showScenario();
 }
 
-export function showGameScreen(){
+export function showGameScreen() {
 
     app.innerHTML = `
     <div id="game-screen">
@@ -138,20 +139,20 @@ export function showGameScreen(){
 }
 
 
-export function showEvents(events){
+export function showEvents(events) {
 
     const container =
         document.getElementById("event-bubble");
 
 
-    container.innerHTML="";
+    container.innerHTML = "";
 
 
-    events.forEach(event=>{
+    events.forEach(event => {
 
         const notification = document.createElement("div");
-        notification.className="notification";
-        notification.dataset.eventId= event.id;
+        notification.className = "notification";
+        notification.dataset.eventId = event.id;
 
         notification.innerHTML = `
 
@@ -191,28 +192,27 @@ export function showEvents(events){
         `;
 
         container.appendChild(notification);
- 
-        const bubble= 
+
+        const bubble =
             notification.querySelector(".bubble");
 
-        bubble.onclick = (event)=> {
+        bubble.onclick = (event) => {
 
-            if(event.target.tagName === "BUTTON"){
+            if (event.target.tagName === "BUTTON") {
                 return;
             }
 
             document
-            .querySelectorAll(".bubble")
-            .forEach(other=> {
+                .querySelectorAll(".bubble")
+                .forEach(other => {
 
-                if(other !== bubble){
-                    other.classList.remove("expanded");
-                }
-            });
+                    if (other !== bubble) {
+                        other.classList.remove("expanded");
+                    }
+                });
 
             bubble.classList.toggle("expanded");
         };
     });
 }
 
- 
