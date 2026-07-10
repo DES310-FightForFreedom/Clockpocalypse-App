@@ -22,3 +22,96 @@ div h1 {
     text-align: center;
     font-style: italic;
 }
+
+
+
+
+.notification{
+
+    animation: slideIn .5s ease;
+
+    @keyframes slideIn{
+        from{
+            transform.translateX(-200px)
+            opacity:0;
+        }
+        to{
+            transform:translateX(0);
+            opacity:1;
+        }
+    }
+}
+
+.notification{
+
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.profile-circle {
+    width: 60px;   
+    height: 60px;
+
+    border-radius: 50%;
+    background: #111;
+    border: 3px solid red;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 35px;
+    box-shadow: 0 0 10px red;
+}
+
+.bubble{
+    width: 220px;
+    background: #111;
+    color: white;
+
+    border-radius: 20px;
+    padding: 15px;
+
+    cursor: pointer;
+    border-left: 5px solid red;
+    box-shadow: 0 0 15px rgba(255,0,0,.4);
+    transition: .3s ease;
+}
+
+.details{
+    display: none;
+}
+
+.bubble.expanded{
+    width: 350px;
+    background: #252525;
+}
+.bubble.expanded .details{
+    display: block;
+}
+
+#timer{
+    position: fixed;
+    top: 30px;
+    left: 50%;
+
+    transform: translateX(-50%);
+    font-family: 'Digital-7';
+
+    font-size: 80px;
+    color: red;
+    opacity: 0.75;
+    z-index: 0;
+
+}
+
+#event-bubble{
+    position: fixed;
+    top: 150px;
+    left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 2;
+}

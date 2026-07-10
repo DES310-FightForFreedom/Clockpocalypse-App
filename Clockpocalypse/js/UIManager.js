@@ -120,3 +120,99 @@ export function goToScenarioSelection() {
 
     showScenario();
 }
+
+export function showGameScreen(){
+
+    app.innerHTML = `
+    <div id="game-screen">
+
+        <div id="timer">
+            Time: 60
+        </div>
+
+        <div id="event-bubble">
+        </div>
+
+    </div>
+    `
+}
+
+
+export function showEvents(events){
+
+    const container =
+        document.getElementById("event-bubble");
+
+
+    container.innerHTML="";
+
+
+    events.forEach(event=>{
+
+        const notification = document.createElement("div");
+        notification.className="notification";
+        notification.dataset.eventId= event.id;
+
+        notification.innerHTML = `
+
+            <div class="profile-circle">
+                ${event.emoji ?? "⚠️"}
+            </div>
+
+
+            <div class="bubble">
+
+                <h2>
+                    ${event.title}
+                </h2>
+
+
+                <div class="details">
+
+                    <p>
+                        ${event.challenge}
+                    </p>
+
+
+                    <button class="complete">
+                        Complete
+                    </button>
+
+
+                    <button class="skip">
+                        Skip
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        `;
+
+        container.appendChild(notification);
+ 
+        const bubble= 
+            notification.querySelector(".bubble");
+
+        bubble.onclick = (event)=> {
+
+            if(event.target.tagName === "BUTTON"){
+                return;
+            }
+
+            document
+            .querySelectorAll(".bubble")
+            .forEach(other=> {
+
+                if(other !== bubble){
+                    other.classList.remove("expanded");
+                }
+            });
+
+            bubble.classList.toggle("expanded");
+        };
+    });
+}
+
+ 

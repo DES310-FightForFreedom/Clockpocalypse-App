@@ -1,7 +1,13 @@
 export  class Events{
 
     constructor(events){
-        this.pool=[...events];
+        this.pool= events.map((event,index)=>{
+            return{
+                ...event,
+                id:index
+            };
+        });
+        
         this.active=[];
         this.currentIndex=0;
     }
@@ -24,10 +30,16 @@ export  class Events{
 
     complete(event){
 
-        this.active = 
-        this.active.filter(
-        e=>e !== event
-        );
+        const index= 
+            this.active.indexOf(event);
+        if(index !== -1){
+            this.active.splice(index,1);
+        }    
+        
+        // this.active = 
+        //     this.active.filter(
+        //         e=>e.id !== event.id
+        // );
     }
 
     reset(){
