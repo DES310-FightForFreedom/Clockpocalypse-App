@@ -138,6 +138,7 @@ export function showGameScreen() {
     `
 }
 
+let counter = 0;
 
 export function showEvents(events) {
 
@@ -210,6 +211,22 @@ export function showEvents(events) {
                         other.classList.remove("expanded");
                     }
                 });
+
+            //Working on sound system within challenge
+            /*
+        console.log("EXPAND");
+        counter++;
+        console.log(counter);
+
+        //even numbers = when user clicks off 
+
+        const b = findAudio(event);
+
+        if (counter % 2 === 0) {
+            enableLoop(n);
+            console.log("STOP AUDIO");
+        }
+        */
 
             bubble.classList.toggle("expanded");
         };

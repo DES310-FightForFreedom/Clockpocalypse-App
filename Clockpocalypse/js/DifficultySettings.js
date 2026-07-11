@@ -40,7 +40,7 @@ export const difficultyFlags = [
     //Easy 
     { country: "Japan", level: "easy", image: "./assets/Japan_Flag.png", siren: "/AirRaid_Sounds/Japan_Siren.wav" },
     { country: "Denmark", level: "easy", image: "./assets/Denmark_Flag.png", siren: "/AirRaid_Sounds/Denmark_Siren.wav " },
-    { country: "Finland", level: "easy", image: "./assets/Finland_Flag.png", siren: "./assets/Sirens/Japan_Siren.wav  " },
+    { country: "Finland", level: "easy", image: "./assets/Finland_Flag.png", siren: "/AirRaid_Sounds/Finland_Siren.wav" },
 
     //Medium
     { country: "Mexico", level: "medium", image: "./assets/Mexico_Flag.png", siren: "/AirRaid_Sounds/Mexico_Siren.wav" },
