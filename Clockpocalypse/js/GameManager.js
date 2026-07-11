@@ -150,7 +150,7 @@ export class GameManager {
     // }
 
 
-    nextEvent() {
+    winGame() {
 
         if (this.gameOver) {
             return;
@@ -166,7 +166,6 @@ export class GameManager {
             return;
         }
 
-        this.refreshEvents
 
         this.gameOver = true;
 
