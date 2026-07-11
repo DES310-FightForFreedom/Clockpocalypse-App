@@ -8,7 +8,7 @@ export const scenarios = {
         image: "PNG here",
 
         // EDIT FOR VICTORY STYLING HERE
-        victory: "VICTORY CONDITION HERE- Dark Ages ",
+        victory: "What was once a typical world engulfed in shadows is now filled with brightness. The sight around you was a sight to behold.",
 
         // EDIT FOR LOSS WORDING HERE (Specific to scenario?) Changed to be specific to challenges, not scenario.
         // defeat: "You Lose!",
@@ -19,55 +19,55 @@ export const scenarios = {
             // Challenge 1
             {
                 title: "Solar Flare",
-                emoji: "⏰",
+                emoji: "🕶️",
                 challenge: "Cover your eyes, or wear Sunglasses",
-                defeat: "Lights Out",
+                defeat: "You can't see anymore!",
             },
 
             //Challenge 2
             {
                 title: "Blackout",
-                emoji: "⏰",
+                emoji: "🕯️",
                 challenge: "Lights Off! Phone Torches On",
-                defeat: "Lights Out",
+                defeat: "You bump into something sharp…",
             },
 
             //Challenge 3
             {
                 title: "Scavenging Run",
-                emoji: "⏰",
+                emoji: "🏃‍➡️",
                 challenge: "Find Snacks for the Group",
-                defeat: "You Lose - Scavenging Run",
+                defeat: "You never come back from your trip…",
             },
 
             //Challenge 4 
             {
                 title: "Banking Collapse",
-                emoji: "⏰",
+                emoji: "💵💸🤑💰💲",
                 challenge: "Everyone Put Collect a Coin",
-                defeat: "You Lose - Banking Collapse",
+                defeat: "Your debt catches up to you…",
             },
 
             //Challenge 5 
             {
                 title: "Out of Supplies",
-                emoji: "⏰",
+                emoji: "🥫",
                 challenge: "Find a tin of Food",
-                defeat: "You Lose - Out of Supplies",
+                defeat: "Your hunger and thirst gets the best of you…",
             },
 
             //Challenge 6
             {
                 title: "Cash in the Trash",
-                emoji: "⏰",
+                emoji: "🪙",
                 challenge: "Does Anyone Own Crypto?!?!", //This one feels off?
-                defeat: "You Lose - Cash in the Trash",
+                defeat: "You fall into the bottomless trashcan…",
             },
 
             //Challenge 7
             {
                 title: "The Internet is Down",
-                emoji: "⏰",
+                emoji: "☘️🍃🌱🍵",
                 challenge: "Everyone Go Touch Grass",
                 defeat: "You Lose - The Internet is Down",
             },
@@ -75,25 +75,25 @@ export const scenarios = {
             //Challenge 8
             {
                 title: "Sewage in the Streets",
-                emoji: "⏰",
+                emoji: "☢️",
                 challenge: "Pinch Your Nose", // Till the end of Game?? -> Power Restored?
-                defeat: "You Lose - Sewage in the Streets",
+                defeat: "You fall into a deep and rotting abyss…",
             },
 
             //Challenge 9
             {
                 title: "Crypto Shimpto",
-                emoji: "⏰",
+                emoji: "💲💎",
                 challenge: "Pick a New Currency, Everyone go get one!",
-                defeat: "You Lose - Crypto Shimpto",
+                defeat: "Currency not recognized, try again.",
             },
 
             //Challenge 10 
             {
                 title: "Power Restored",
-                emoji: "⏰",
+                emoji: "💡",
                 challenge: "Lights on, unpinch your nose, type Google into Google",
-                defeat: "You Lose - Power Restored",
+                defeat: "Everything goes white around you…",
             }
 
         ]
@@ -118,81 +118,81 @@ export const scenarios = {
             // Challenge 1
             {
                 title: "Meteor",
-                emoji: "⏰",
+                emoji: "☄️💥☢️⚠️",
                 challenge: "Players can't look up!",
-                defeat: "Impact confirmed. Vision was Optimal. Survival was not! ",
+                defeat: "The last thing you saw was a fiery red rock consuming everything around your vision.",
             },
 
             //Challenge 2
             {
                 title: "Earthquake",
-                emoji: "⏰",
+                emoji: "🫨",
                 challenge: "Everyone hide under the furniture!",
-                defeat: "Strutural integrity compromised",
+                defeat: "The ground beneath you cracked, then opened up. Your foot falls in, then the rest of your body.",
             },
 
             //Challenge 3
             {
                 title: "Volcanic Activity",
-                emoji: "⏰",
+                emoji: "🌋",
                 challenge: "Everyone Name a Volcano",
-                defeat: "The Volcano Erupted",
+                defeat: "A mixture of mud and lava swept underneath you--causing you to fall face forward.",
             },
 
             //Challenge 4 
             {
                 title: "Ash Cloud",
-                emoji: "⏰",
+                emoji: "☁️",
                 challenge: "Everyone Hold your breath!", //How Long
-                defeat: "Air Quality - Critical",
+                defeat: "Dust as high as a skyscraper ran towards you. Once it consumed you, your vision faded.",
             },
 
             //Challenge 5 
             {
                 title: "Aftershock",
-                emoji: "⏰",
+                emoji: "🏚️",
                 challenge: "Everyone Back under the Furniture",
-                defeat: "Stuctural integrity finally failed",
+                defeat: "The ground beneath you cracked, then opened up. Your foot falls in, then the rest of your body.",
             },
 
             //Challenge 6
             {
                 title: "The Floor is Lava",
-                emoji: "⏰",
+                emoji: "♨️",
                 challenge: "THE FLOOR IS LAVA!??!",
-                defeat: "Too Slow! Lava increased",
+                defeat: "Your left foot slipped--hurtling you down to the source of the unbearable heat.",
             },
 
             //Challenge 7
             {
                 title: "Global Warming",
-                emoji: "⏰",
+                emoji: "👕",
                 challenge: "Everyone remove one item of clothing!",
-                defeat: "Thermal Overload",
+                defeat: "Your vision blurred and you swore that you could see two, no--THREE suns in the sky. The last thing you could think of was 'water' before your vision faded to black.",
             },
 
             //Challenge 8
             {
                 title: "Geo-Magnetic Storm",
-                emoji: "⏰",
+                emoji: "🧭",
                 challenge: "Everyone point North",
-                defeat: "That was South",
+                defeat: "Physically, you felt fine. However, you would probably not feel as fine with the airplane flying downwards where you stood.",
             },
 
             //Challenge 9
             {
                 title: "Weather Warning",
-                emoji: "⏰",
+                emoji: "🌦️⚠️",
                 challenge: "Move away from the Windows (Floor is still Lava)",
-                defeat: "It said Warning, you said 'NOPE!' ",
+                defeat: "The window began to crack, then it exploded in several thousand pieces of glass shards. If it wasn’t enough that you were getting hailed by glass, the lava underneath finished the job.",
             },
 
             //Challenge 10 
             {
                 title: "Tornado",
-                emoji: "⏰",
+                emoji: "🌪️",
                 challenge: "Everyone spin around 5 times",
-                defeat: "You were carried away",
+                defeat: "You tried to hold onto the ground, but found yourself flying into the sky.",
             }
 
         ]
@@ -206,7 +206,7 @@ export const scenarios = {
         image: "PNG here",
 
         // EDIT FOR VICTORY STYLING HERE
-        victory: "VICTORY CONDITION HERE- DeepState",
+        victory: "The unassuming baby was a beacon of hope, casting light into the once darkened and decayed world.",
 
         // EDIT FOR LOSS WORDING HERE (Specific to scenario?) Changed to be specific to challenges, not scenario.
         // defeat: "You Lose!",
@@ -217,81 +217,81 @@ export const scenarios = {
             // Challenge 1
             {
                 title: "The Bees are dying",
-                emoji: "⏰",
+                emoji: "🐝",
                 challenge: "Everyone Smell a flower!",
-                defeat: "The Flowers are all gone",
+                defeat: "You catch a fatal whiff of foxglove…",
             },
 
             //Challenge 2
             {
                 title: "Chemtrails",
-                emoji: "⏰",
+                emoji: "✈️🛸",
                 challenge: "Everyone say a conspiracy theory",
-                defeat: "The Conspiracies were real",
+                defeat: "The shadow people close in on you…",
             },
 
             //Challenge 3
             {
                 title: "They're Listening",
-                emoji: "⏰",
+                emoji: "🔇🎧🧏‍♀️",
                 challenge: "Everyone Stay quiet for the rest of the game",
-                defeat: "Not Quiet Enough!",
+                defeat: "The shadow king overhears you…",
             },
 
             //Challenge 4 
             {
                 title: "Doomsday Cult",
-                emoji: "⏰",
+                emoji: "☣️🪖",
                 challenge: "Pick the member most likely to join a cult!",
-                defeat: "Too Slow! And Really? What did they ever do to you! ",
+                defeat: "If you can't win, might as well as join the shadows.",
             },
 
             //Challenge 5 
             {
                 title: "Tinfoil Hat",
-                emoji: "⏰",
+                emoji: "🧢🤖",
                 challenge: "Your Leader needs a new Anti-Radiation Hat",
-                defeat: "So those were fake",
+                defeat: "The previous you was gone, replaced by a ghoul…",
             },
 
             //Challenge 6
             {
                 title: "Prepper",
-                emoji: "⏰",
+                emoji: "⚠️🧟🗺️",
                 challenge: "Agree on an Apocolyptic Meeting Point",
-                defeat: "Meeting Point Compromised",
+                defeat: "Everything devolves into anarchy, with you becoming surrounded by a warlord…",
             },
 
             //Challenge 7
             {
                 title: "Fertility Crisis",
-                emoji: "⏰",
+                emoji: "🤰",
                 challenge: "Pick one player to be heavily pregnant",
-                defeat: "The Last People on Earth",
+                defeat: "You get sent away to somewhere far, far away…",
             },
 
             //Challenge 8
             {
                 title: "Get to the Bottom of this",
-                emoji: "⏰",
+                emoji: "👑🗡️🧐🕵",
                 challenge: "Find out whos really pulling the Strings",
-                defeat: "Theres always a bigger boss",
+                defeat: "The shadow king remains unfound…",
             },
 
             //Challenge 9
             {
                 title: "The Last Generation",
-                emoji: "⏰",
+                emoji: "🍼👶🏻🐣💖",
                 challenge: "Your pregnant team member gives birth",
-                defeat: "Too Bad ",
+                defeat: "Darkness engulfs the world…",
             },
 
             //Challenge 10 
             {
                 title: "With Us or Against Us",
-                emoji: "⏰",
+                emoji: "👀🧸",
                 challenge: "Your Cult member sacrifices the baby",
-                defeat: "You werent with us",
+                defeat: "The baby is stolen by the shadow king…",
             }
 
         ]
@@ -305,7 +305,7 @@ export const scenarios = {
         image: "PNG here",
 
         // EDIT FOR VICTORY STYLING HERE
-        victory: "VICTORY CONDITION HERE- OverLord",
+        victory: "You've saved the world and are rewarded with 53 new countries…",
 
         // EDIT FOR LOSS WORDING HERE (Specific to scenario?) Changed to be specific to challenges, not scenario.
         // defeat: "You Lose!",
@@ -316,81 +316,81 @@ export const scenarios = {
             // Challenge 1
             {
                 title: "Clankers",
-                emoji: "⏰",
+                emoji: "🤖",
                 challenge: "Everyone Insult an AI",
-                defeat: "The Robots take over",
+                defeat: "Roko will remember this…",
             },
 
             //Challenge 2
             {
                 title: "Robot Invasion",
-                emoji: "⏰",
+                emoji: "🧠",
                 challenge: "Act like Robots to Avoid detection",
-                defeat: "They had thermal vision",
+                defeat: "You fail the'which image is a bus' test…",
             },
 
             //Challenge 3
             {
                 title: "Human Uprising",
-                emoji: "⏰",
+                emoji: "🤖🤔💻",
                 challenge: "Prove you're not a Robot Complete the Captcha",
-                defeat: "Error 404 Human not found",
+                defeat: "Recaptcha verification failed, please try again.",
             },
 
             //Challenge 4 
             {
                 title: "Alien Invasion",
-                emoji: "⏰",
+                emoji: "👽🛸",
                 challenge: "Elect one of you as the leader of the new planet",
-                defeat: "Too Bad",
+                defeat: "Disorganized, the aliens take this opportunity to fire a gigantic laser at Earth…",
             },
 
             //Challenge 5 
             {
                 title: "Board the Mothership",
-                emoji: "⏰",
+                emoji: "🛸🖖🏻👽",
                 challenge: "Your leader needs to leave to board the Mothership",
-                defeat: "You really didnt believe that was an abduction, did you?",
+                defeat: "The leader slips down the stairs…",
             },
 
             //Challenge 6
             {
                 title: "World War III",
-                emoji: "⏰",
+                emoji: "我喜欢它",
                 challenge: "Everyone needs to say a sentence in Mandarin",
-                defeat: "Your language skills need work",
+                defeat: "You accidentally speak fluent vietnamese…",
             },
 
             //Challenge 7
             {
                 title: "Radiation Mutation",
-                emoji: "⏰",
+                emoji: "☣️",
                 challenge: "Everyone pair up into Siamese twins or triplets",
-                defeat: "Too Bad",
+                defeat: "You never did find your clone…",
             },
 
             //Challenge 8
             {
                 title: "Robot Overlords",
-                emoji: "⏰",
+                emoji: "🤖👑",
                 challenge: "Everyone Complement the Computers",
-                defeat: "You were the first to insult them werent you?",
+                defeat: "You realize that Roko's Basilisk was real all along…",
             },
 
             //Challenge 9
             {
                 title: "World Peace",
-                emoji: "⏰",
+                emoji: "✌",
                 challenge: "Everyone Hold hands in a circle",
-                defeat: "Will World Peace solve the problem?",
+                defeat: "You send a nuke, someone sends a nuke, repeat…",
             },
 
             //Challenge 10 
             {
                 title: "World War IIII",
-                emoji: "⏰",
+                emoji: "⚔️🪖",
                 challenge: "Everyone finds Sticks and Stones",
-                defeat: "Back to War Folks!",
+                defeat: "An empire 500 years extinct rises up from the grave and flanks you…",
             }
 
         ]
@@ -415,7 +415,7 @@ export const scenarios = {
             // Challenge 1
             {
                 title: "Rising Tides",
-                emoji: "⏰",
+                emoji: "💧🫗",
                 challenge: "Players need to drink a combined liter of Water",
                 defeat: "You drowned when you could drink it?",
             },
@@ -423,7 +423,7 @@ export const scenarios = {
             //Challenge 2
             {
                 title: "Water World",
-                emoji: "⏰",
+                emoji: "🍋🥝🍌🍐🥥🍈🍍🍎🍓🍇",
                 challenge: "Eat a piece of fruit to prevent scurvy",
                 defeat: " Too Bad ",
             },
@@ -431,7 +431,7 @@ export const scenarios = {
             //Challenge 3
             {
                 title: "Rescue Morale",
-                emoji: "⏰",
+                emoji: "⚓🏴‍☠️🦜",
                 challenge: "Sing a Sea Shanty to raise your spirits",
                 defeat: "Singing takes time I get it",
             },
@@ -439,7 +439,7 @@ export const scenarios = {
             //Challenge 4 
             {
                 title: "Deadweight",
-                emoji: "⏰",
+                emoji: "⛵",
                 challenge: "Choose Someone to Toss Overboard",
                 defeat: "The Door would not have supported Jack",
             },
@@ -447,7 +447,7 @@ export const scenarios = {
             //Challenge 5 
             {
                 title: "Blasphomy",
-                emoji: "⏰",
+                emoji: "👺👹",
                 challenge: "Does everyone know a bad word?",
                 defeat: "Your Mom is going to wash your mouth out with Soap",
             },
@@ -455,7 +455,7 @@ export const scenarios = {
             //Challenge 6
             {
                 title: "The End is Nigh",
-                emoji: "⏰",
+                emoji: "😡",
                 challenge: "Every Repent of a sin",
                 defeat: "YOU DID NOT REPENT",
             },
@@ -463,7 +463,7 @@ export const scenarios = {
             //Challenge 7
             {
                 title: "Judgement Day",
-                emoji: "⏰",
+                emoji: "📖📜",
                 challenge: "Quote the Bible!",
                 defeat: "Did you not pay attention in Sunday School?",
             },
@@ -471,7 +471,7 @@ export const scenarios = {
             //Challenge 8
             {
                 title: "Return to the Old Gods",
-                emoji: "⏰",
+                emoji: "💪",
                 challenge: "Make a sacrifice",
                 defeat: "The Old Gods Didnt want you anyway",
             },
@@ -479,7 +479,7 @@ export const scenarios = {
             //Challenge 9
             {
                 title: "Leper Colony",
-                emoji: "⏰",
+                emoji: "🧑‍🦽🩼",
                 challenge: "Everyone lose a limb!",
                 defeat: " Too Bad ",
             },
@@ -487,7 +487,7 @@ export const scenarios = {
             //Challenge 10 
             {
                 title: "Reincarnate", //?? Spelling here or is this a quote I just dont get?
-                emoji: "⏰",
+                emoji: "☯️⚖️🧘",
                 challenge: "Everyone improve your karma!",
                 defeat: " Too Bad ",
             }
@@ -514,7 +514,7 @@ export const scenarios = {
             // Challenge 1
             {
                 title: "Get Out of Dodge",
-                emoji: "⏰",
+                emoji: "🚗🚓",
                 challenge: "Spot a car!",
                 defeat: "Never Learned to Dodge did you",
             },
@@ -522,7 +522,7 @@ export const scenarios = {
             //Challenge 2
             {
                 title: "Fuel Shortage",
-                emoji: "⏰",
+                emoji: "🚲",
                 challenge: "Spot a bicycle",
                 defeat: "How would you get around in the apocalypse",
             },
@@ -530,7 +530,7 @@ export const scenarios = {
             //Challenge 3
             {
                 title: "Last Flight to Safety",
-                emoji: "⏰",
+                emoji: "✈️🛬",
                 challenge: "Everyone put your phones in airplane mode",
                 defeat: "There never was a safe place",
             },
@@ -538,7 +538,7 @@ export const scenarios = {
             //Challenge 4 
             {
                 title: "Crash Landing",
-                emoji: "⏰",
+                emoji: "💥",
                 challenge: "BRACE FOR IMPACT! BRACE BRACE",
                 defeat: "You did not survive the crash",
             },
@@ -546,7 +546,7 @@ export const scenarios = {
             //Challenge 5 
             {
                 title: "Island Survival",
-                emoji: "⏰",
+                emoji: "🏝️",
                 challenge: "Decide who would get eaten first",
                 defeat: "You all got eaten",
             },
@@ -554,7 +554,7 @@ export const scenarios = {
             //Challenge 6
             {
                 title: "Make a New Friend",
-                emoji: "⏰",
+                emoji: "🤝🏐📦",
                 challenge: "Choose an object to replace the easten survivor",
                 defeat: "NOT FRIENDLY",
             },
@@ -562,7 +562,7 @@ export const scenarios = {
             //Challenge 7
             {
                 title: "Meet the Neighbors",
-                emoji: "⏰",
+                emoji: "👋)",
                 challenge: "The eaten survivor is now a tribal native, make peace in their native tongue",
                 defeat: "Peace is Overrated anyways",
             },
@@ -570,7 +570,7 @@ export const scenarios = {
             //Challenge 8
             {
                 title: "Look the Part",
-                emoji: "⏰",
+                emoji: "💄",
                 challenge: "Find some tribal markings for your native friend",
                 defeat: "Cultural Appropriation? Really?",
             },
@@ -578,7 +578,7 @@ export const scenarios = {
             //Challenge 9
             {
                 title: "Dying of Thirst",
-                emoji: "⏰",
+                emoji: "🌧️",
                 challenge: "Everyone do a rain dance",
                 defeat: "The Rain Gods were not impressed",
             },
@@ -586,7 +586,7 @@ export const scenarios = {
             //Challenge 10 
             {
                 title: "Passing Plane",
-                emoji: "⏰",
+                emoji: "✈️🛬",
                 challenge: "Make a giant SOS",
                 defeat: "It wasnt ready in time",
             }
@@ -613,7 +613,7 @@ export const scenarios = {
             // Challenge 1
             {
                 title: "Patient Zero",
-                emoji: "⏰",
+                emoji: "🧟",
                 challenge: "Someone develops a sickness",
                 defeat: " You were all infected. It was fatal",
             },
@@ -621,7 +621,7 @@ export const scenarios = {
             //Challenge 2
             {
                 title: "Infection",
-                emoji: "⏰",
+                emoji: "🦠",
                 challenge: "The virus spread to half the players",
                 defeat: " Too bad ",
             },
@@ -629,7 +629,7 @@ export const scenarios = {
             //Challenge 3
             {
                 title: "Pandemic",
-                emoji: "⏰",
+                emoji: "😷",
                 challenge: "Everyone stand 2 meters apart",
                 defeat: "2 meters is 6 feet in American units",
             },
@@ -637,7 +637,7 @@ export const scenarios = {
             //Challenge 4 
             {
                 title: "Panic Buying",
-                emoji: "⏰",
+                emoji: "🧻",
                 challenge: "Find a roll of toilet paper, just in case",
                 defeat: "What are we gonna do without toilet paper!",
             },
@@ -645,7 +645,7 @@ export const scenarios = {
             //Challenge 5 
             {
                 title: "All Sold Out",
-                emoji: "⏰",
+                emoji: "🧻🍃",
                 challenge: "Find an alternative toilet paper",
                 defeat: "Ewwww Too bad",
             },
@@ -653,7 +653,7 @@ export const scenarios = {
             //Challenge 6
             {
                 title: "Mans Best Friend",
-                emoji: "⏰",
+                emoji: "🐶🦮🦴",
                 challenge: "Spot a dog",
                 defeat: "Thats a wolf",
             },
@@ -661,7 +661,7 @@ export const scenarios = {
             //Challenge 7
             {
                 title: "The Living Dead",
-                emoji: "⏰",
+                emoji: "🧟‍♂️ / 🧟‍♀️",
                 challenge: "Infected Players turn into slow zombies",
                 defeat: " Too bad ",
             },
@@ -669,7 +669,7 @@ export const scenarios = {
             //Challenge 8
             {
                 title: "Dont get infected",
-                emoji: "⏰",
+                emoji: "🧟‍♂️ / 🧟‍♀️",
                 challenge: "DONT LET THE ZOMBIES TOUCH YOU", // move this higher?  
                 defeat: " Too bad",
             },
@@ -677,7 +677,7 @@ export const scenarios = {
             //Challenge 9
             {
                 title: "Find the Cure",
-                emoji: "⏰",
+                emoji: "🧪",
                 challenge: "Find the Cure and Drink it",
                 defeat: "That was poison",
             },

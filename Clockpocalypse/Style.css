@@ -26,23 +26,23 @@ div h1 {
 
 
 
-.notification{
+.notification {
 
     animation: slideIn .5s ease;
 
-    @keyframes slideIn{
-        from{
-            transform.translateX(-200px)
-            opacity:0;
+    @keyframes slideIn {
+        from {
+            transform.translateX(-200px) opacity: 0;
         }
-        to{
-            transform:translateX(0);
-            opacity:1;
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
         }
     }
 }
 
-.notification{
+.notification {
 
     display: flex;
     align-items: flex-start;
@@ -50,7 +50,7 @@ div h1 {
 }
 
 .profile-circle {
-    width: 60px;   
+    width: 60px;
     height: 60px;
 
     border-radius: 50%;
@@ -65,7 +65,7 @@ div h1 {
     box-shadow: 0 0 10px red;
 }
 
-.bubble{
+.bubble {
     width: 220px;
     background: #111;
     color: white;
@@ -75,23 +75,24 @@ div h1 {
 
     cursor: pointer;
     border-left: 5px solid red;
-    box-shadow: 0 0 15px rgba(255,0,0,.4);
+    box-shadow: 0 0 15px rgba(255, 0, 0, .4);
     transition: .3s ease;
 }
 
-.details{
+.details {
     display: none;
 }
 
-.bubble.expanded{
+.bubble.expanded {
     width: 350px;
     background: #252525;
 }
-.bubble.expanded .details{
+
+.bubble.expanded .details {
     display: block;
 }
 
-#timer{
+#timer {
     position: fixed;
     top: 30px;
     left: 50%;
@@ -106,7 +107,7 @@ div h1 {
 
 }
 
-#event-bubble{
+#event-bubble {
     position: fixed;
     top: 150px;
     left: 30px;
