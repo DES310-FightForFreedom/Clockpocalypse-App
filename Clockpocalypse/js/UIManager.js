@@ -116,8 +116,6 @@ export function showDifficulty() {
 }
 
 export function goToScenarioSelection() {
-    selectedScenario = null;
-    selectedDifficulty = null;
 
     showScenario();
 }
@@ -138,18 +136,28 @@ export function showGameScreen() {
     `
 }
 
-let counter = 0;
 
 export function showEvents(events) {
 
     const container =
         document.getElementById("event-bubble");
 
+    const existingIds = new Set(
+        [...container.children].map(el => el.dataset.eventId)
+    );
+    const activeIds = new Set(events.map(e => String(e.id)));
 
-    container.innerHTML = "";
+    [...container.children].forEach(el => {
+        if (!activeIds.has(el.dataset.eventId)){
+            el.remove();
+        }
+    });
 
 
     events.forEach(event => {
+        if(existingIds.has(String(event.id))){
+            return; //if the notification is already on screen this leaves it alone. 
+        }
 
         const notification = document.createElement("div");
         notification.className = "notification";
@@ -197,9 +205,9 @@ export function showEvents(events) {
         const bubble =
             notification.querySelector(".bubble");
 
-        bubble.onclick = (event) => {
+        bubble.onclick = (e) => {
 
-            if (event.target.tagName === "BUTTON") {
+            if (e.target.tagName === "BUTTON") {
                 return;
             }
 
@@ -211,22 +219,6 @@ export function showEvents(events) {
                         other.classList.remove("expanded");
                     }
                 });
-
-            //Working on sound system within challenge
-            /*
-        console.log("EXPAND");
-        counter++;
-        console.log(counter);
-
-        //even numbers = when user clicks off 
-
-        const b = findAudio(event);
-
-        if (counter % 2 === 0) {
-            enableLoop(n);
-            console.log("STOP AUDIO");
-        }
-        */
 
             bubble.classList.toggle("expanded");
         };

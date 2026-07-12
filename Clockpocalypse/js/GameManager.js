@@ -156,16 +156,12 @@ export class GameManager {
             return;
         }
 
-
         if (
-            this.events.active.length === 0 &&
-            this.events.currentIndex >= this.events.pool.length
+            !(this.events.active.length === 0 &&
+            this.events.currentIndex >= this.events.pool.length)
         ) {
-
-            this.winGame();
             return;
         }
-
 
         this.gameOver = true;
 
@@ -269,11 +265,6 @@ export class GameManager {
         );
 
         if (this.timer.time <= 0) {
-            this.loseGame(event);
-            return;
-        }
-
-        if (isLastEvent) {
             this.loseGame(event);
             return;
         }
@@ -411,6 +402,18 @@ export class GameManager {
         if (this.gameOver) {
             return;
         }
+
+        if(
+            this.events.active.length === 0 &&
+            this.events.currentIndex >= this.events.pool.length
+        ){
+            this.winGame();
+            return;
+        }
+
+
+
+
         if (force && this.events.active.length === 0) {
             const newEvent = this.events.spawn();
 

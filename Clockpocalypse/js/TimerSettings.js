@@ -92,7 +92,7 @@ export class TimerSettings{
     }
 
     setVolume(amount){
-        this.sound.setVolume(amount);
+        this.sound?.setVolume?.(amount);
     }
 
     stop(){
