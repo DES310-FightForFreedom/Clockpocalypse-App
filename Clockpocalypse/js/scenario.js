@@ -43,7 +43,7 @@ export const scenarios = {
             //Challenge 4 
             {
                 title: "Banking Collapse",
-                emoji: "💵💸🤑💰💲",
+                emoji: "💵🤑",
                 challenge: "Everyone Put Collect a Coin",
                 defeat: "Your debt catches up to you…",
             },
@@ -67,7 +67,7 @@ export const scenarios = {
             //Challenge 7
             {
                 title: "The Internet is Down",
-                emoji: "☘️🍃🌱🍵",
+                emoji: "☘️🍵",
                 challenge: "Everyone Go Touch Grass",
                 defeat: "You Lose - The Internet is Down",
             },
@@ -118,7 +118,7 @@ export const scenarios = {
             // Challenge 1
             {
                 title: "Meteor",
-                emoji: "☄️💥☢️⚠️",
+                emoji: "☄️💥",
                 challenge: "Players can't look up!",
                 defeat: "The last thing you saw was a fiery red rock consuming everything around your vision.",
             },
@@ -233,7 +233,7 @@ export const scenarios = {
             //Challenge 3
             {
                 title: "They're Listening",
-                emoji: "🔇🎧🧏‍♀️",
+                emoji: "🔇🧏‍♀️",
                 challenge: "Everyone Stay quiet for the rest of the game",
                 defeat: "The shadow king overhears you…",
             },
@@ -257,7 +257,7 @@ export const scenarios = {
             //Challenge 6
             {
                 title: "Prepper",
-                emoji: "⚠️🧟🗺️",
+                emoji: "🧟🗺️",
                 challenge: "Agree on an Apocolyptic Meeting Point",
                 defeat: "Everything devolves into anarchy, with you becoming surrounded by a warlord…",
             },
@@ -273,7 +273,7 @@ export const scenarios = {
             //Challenge 8
             {
                 title: "Get to the Bottom of this",
-                emoji: "👑🗡️🧐🕵",
+                emoji: "👑🗡️",
                 challenge: "Find out whos really pulling the Strings",
                 defeat: "The shadow king remains unfound…",
             },
@@ -281,7 +281,7 @@ export const scenarios = {
             //Challenge 9
             {
                 title: "The Last Generation",
-                emoji: "🍼👶🏻🐣💖",
+                emoji: "👶🏻🐣",
                 challenge: "Your pregnant team member gives birth",
                 defeat: "Darkness engulfs the world…",
             },
@@ -332,7 +332,7 @@ export const scenarios = {
             //Challenge 3
             {
                 title: "Human Uprising",
-                emoji: "🤖🤔💻",
+                emoji: "🤖💻",
                 challenge: "Prove you're not a Robot Complete the Captcha",
                 defeat: "Recaptcha verification failed, please try again.",
             },
@@ -348,7 +348,7 @@ export const scenarios = {
             //Challenge 5 
             {
                 title: "Board the Mothership",
-                emoji: "🛸🖖🏻👽",
+                emoji: "🛸🖖🏻",
                 challenge: "Your leader needs to leave to board the Mothership",
                 defeat: "The leader slips down the stairs…",
             },
@@ -356,7 +356,7 @@ export const scenarios = {
             //Challenge 6
             {
                 title: "World War III",
-                emoji: "我喜欢它",
+                emoji: "我喜",
                 challenge: "Everyone needs to say a sentence in Mandarin",
                 defeat: "You accidentally speak fluent vietnamese…",
             },
@@ -423,7 +423,7 @@ export const scenarios = {
             //Challenge 2
             {
                 title: "Water World",
-                emoji: "🍋🥝🍌🍐🥥🍈🍍🍎🍓🍇",
+                emoji: "🍋🥝",
                 challenge: "Eat a piece of fruit to prevent scurvy",
                 defeat: " Too Bad ",
             },
@@ -431,7 +431,7 @@ export const scenarios = {
             //Challenge 3
             {
                 title: "Rescue Morale",
-                emoji: "⚓🏴‍☠️🦜",
+                emoji: "🏴‍☠️🦜",
                 challenge: "Sing a Sea Shanty to raise your spirits",
                 defeat: "Singing takes time I get it",
             },
@@ -487,7 +487,7 @@ export const scenarios = {
             //Challenge 10 
             {
                 title: "Reincarnate", //?? Spelling here or is this a quote I just dont get?
-                emoji: "☯️⚖️🧘",
+                emoji: "☯️🧘",
                 challenge: "Everyone improve your karma!",
                 defeat: " Too Bad ",
             }
@@ -554,7 +554,7 @@ export const scenarios = {
             //Challenge 6
             {
                 title: "Make a New Friend",
-                emoji: "🤝🏐📦",
+                emoji: "🤝🏐",
                 challenge: "Choose an object to replace the easten survivor",
                 defeat: "NOT FRIENDLY",
             },
@@ -653,7 +653,7 @@ export const scenarios = {
             //Challenge 6
             {
                 title: "Mans Best Friend",
-                emoji: "🐶🦮🦴",
+                emoji: "🐶🦴",
                 challenge: "Spot a dog",
                 defeat: "Thats a wolf",
             },

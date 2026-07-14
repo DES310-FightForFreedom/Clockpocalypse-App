@@ -158,7 +158,7 @@ export class GameManager {
 
         if (
             !(this.events.active.length === 0 &&
-            this.events.currentIndex >= this.events.pool.length)
+                this.events.currentIndex >= this.events.pool.length)
         ) {
             return;
         }
@@ -173,8 +173,8 @@ export class GameManager {
 
         document.getElementById("app").innerHTML = `
 
-        <h1 class="victory_screen" id="victory-line">${this.scenario.victory}</h1>
-        <h2 class="victory_screen"> You Survived! </h2>
+        <h1 class="victory_screen"> You Survived! </h1>
+        <h2 class="victory_screen" id="victory-line">${this.scenario.victory}</h2>
         
 
         <button id="backScenario">
@@ -213,10 +213,10 @@ export class GameManager {
 
         document.getElementById("app").innerHTML = `
 
-    <h1>${event?.title ?? "Game Over"}</h1>
-    <h2>You Lose!</h2>
-    <h3>${event?.defeat} </h3>
-    <h4> The Clockpocalypse Wins </h4> 
+    <h1 class="lose_screen">${event?.title ?? "Game Over"}</h1>
+    <h2 class="lose_screen">${event?.defeat} </h2>
+    <h2 class="lose_screen">You Lose!</h2>
+    <h3 class="lose_screen"> The Clockpocalypse Wins </h3> 
 
     <button id="restart"> 
         Restart
@@ -403,10 +403,10 @@ export class GameManager {
             return;
         }
 
-        if(
+        if (
             this.events.active.length === 0 &&
             this.events.currentIndex >= this.events.pool.length
-        ){
+        ) {
             this.winGame();
             return;
         }
