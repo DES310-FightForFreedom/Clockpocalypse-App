@@ -346,7 +346,10 @@
 }
 
 .tier-flames {
-    font-size: 12px;
+    font-size: 22px;
+    letter-spacing: 2px;
+    margin-top: 1px;
+    filter: drop-shadow(0 0 4px var(--accent-red-glow));
 }
 
 #folder-contents {
