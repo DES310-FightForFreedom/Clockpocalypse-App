@@ -5,35 +5,6 @@ export class TimerSettings{
         this.sound=sound; 
     }
 
-
-    // //Tick on the Timer Moved to SoundManager
-    // async tick(){
-
-    //     if(this.audio.state === "suspended"){
-    //         await this.audio.resume();
-    //     }
-
-    //     let oscillator = this.audio.createOscillator();
-
-    //     let gain= this.audio.createGain();
-
-    //     oscillator.type="sine";
-
-    //     oscillator.frequency.value= 900;
-
-    //     gain.gain.value=1;
-
-    //     oscillator.connect(gain);
-    //     gain.connect(this.volume);
-
-    //     oscillator.start();
-
-    //     oscillator.stop(this.audio.currentTime + 0.05);
-
-    // }
-
-    //Timer 
-
     start(callback, toEnd){
 
         this.stop(); 

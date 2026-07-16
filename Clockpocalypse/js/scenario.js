@@ -555,14 +555,14 @@ export const scenarios = {
             {
                 title: "Make a New Friend",
                 emoji: "🤝🏐",
-                challenge: "Choose an object to replace the easten survivor",
+                challenge: "Choose an object to replace the eaten survivor",
                 defeat: "NOT FRIENDLY",
             },
 
             //Challenge 7
             {
                 title: "Meet the Neighbors",
-                emoji: "👋)",
+                emoji: "👋",
                 challenge: "The eaten survivor is now a tribal native, make peace in their native tongue",
                 defeat: "Peace is Overrated anyways",
             },

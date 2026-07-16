@@ -83,73 +83,6 @@ export class GameManager {
         this.siren = await this.sound.play("siren", true);
     }
 
-    // OLD_displayEvent() {
-
-    //     if (this.gameOver) {
-    //         return;
-    //     }
-
-    //     let event = this.currentEvent;
-
-    //     if (!event) {
-    //         this.winGame();
-    //         return;
-    //     }
-
-
-    //     document.getElementById("app").innerHTML = `
-
-    //     <h1>${this.scenario.name}</h1>
-
-    //     <h2>${event.title}</h2>
-    //     <p>${event.challenge}</p>
-
-    //     <button id="complete">
-    //         Complete
-    //     </button>
-
-    //     <button id="skip">
-    //         Pass
-    //     </button>
-
-    //     <h3 id="timer">
-    //         Time: ${this.timer.time}
-    //     </h3>
-    // `;
-    //     // Complete event or Skip button framework
-
-    //     document
-    //         .getElementById("complete")
-    //         .onclick = () => {
-
-    //             if (this.gameOver) {
-    //                 return;
-    //             }
-
-    //             this.completeEvent(
-    //                 this.currentEvent
-    //             );
-    //             this.noise.play('complete');
-    //             this.nextEvent();
-    //         };
-
-    //     document
-    //         .getElementById("skip")
-    //         .onclick = () => {
-
-    //             if (this.gameOver) {
-    //                 return;
-    //             }
-
-    //             this.skipEvent(
-    //                 this.currentEvent
-    //             );
-    //             this.noise.play('skip');
-    //             this.nextEvent();
-    //         };
-    // }
-
-
     winGame() {
 
         if (this.gameOver) {
@@ -164,6 +97,11 @@ export class GameManager {
         }
 
         this.gameOver = true;
+
+        if (this.spawnTimer){
+            clearTimeout(this.spawnTimer);
+            this.spawnTimer = null;
+        }
 
         this.timer.stop();
 
@@ -203,6 +141,7 @@ export class GameManager {
 
         if (this.spawnTimer) {
             clearTimeout(this.spawnTimer);
+            this.spawnTimer = null;
         }
 
         this.timer.stop();
@@ -288,6 +227,11 @@ export class GameManager {
 
         this.gameOver = true;
 
+        if (this.spawnTimer){
+            clearTimeout(this.spawnTimer);
+            this.spawnTimer = null;
+        }
+
         if (this.timer) {
             this.timer.stop();
         }
@@ -363,6 +307,11 @@ export class GameManager {
         }
     }
     startEventSpawner() {
+
+        if(this.spawnTimer){
+            clearTimeout(this.spawnTimer);
+            this.spawnTimer = null;
+        }
 
         const spawnDelay = () => {
 

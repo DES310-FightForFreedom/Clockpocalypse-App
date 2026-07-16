@@ -35,11 +35,6 @@ export  class Events{
         if(index !== -1){
             this.active.splice(index,1);
         }    
-        
-        // this.active = 
-        //     this.active.filter(
-        //         e=>e.id !== event.id
-        // );
     }
 
     reset(){

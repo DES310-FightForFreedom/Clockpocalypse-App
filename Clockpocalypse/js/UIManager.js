@@ -70,50 +70,180 @@ export function showScenario() {
 // to be updated later by PNG and Audio files
 // Edited as Const 
 
+//export function showDifficulty() {
+
+    // let FlagsHTML = "";
+
+    // difficultyFlags.forEach((item) => {
+    //     FlagsHTML += `
+
+    //     <button
+    //     class="flag"
+    //     onclick="chooseDifficulty('${item.country}')">
+
+    //     <style>
+    //         .flag img {
+    //             width: 200px;
+    //             height: auto;
+    //             object-fit: cover;
+    //         }
+    //         .flag { 
+    //         cursor: pointer;
+    //         margin: 10px;
+    //         font-size: 30px;
+    //         }
+    //     </style>
+
+    //     <img src="${item.image}">
+    //     <p>${item.country}</p>
+
+    //     </button>
+    //     `;
+    // });
+
+    // app.innerHTML = `
+
+    //     <div>
+
+    //         <h1>Select Difficulty</h1>
+
+    //         <div id="flags">
+
+    //             ${FlagsHTML}
+    //         </div>
+    //     </div>
+    // `;
+
+    
+//============================================================================================================
+//EDITS FOR FLAG SCREEN BEGIN HERE 
+//==============================================================================================================
+
+
+const tierMeta = {
+    easy: { label: "Easy", flames: "🔥" },
+    medium: { label: "Medium", flames: "🔥🔥" },
+    hard: { label: "Hard", flames: "🔥🔥🔥" },
+    ultraHard: { label: "Ultra Hard", flames: "🔥🔥🔥🔥" }
+};
+
+let flagViewMode = "row";
+let openTier = null;
+
 export function showDifficulty() {
 
-    let FlagsHTML = "";
+    app.innerHTML = `
+        <div>
+            <h1>Select Difficulty</h1>
 
-    difficultyFlags.forEach((item) => {
-        FlagsHTML += `
+            <div id="view-toggle">
+                <button id="toggle-folder">Folder View</button>
+                <button id="toggle-row">Row View</button>
+            </div>
 
-        <button
-        class="flag"
-        onclick="chooseDifficulty('${item.country}')">
+            <div id="flags"></div>
+        </div>
+    `;
 
-        <style>
-            .flag img {
-                width: 200px;
-                height: auto;
-                object-fit: cover;
-            }
-            .flag { 
-            cursor: pointer;
-            margin: 10px;
-            font-size: 30px;
-            }
-        </style>
+    document.getElementById("toggle-folder").onclick = () => {
+        flagViewMode = "folder";
+        renderFlagView();
+    };
 
-        <img src="${item.image}">
-        <p>${item.country}</p>
+    document.getElementById("toggle-row").onclick = () => {
+        flagViewMode = "row";
+        renderFlagView();
+    };
 
+    renderFlagView();
+}
+
+function renderFlagView() {
+    if (flagViewMode === "folder") {
+        renderFolderFlagView();
+    } else {
+        renderRowFlagView();
+    }
+}
+
+function flagButtonHTML(item) {
+    return `
+        <button class="flag" onclick="chooseDifficulty('${item.country}')">
+            <img src="${item.image}">
+            <p class="flag-name">${item.country}</p>
         </button>
+    `;
+}
+
+function renderFolderFlagView() {
+
+    const container = document.getElementById("flags");
+
+    let foldersHTML = "";
+
+    for (const tierKey in tierMeta) {
+        foldersHTML += `
+            <button class="tier-folder" onclick="window.toggleFlagTier('${tierKey}')">
+                📁 ${tierMeta[tierKey].label}
+            </button>
+        `;
+    }
+
+    let contentsHTML = "";
+
+    if (openTier) {
+        const matches = difficultyFlags.filter(
+            flag => flag.level === openTier
+        );
+
+        contentsHTML = `<div id="folder-contents">`;
+        matches.forEach(item => {
+            contentsHTML += flagButtonHTML(item);
+        });
+        contentsHTML += `</div>`;
+    }
+
+    container.innerHTML = `
+        <div id="scenario-folders">${foldersHTML}</div>
+        ${contentsHTML}
+    `;
+}
+
+function renderRowFlagView() {
+
+    const container = document.getElementById("flags");
+
+    const tierOrder = ["easy", "medium", "hard", "ultraHard"];
+
+    const sorted = [...difficultyFlags].sort(
+        (a, b) => tierOrder.indexOf(a.level) - tierOrder.indexOf(b.level)
+    );
+
+    let rowHTML = "";
+
+    sorted.forEach(item => {
+        rowHTML += `
+            <button class="flag scenario-card" onclick="chooseDifficulty('${item.country}')">
+                <img src="${item.image}">
+                <span class="flag-name">${item.country}</span>
+                <span class="tier-flames">${tierMeta[item.level]?.flames ?? ""}</span>
+            </button>
         `;
     });
 
-    app.innerHTML = `
-
-        <div>
-
-            <h1>Select Difficulty</h1>
-
-            <div id="flags">
-
-                ${FlagsHTML}
-            </div>
-        </div>
-    `;
+    container.innerHTML = `<div id="scenario-row">${rowHTML}</div>`;
 }
+
+window.toggleFlagTier = function (tierKey) {
+    openTier = openTier === tierKey ? null : tierKey;
+    renderFolderFlagView();
+};
+
+
+//============================================================================================================
+//EDITS FOR FLAG SCREEN END HERE 
+//==============================================================================================================
+
 
 export function goToScenarioSelection() {
 
