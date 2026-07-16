@@ -212,26 +212,38 @@ function renderFolderFlagView() {
 function renderRowFlagView() {
 
     const container = document.getElementById("flags");
-
     const tierOrder = ["easy", "medium", "hard", "ultraHard"];
+    let html = "";
 
-    const sorted = [...difficultyFlags].sort(
-        (a, b) => tierOrder.indexOf(a.level) - tierOrder.indexOf(b.level)
-    );
+    tierOrder.forEach(tierKey => {
+        const matches = difficultyFlags.filter(
+            flag => flag.level === tierKey
+        );
 
-    let rowHTML = "";
+        if (matches.length === 0) {
+            return;
+        }
 
-    sorted.forEach(item => {
-        rowHTML += `
-            <button class="flag scenario-card" onclick="chooseDifficulty('${item.country}')">
-                <img src="${item.image}">
-                <span class="flag-name">${item.country}</span>
-                <span class="tier-flames">${tierMeta[item.level]?.flames ?? ""}</span>
-            </button>
+        let cardsHTML = "";
+        matches.forEach(item => {
+            cardsHTML += `
+                <button class="flag scenario-card" onclick="chooseDifficulty('${item.country}')">
+                    <span class="flag-name">${item.country}</span>
+                    <img src="${item.image}">
+                    <span class="tier-flames">${tierMeta[tierKey]?.flames ?? ""}</span>
+                </button>
+            `;
+        });
+
+        html += `
+            <div class="tier-row">
+                <h3 class="tier-row-label">${tierMeta[tierKey].label}</h3>
+                <div class="tier-row-cards">${cardsHTML}</div>
+            </div>
         `;
     });
 
-    container.innerHTML = `<div id="scenario-row">${rowHTML}</div>`;
+    container.innerHTML = html;
 }
 
 window.toggleFlagTier = function (tierKey) {

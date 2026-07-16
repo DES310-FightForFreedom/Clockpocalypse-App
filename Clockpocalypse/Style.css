@@ -392,6 +392,28 @@
 
 }
 
+.tier-row {
+    margin-bottom: 24px;
+}
+
+.tier-row-label {
+    font-family: var(--font-label);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-size: 14px;
+    margin: 0 0 8px 0;
+    text-align: center;
+}
+
+.tier-row-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+}
+
 /* ==================================================================
 Edits for flag screen end here
 ================================================================== */
