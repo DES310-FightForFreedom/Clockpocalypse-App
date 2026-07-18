@@ -1,5 +1,6 @@
 import { difficultyFlags } from "./DifficultySettings.js";
 import { scenarios } from "./scenario.js";
+import { isCompleted } from "./ProgressTracker.js";
 
 const app = document.getElementById("app");
 
@@ -10,13 +11,13 @@ export function showMenu() {
 
     app.innerHTML = `
         
-        <div>
+        <div class="menu-screen">
             <h1>Clockpocalypse</h1>
 
+            <div class="menu-buttons">
             <button id="start">Start</button>
-
             <button id="settings">Settings</button>
-
+            </div>
         </div>
     `;
 
@@ -61,9 +62,17 @@ export function showScenario() {
 
             ${scenarioHTML}
 
-        </div>
+            <div>
+                <button id= "backMenu">Back</button>
+            </div>
 
+        </div>
     `;
+    document
+        .getElementById("backMenu")
+        .onclick = () => {
+            showMenu();
+        }
 }
 
 // to implement difficulty
@@ -128,9 +137,15 @@ const tierMeta = {
 };
 
 let flagViewMode = "row";
-let openTier = null;
+let openTier = "easy";
+let currentScenarioKey = null;
 
-export function showDifficulty() {
+
+
+export function showDifficulty(scenarioKey) {
+
+   currentScenarioKey= scenarioKey;
+   openTier = "easy";
 
     app.innerHTML = `
         <div>
@@ -142,6 +157,10 @@ export function showDifficulty() {
             </div>
 
             <div id="flags"></div>
+
+            <div>
+                <button id="backScenarioSelect">Back</button>
+            </div>
         </div>
     `;
 
@@ -155,6 +174,12 @@ export function showDifficulty() {
         renderFlagView();
     };
 
+    document
+        .getElementById("backScenarioSelect")
+        .onclick = () => {
+            showScenario();
+        };
+
     renderFlagView();
 }
 
@@ -167,8 +192,11 @@ function renderFlagView() {
 }
 
 function flagButtonHTML(item) {
+    const completed = isCompleted(currentScenarioKey, item.country);
+
     return `
-        <button class="flag" onclick="chooseDifficulty('${item.country}')">
+        <button class="flag${completed ? " completed" : ""}" onclick="chooseDifficulty('${item.country}')">
+            ${completed ? '<span class="flag-check">✔</span>' : ""}
             <img src="${item.image}">
             <p class="flag-name">${item.country}</p>
         </button>
@@ -226,9 +254,11 @@ function renderRowFlagView() {
 
         let cardsHTML = "";
         matches.forEach(item => {
+            const completed = isCompleted(currentScenarioKey, item.country);
             cardsHTML += `
-                <button class="flag scenario-card" onclick="chooseDifficulty('${item.country}')">
-                    <span class="flag-name">${item.country}</span>
+                <button class="flag scenario-card${completed ? " completed" : ""}" onclick="chooseDifficulty('${item.country}')">
+                ${completed ? '<span class="flag-check">✔</span>' : ""}    
+                <span class="flag-name">${item.country}</span>
                     <img src="${item.image}">
                     <span class="tier-flames">${tierMeta[tierKey]?.flames ?? ""}</span>
                 </button>

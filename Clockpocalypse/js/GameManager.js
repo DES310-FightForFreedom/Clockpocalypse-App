@@ -3,14 +3,15 @@ import { Events } from "./Events.js";
 import { showScenario, showDifficulty, goToScenarioSelection, showEvents, showGameScreen } from "./UIManager.js";
 import { SoundManager } from "./SoundManager.js";
 import { sound_effects } from "./sound_effects.js";
+import { markCompleted } from "./ProgressTracker.js";
 
 export class GameManager {
 
     constructor(
         scenario,
         difficulty,
-        country
-
+        country,
+        scenarioKey
     ) {
 
         this.scenario = scenario
@@ -18,15 +19,12 @@ export class GameManager {
         this.country = country
         this.sound = new SoundManager();
         this.noise = new sound_effects(); //sound effect = noise
-
         this.siren = null
-
         this.gameOver = false
-
         this.timer = new TimerSettings(difficulty.startTime, this.sound);
-
         this.events = new Events(scenario.events);
         this.spawnTimer = null;
+        this.scenarioKey = scenarioKey;
     }
 
     start() {
@@ -97,6 +95,7 @@ export class GameManager {
         }
 
         this.gameOver = true;
+        markCompleted(this.scenarioKey, this.country?.country);
 
         if (this.spawnTimer){
             clearTimeout(this.spawnTimer);

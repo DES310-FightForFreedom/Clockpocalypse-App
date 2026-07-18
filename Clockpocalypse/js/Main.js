@@ -9,15 +9,17 @@ showMenu();
 let selectedScenario= null; 
 let selectedDifficulty= null;
 let selectedFlag= null;
+let selectedScenarioKey = null;
 
 window.chooseScenario = function(name){
     selectedScenario= scenarios[name];
+    selectedScenarioKey = name;
     
     if(!selectedScenario){
         console.error("Scenario not found:", name);
         return;
     }
-    showDifficulty();
+    showDifficulty(name);
 };
 
 
@@ -44,7 +46,8 @@ function startGame(){
     let game = new GameManager(
         selectedScenario,
         selectedDifficulty,
-        selectedFlag
+        selectedFlag,
+        selectedScenarioKey
     );
 
     game.start();
