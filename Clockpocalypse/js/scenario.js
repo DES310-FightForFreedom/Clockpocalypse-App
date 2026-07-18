@@ -404,7 +404,7 @@ export const scenarios = {
         image: "PNG here",
 
         // EDIT FOR VICTORY STYLING HERE
-        victory: "VICTORY CONDITION HERE- Hell and High Water",
+        victory: "With that act of positive karma, the Gods of the Old decide to spare you. They, however, have left behind unfathomable destruction.",
 
         // EDIT FOR LOSS WORDING HERE (Specific to scenario?) Changed to be specific to challenges, not scenario.
         // defeat: "You Lose!",
@@ -503,7 +503,7 @@ export const scenarios = {
         image: "PNG here",
 
         // EDIT FOR VICTORY STYLING HERE
-        victory: "VICTORY CONDITION HERE- Castaway",
+        victory: "The pilot saw you and descended downwards. Looking out the window, you see now how widespread the destruction was.",
 
         // EDIT FOR LOSS WORDING HERE (Specific to scenario?) Changed to be specific to challenges, not scenario.
         // defeat: "You Lose!",
@@ -602,7 +602,7 @@ export const scenarios = {
         image: "PNG here",
 
         // EDIT FOR VICTORY STYLING HERE
-        victory: "VICTORY CONDITION HERE- Patient Zero",
+        victory: "Miraculously, you didn't turn into a zombie. You restored the few zombies back into humans who survived it all.",
 
         // EDIT FOR LOSS WORDING HERE (Specific to scenario?) Changed to be specific to challenges, not scenario.
         // defeat: "You Lose!",
@@ -615,7 +615,7 @@ export const scenarios = {
                 title: "Patient Zero",
                 emoji: "🧟",
                 challenge: "Someone develops a sickness",
-                defeat: " You were all infected. It was fatal",
+                defeat: " You were all infected. It was fatal.",
             },
 
             //Challenge 2
@@ -623,7 +623,7 @@ export const scenarios = {
                 title: "Infection",
                 emoji: "🦠",
                 challenge: "The virus spread to half the players",
-                defeat: " Too bad ",
+                defeat: "An even worse virus spreads, not sparing the alive this time…",
             },
 
             //Challenge 3
@@ -663,7 +663,7 @@ export const scenarios = {
                 title: "The Living Dead",
                 emoji: "🧟‍♂️ / 🧟‍♀️",
                 challenge: "Infected Players turn into slow zombies",
-                defeat: " Too bad ",
+                defeat: "The only thing worse than being a slow zombie is being a faceless soldier of the Hivemind…",
             },
 
             //Challenge 8
@@ -671,23 +671,23 @@ export const scenarios = {
                 title: "Dont get infected",
                 emoji: "🧟‍♂️ / 🧟‍♀️",
                 challenge: "DONT LET THE ZOMBIES TOUCH YOU", // move this higher?  
-                defeat: " Too bad",
+                defeat: "The last thing you remember is a thirst for meat…",
             },
 
             //Challenge 9
             {
-                title: "Find the Cure",
-                emoji: "🧪",
-                challenge: "Find the Cure and Drink it",
-                defeat: "That was poison",
+                title: "Abandoned Pharmacy",
+                emoji: "🏥",
+                challenge: "Break into the pharmacy store!",
+                defeat: "Long story short, you never found the cure.",
             },
 
             //Challenge 10 
             {
-                title: "Blank 10",
-                emoji: "⏰",
-                challenge: "Challenge 10 does not exist",
-                defeat: " Too bad ",
+                title: "Find the Cure",
+                emoji: "🧪",
+                challenge: "Find the Cure and drink it.",
+                defeat: "That was poison",
             }
 
         ]
@@ -701,7 +701,7 @@ export const scenarios = {
         image: "PNG here",
 
         // EDIT FOR VICTORY STYLING HERE
-        victory: "VICTORY CONDITION HERE- Time Travel",
+        victory: "With the world being colder and thrown into anarchy, now is the time for the Ape to rule.",
 
         // EDIT FOR LOSS WORDING HERE (Specific to scenario?) Changed to be specific to challenges, not scenario.
         // defeat: "You Lose!",
@@ -711,82 +711,82 @@ export const scenarios = {
 
             // Challenge 1
             {
-                title: "Blank One",
-                emoji: "⏰",
-                challenge: "Blank one doesnt exist",
-                defeat: " Too bad ",
+                title: "Cold War",
+                emoji: "❄️🔴",
+                challenge: "Touch a glowing object!",
+                defeat: "You realize living in here and now is better.",
             },
 
             //Challenge 2
             {
-                title: "Blank two ",
-                emoji: "⏰",
-                challenge: " Blank two doesnt exist",
-                defeat: " Too bad ",
+                title: "Lab Breach",
+                emoji: "👺",
+                challenge: "Find the button to release the Yeti!",
+                defeat: "You thought a Yeti would be more dangerous but underestimated the power of being tased.",
             },
 
             //Challenge 3
             {
                 title: "Global Cooling",
-                emoji: "⏰",
+                emoji: "🥶",
                 challenge: "Find another item of clothing to wear",
-                defeat: " Too bad ",
+                defeat: "You can't feel your hands anymore as the rest of your body freezes.",
             },
 
             //Challenge 4 
             {
                 title: "Winter is Coming",
-                emoji: "⏰",
+                emoji: "❄️❄️",
                 challenge: "Find a lighter",
-                defeat: " Too Bad ",
+                defeat: "Who knew shivering would be so deadly?",
             },
 
             //Challenge 5 
             {
                 title: "Jurassic Planet",
-                emoji: "⏰",
+                emoji: "🦖",
                 challenge: "Everyone name a dinosaur",
-                defeat: "Too bad",
+                defeat: "Unlike a dinosaur, you perish due to being warm blooded…",
             },
 
             //Challenge 6
             {
                 title: "Dawn of the Planet of the Apes",
-                emoji: "⏰",
+                emoji: "🦍 🌙",
                 challenge: "Act like an ape to blend in",
-                defeat: " Too Bad ",
+                defeat: "King Simius sees through your disguise…",
             },
 
             //Challenge 7
             {
                 title: "Rise of the Planet of the Apes",
-                emoji: "⏰",
+                emoji: "🦍 ☀️",
                 challenge: "Groom each other",
-                defeat: " Too bad ",
+                defeat: "Queen Simias is offended and decides your head would make a good tribute.",
             },
 
             //Challenge 8
             {
                 title: "War for the planet of the Apes",
-                emoji: "⏰",
+                emoji: "🦍 ⭐️",
                 challenge: "Split into two warring ape troops",
-                defeat: " Too bad ",
+                defeat: "Death by Guerilla Warfare.",
             },
 
             //Challenge 9
             {
                 title: "Apes Strong Together",
-                emoji: "⏰",
+                emoji: "🫂",
                 challenge: "Make peace",
-                defeat: " Too Bad ",
+                defeat: "King Simius fires a fatal bullet from his pistol.",
             },
 
             //Challenge 10 
             {
-                title: "Blank 10",
-                emoji: "⏰",
-                challenge: "Challenge 10 does not exist",
-                defeat: " Too bad ",
+                title: "Red Missle Crisis",
+                emoji: "🚀",
+                challenge: "Fire the missle!",
+                defeat: "You become like Arkhipov and save the world...",
             }
 
         ]
