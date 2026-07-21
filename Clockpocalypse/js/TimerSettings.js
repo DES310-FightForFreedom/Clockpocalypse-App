@@ -1,8 +1,9 @@
 export class TimerSettings{
 
-    constructor (time, sound){
+    constructor (time, sound, tickEffect){
         this.time=time;
         this.sound=sound; 
+        this.tickEffect=tickEffect;
     }
 
     start(callback, toEnd){
@@ -20,6 +21,10 @@ export class TimerSettings{
 
             if(this.sound && this.sound.updateSirenVolume){
                 this.sound.updateSirenVolume(this.time);
+            }
+
+            if(this.tickEffect){
+                this.tickEffect(this.time);
             }
 
         

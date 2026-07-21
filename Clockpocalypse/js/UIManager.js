@@ -58,7 +58,7 @@ export function showScenario() {
 
         <div>
 
-            <h1>Select Scenario</h1>
+            <h1>Select Clockpocalypse</h1>
 
             ${scenarioHTML}
 
@@ -297,10 +297,15 @@ export function showGameScreen() {
     app.innerHTML = `
     <div id="game-screen">
 
+    <div id="timer-container">
+
         <div id="timer">
             Time: 60
         </div>
 
+        <div id="time-change"></div>
+    </div>
+    
         <div id="event-bubble">
         </div>
 

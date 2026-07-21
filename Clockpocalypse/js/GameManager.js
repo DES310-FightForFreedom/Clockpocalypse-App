@@ -21,10 +21,43 @@ export class GameManager {
         this.noise = new sound_effects(); //sound effect = noise
         this.siren = null
         this.gameOver = false
-        this.timer = new TimerSettings(difficulty.startTime, this.sound);
         this.events = new Events(scenario.events);
         this.spawnTimer = null;
         this.scenarioKey = scenarioKey;
+        
+        this.timer = new TimerSettings(
+            difficulty.startTime, 
+            this.sound,
+        (time) => {
+            const timerDisplay = document.getElementById("timer");
+
+            if(!timerDisplay){
+                return;
+            }
+            timerDisplay.classList.remove(
+                "timer-tick",
+                "timer-warning",
+                "timer-critical"
+            );
+            void timerDisplay.offsetWidth;
+
+            if(time <= 10){
+                timerDisplay.classList.add(
+                    "timer-critical"
+                );
+            }
+            else if(time <= 30){
+                timerDisplay.classList.add(
+                    "timer-warning"
+                );
+            }
+            else{
+                timerDisplay.classList.add(
+                    "timer-tick"
+                );
+            }
+        });
+        
     }
 
     start() {
@@ -115,7 +148,7 @@ export class GameManager {
         
 
         <button id="backScenario">
-            New Scenario
+            New Clockpocalypse
         </button>
 
         `;
@@ -161,7 +194,7 @@ export class GameManager {
     </button>
 
     <button id="backScenario">
-        New Scenario
+        New Clockpocalypse
     </button>
     `;
 
@@ -190,6 +223,10 @@ export class GameManager {
         this.timer.add(
             this.difficulty.reward
         );
+
+        this.showTimeChange(
+            this.difficulty.reward
+        );
     }
 
     skipEvent(event) {
@@ -200,6 +237,10 @@ export class GameManager {
         this.events.complete(event);
         this.timer.remove(
             this.difficulty.penalty
+        );
+
+        this.showTimeChange(
+            -this.difficulty.penalty
         );
 
         if (this.timer.time <= 0) {
@@ -215,9 +256,18 @@ export class GameManager {
         this.events = new Events(this.scenario.events);
 
         this.timer = new TimerSettings(
-            this.difficulty.startTime,
-            this.sound
-        );
+            this.difficulty.startTime, 
+            this.sound,
+        () => {
+            const timerDisplay = document.getElementById("timer");
+
+            if(timerDisplay){
+                timerDisplay.classList.remove("timer-tick");
+
+                void timerDisplay.offsetWidth;
+                timerDisplay.classList.add("timer-tick");
+            }
+        });
         this.currentEvent = null;
 
     }
@@ -359,9 +409,6 @@ export class GameManager {
             return;
         }
 
-
-
-
         if (force && this.events.active.length === 0) {
             const newEvent = this.events.spawn();
 
@@ -384,5 +431,29 @@ export class GameManager {
 
     }
 
+    showTimeChange(amount){
+        
+        const container =
+            document.getElementById("time-change");
 
+        if(!container){
+            return;
+        }
+        
+        const change =
+            document.createElement("div");
+        if(amount > 0){
+            change.className = "time-positive";
+            change.innerText = `+${amount} sec`;
+        }
+        else{
+            change.className = "time-negative";
+            change.innerText = `${amount} sec`;
+        }
+
+        container.appendChild(change);
+        setTimeout(()=>{
+            change.remove();
+        },1000);
+    }
 }
