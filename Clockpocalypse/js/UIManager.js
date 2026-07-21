@@ -1,6 +1,16 @@
+const mySounds = new sound_effects();
+let modernChallenge;
+
+// Track which event card is currently playing sound
+let activePlayingEventId = null;
+
 import { difficultyFlags } from "./DifficultySettings.js";
 import { scenarios } from "./scenario.js";
 import { isCompleted } from "./ProgressTracker.js";
+import { currentScenario, GameManager, scenarioChallenges } from "./GameManager.js";
+import { sound_effects } from "./sound_effects.js";
+import { userScenario } from "./GameManager.js";
+import { Events, poolEvents, exportActiveEvents } from "./Events.js";
 
 const app = document.getElementById("app");
 
@@ -81,49 +91,49 @@ export function showScenario() {
 
 //export function showDifficulty() {
 
-    // let FlagsHTML = "";
+// let FlagsHTML = "";
 
-    // difficultyFlags.forEach((item) => {
-    //     FlagsHTML += `
+// difficultyFlags.forEach((item) => {
+//     FlagsHTML += `
 
-    //     <button
-    //     class="flag"
-    //     onclick="chooseDifficulty('${item.country}')">
+//     <button
+//     class="flag"
+//     onclick="chooseDifficulty('${item.country}')">
 
-    //     <style>
-    //         .flag img {
-    //             width: 200px;
-    //             height: auto;
-    //             object-fit: cover;
-    //         }
-    //         .flag { 
-    //         cursor: pointer;
-    //         margin: 10px;
-    //         font-size: 30px;
-    //         }
-    //     </style>
+//     <style>
+//         .flag img {
+//             width: 200px;
+//             height: auto;
+//             object-fit: cover;
+//         }
+//         .flag { 
+//         cursor: pointer;
+//         margin: 10px;
+//         font-size: 30px;
+//         }
+//     </style>
 
-    //     <img src="${item.image}">
-    //     <p>${item.country}</p>
+//     <img src="${item.image}">
+//     <p>${item.country}</p>
 
-    //     </button>
-    //     `;
-    // });
+//     </button>
+//     `;
+// });
 
-    // app.innerHTML = `
+// app.innerHTML = `
 
-    //     <div>
+//     <div>
 
-    //         <h1>Select Difficulty</h1>
+//         <h1>Select Difficulty</h1>
 
-    //         <div id="flags">
+//         <div id="flags">
 
-    //             ${FlagsHTML}
-    //         </div>
-    //     </div>
-    // `;
+//             ${FlagsHTML}
+//         </div>
+//     </div>
+// `;
 
-    
+
 //============================================================================================================
 //EDITS FOR FLAG SCREEN BEGIN HERE 
 //==============================================================================================================
@@ -140,12 +150,24 @@ let flagViewMode = "row";
 let openTier = "easy";
 let currentScenarioKey = null;
 
+export function loadScenarioSounds() {
+    const activeIndices = Array.isArray(exportActiveEvents) ?
+        exportActiveEvents : [exportActiveEvents];
 
+    // 3. Map indices back to full event objects from our scenario array
+    const activeEvents = activeIndices.map(index => scenarioChallenges[index])
+        .filter(Boolean);
+
+    if (activeEvents.length > 0) {
+        modernChallenge = activeEvents[0];
+    }
+
+}
 
 export function showDifficulty(scenarioKey) {
 
-   currentScenarioKey= scenarioKey;
-   openTier = "easy";
+    currentScenarioKey = scenarioKey;
+    openTier = "easy";
 
     app.innerHTML = `
         <div>
@@ -288,11 +310,11 @@ window.toggleFlagTier = function (tierKey) {
 
 
 export function goToScenarioSelection() {
-
     showScenario();
 }
 
 export function showGameScreen() {
+    loadScenarioSounds();
 
     app.innerHTML = `
     <div id="game-screen">
@@ -325,14 +347,18 @@ export function showEvents(events) {
     const activeIds = new Set(events.map(e => String(e.id)));
 
     [...container.children].forEach(el => {
-        if (!activeIds.has(el.dataset.eventId)){
+        if (!activeIds.has(el.dataset.eventId)) {
+            if (el.dataset.eventID === String(activePlayingEventId)) {
+                // If the active playing card gets removed from DOM, stop its sound
+                stopGlobalAudio("REMOVED");
+            }
             el.remove();
         }
     });
 
 
     events.forEach(event => {
-        if(existingIds.has(String(event.id))){
+        if (existingIds.has(String(event.id))) {
             return; //if the notification is already on screen this leaves it alone. 
         }
 
@@ -379,6 +405,10 @@ export function showEvents(events) {
 
         container.appendChild(notification);
 
+        // Attach event handlers to buttons so they stop audio
+        const completeBtn = notification.querySelector(".complete");
+        const skipBtn = notification.querySelector(".skip");
+
         const bubble =
             notification.querySelector(".bubble");
 
@@ -397,8 +427,52 @@ export function showEvents(events) {
                     }
                 });
 
+            // If the event object from Events.js has the sound path:
+            const soundPath = event.sound || (scenarioChallenges[event.id] && scenarioChallenges[event.id].sound);
+            toggleChallengeAudio(event.id, soundPath, event.title);
+
             bubble.classList.toggle("expanded");
         };
     });
+
+    function toggleChallengeAudio(eventID, soundPath, soundTitle) {
+        // CASE 1: Clicking the card that is ALREADY playing -> Stop it
+        if (activePlayingEventId === eventID) {
+            stopGlobalAudio("TOGGLE_OFF");
+            return;
+        }
+
+        // CASE 2: Clicking a NEW card (or starting from zero)
+        // 1. Halt whatever was playing previously
+        stopGlobalAudio("SWITCH_CHALLENGE");
+
+        if (!soundPath) {
+            console.error(`No sound path found for event: ${soundTitle}`);
+            return;
+        }
+
+        // 2. Start new audio
+        // FIX: Directly spawn from the path passed from the event object
+        const newAudio = new Audio(soundPath);
+        newAudio.loop = true;
+
+        mySounds.currentActiveAudio = newAudio;
+        activePlayingEventId = eventID; // Mark this card as the active player
+
+        newAudio.play().catch(e => console.log("Playback blocked:", e));
+        console.log(`Now playing loop: ${soundTitle}`);
+    }
+}
+
+//Global master stop function
+export function stopGlobalAudio(name) {
+    activePlayingEventId = null // Clear active card reference
+
+    if (mySounds.currentActiveAudio) {
+        mySounds.currentActiveAudio.pause();
+        mySounds.currentActiveAudio.currentTime = 0;
+        mySounds.currentActiveAudio = null; // Clear the slot completely
+        console.log("Global audio halted by, ", name);
+    }
 }
 

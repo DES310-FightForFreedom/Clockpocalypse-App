@@ -1,25 +1,30 @@
-export  class Events{
+export let poolEvents;
+export let exportActiveEvents;
 
-    constructor(events){
-        this.pool= events.map((event,index)=>{
-            return{
+export class Events {
+
+    constructor(events) {
+        this.pool = events.map((event, index) => {
+            return {
                 ...event,
-                id:index
+                id: index
             };
         });
-        
-        this.active=[];
-        this.currentIndex=0;
+
+        this.active = [];
+        this.currentIndex = 0;
+        poolEvents = this.pool;
+        exportActiveEvents = this.active;
     }
 
-    spawn(){
+    spawn() {
 
-        if(
+        if (
             this.active.length < 3 &&
             this.currentIndex < this.pool.length
-        ){
+        ) {
 
-            let event= this.pool[this.currentIndex];
+            let event = this.pool[this.currentIndex];
             this.currentIndex++;
 
             this.active.push(event);
@@ -28,17 +33,17 @@ export  class Events{
 
     }
 
-    complete(event){
+    complete(event) {
 
-        const index= 
+        const index =
             this.active.indexOf(event);
-        if(index !== -1){
-            this.active.splice(index,1);
-        }    
+        if (index !== -1) {
+            this.active.splice(index, 1);
+        }
     }
 
-    reset(){
-        this.active =[];
+    reset() {
+        this.active = [];
         this.currentIndex = 0;
     }
 

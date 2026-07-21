@@ -5,6 +5,13 @@ import { SoundManager } from "./SoundManager.js";
 import { sound_effects } from "./sound_effects.js";
 import { markCompleted } from "./ProgressTracker.js";
 
+import { stopGlobalAudio } from "./UIManager.js";
+
+export let userScenario = null;
+export let currentChallenge;
+export let scenarioChallenges;
+export let currentScenario;
+
 export class GameManager {
 
     constructor(
@@ -24,40 +31,46 @@ export class GameManager {
         this.events = new Events(scenario.events);
         this.spawnTimer = null;
         this.scenarioKey = scenarioKey;
-        
+
+        currentChallenge = null;
+        scenarioChallenges = [];
+        currentScenario = this.scenario;
+
+        userScenario = this.scenario.name
+
         this.timer = new TimerSettings(
-            difficulty.startTime, 
+            difficulty.startTime,
             this.sound,
-        (time) => {
-            const timerDisplay = document.getElementById("timer");
+            (time) => {
+                const timerDisplay = document.getElementById("timer");
 
-            if(!timerDisplay){
-                return;
-            }
-            timerDisplay.classList.remove(
-                "timer-tick",
-                "timer-warning",
-                "timer-critical"
-            );
-            void timerDisplay.offsetWidth;
-
-            if(time <= 10){
-                timerDisplay.classList.add(
+                if (!timerDisplay) {
+                    return;
+                }
+                timerDisplay.classList.remove(
+                    "timer-tick",
+                    "timer-warning",
                     "timer-critical"
                 );
-            }
-            else if(time <= 30){
-                timerDisplay.classList.add(
-                    "timer-warning"
-                );
-            }
-            else{
-                timerDisplay.classList.add(
-                    "timer-tick"
-                );
-            }
-        });
-        
+                void timerDisplay.offsetWidth;
+
+                if (time <= 10) {
+                    timerDisplay.classList.add(
+                        "timer-critical"
+                    );
+                }
+                else if (time <= 30) {
+                    timerDisplay.classList.add(
+                        "timer-warning"
+                    );
+                }
+                else {
+                    timerDisplay.classList.add(
+                        "timer-tick"
+                    );
+                }
+            });
+
     }
 
     start() {
@@ -130,7 +143,7 @@ export class GameManager {
         this.gameOver = true;
         markCompleted(this.scenarioKey, this.country?.country);
 
-        if (this.spawnTimer){
+        if (this.spawnTimer) {
             clearTimeout(this.spawnTimer);
             this.spawnTimer = null;
         }
@@ -140,6 +153,8 @@ export class GameManager {
         this.sound.resetSiren();
 
         this.noise.play('victory');
+
+        stopGlobalAudio("win");
 
         document.getElementById("app").innerHTML = `
 
@@ -212,6 +227,7 @@ export class GameManager {
                 this.cleanrestart();
                 showScenario();
             };
+        stopGlobalAudio("lose");
     }
 
 
@@ -227,6 +243,7 @@ export class GameManager {
         this.showTimeChange(
             this.difficulty.reward
         );
+        stopGlobalAudio("complete");
     }
 
     skipEvent(event) {
@@ -247,6 +264,7 @@ export class GameManager {
             this.loseGame(event);
             return;
         }
+        stopGlobalAudio("skip");
     }
 
     resetGame() {
@@ -256,18 +274,18 @@ export class GameManager {
         this.events = new Events(this.scenario.events);
 
         this.timer = new TimerSettings(
-            this.difficulty.startTime, 
+            this.difficulty.startTime,
             this.sound,
-        () => {
-            const timerDisplay = document.getElementById("timer");
+            () => {
+                const timerDisplay = document.getElementById("timer");
 
-            if(timerDisplay){
-                timerDisplay.classList.remove("timer-tick");
+                if (timerDisplay) {
+                    timerDisplay.classList.remove("timer-tick");
 
-                void timerDisplay.offsetWidth;
-                timerDisplay.classList.add("timer-tick");
-            }
-        });
+                    void timerDisplay.offsetWidth;
+                    timerDisplay.classList.add("timer-tick");
+                }
+            });
         this.currentEvent = null;
 
     }
@@ -276,7 +294,7 @@ export class GameManager {
 
         this.gameOver = true;
 
-        if (this.spawnTimer){
+        if (this.spawnTimer) {
             clearTimeout(this.spawnTimer);
             this.spawnTimer = null;
         }
@@ -357,7 +375,7 @@ export class GameManager {
     }
     startEventSpawner() {
 
-        if(this.spawnTimer){
+        if (this.spawnTimer) {
             clearTimeout(this.spawnTimer);
             this.spawnTimer = null;
         }
@@ -431,29 +449,29 @@ export class GameManager {
 
     }
 
-    showTimeChange(amount){
-        
+    showTimeChange(amount) {
+
         const container =
             document.getElementById("time-change");
 
-        if(!container){
+        if (!container) {
             return;
         }
-        
+
         const change =
             document.createElement("div");
-        if(amount > 0){
+        if (amount > 0) {
             change.className = "time-positive";
             change.innerText = `+${amount} sec`;
         }
-        else{
+        else {
             change.className = "time-negative";
             change.innerText = `${amount} sec`;
         }
 
         container.appendChild(change);
-        setTimeout(()=>{
+        setTimeout(() => {
             change.remove();
-        },1000);
+        }, 1000);
     }
 }

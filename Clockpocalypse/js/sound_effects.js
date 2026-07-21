@@ -1,7 +1,5 @@
 export class sound_effects {
-
     constructor() {
-
         this.tracks = {
             complete: new Audio('/Sound_Effects/CompleteV2.wav?' + new Date().getTime()),
             fail: new Audio('/Sound_Effects/FailV2.wav?' + new Date().getTime()),
@@ -9,34 +7,8 @@ export class sound_effects {
             victory: new Audio('/Sound_Effects/VictoryV2.wav?' + new Date().getTime())
         };
 
-        //Temporary 
-        const chalSounds = [
-            { title: "Solar flare", sound: "/Sound_Effects/CompleteV2.wav" }
-        ]
-
-    }
-
-    enableLoop(part) {
-        part.loop = true;
-        part.load();
-    }
-
-    disableLoop(part) {
-        part.loop = false;
-        part.load();
-    }
-
-    findAudio(event) {
-        let n = event.title;
-
-        //rough code for searching until it finds a match
-        for (let i = 0; i < chalSounds.length; i++) {
-            if (n === chalSounds[i].title) {
-                console.log("Found a match on title-challenge");
-                return chalSounds[i].sound;
-            }
-        }
-        return 0;
+        //Temp
+        this.currentActiveAudio = null;
     }
 
     play(name, loop = false) {
