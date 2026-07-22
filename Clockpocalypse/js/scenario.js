@@ -22,7 +22,7 @@ export const scenarios = {
                 emoji: "🕶️",
                 challenge: "Cover your eyes, or wear Sunglasses",
                 defeat: "You can't see anymore!",
-                sound: "/Sound_Effects/CompleteV2.wav"
+                sound: "Nothing"
             },
 
             //Challenge 2
@@ -31,7 +31,8 @@ export const scenarios = {
                 emoji: "🕯️",
                 challenge: "Lights Off! Phone Torches On",
                 defeat: "You bump into something sharp…",
-                sound: "/Sound_Effects/CompleteV2.wav"
+                sound: "/Sound_Effects/Light_switch.wav"
+
             },
 
             //Challenge 3
@@ -40,7 +41,7 @@ export const scenarios = {
                 emoji: "🏃‍➡️",
                 challenge: "Find Snacks for the Group",
                 defeat: "You never come back from your trip…",
-                sound: "/Sound_Effects/CompleteV2.wav"
+                sound: "Nothing"
             },
 
             //Challenge 4 
@@ -49,7 +50,7 @@ export const scenarios = {
                 emoji: "💵🤑",
                 challenge: "Everyone Put Collect a Coin",
                 defeat: "Your debt catches up to you…",
-                sound: "/Sound_Effects/CompleteV2.wav"
+                sound: "Nothing"
             },
 
             //Challenge 5 
@@ -58,7 +59,7 @@ export const scenarios = {
                 emoji: "🥫",
                 challenge: "Find a tin of Food",
                 defeat: "Your hunger and thirst gets the best of you…",
-                sound: "/Sound_Effects/CompleteV2.wav"
+                sound: "Nothing"
             },
 
             //Challenge 6
@@ -67,7 +68,7 @@ export const scenarios = {
                 emoji: "🪙",
                 challenge: "Does Anyone Own Crypto?!?!", //This one feels off?
                 defeat: "You fall into the bottomless trashcan…",
-                sound: "/Sound_Effects/CompleteV2.wav"
+                sound: "Nothing"
             },
 
             //Challenge 7
@@ -76,7 +77,7 @@ export const scenarios = {
                 emoji: "☘️🍵",
                 challenge: "Everyone Go Touch Grass",
                 defeat: "You Lose - The Internet is Down",
-                sound: "/Sound_Effects/CompleteV2.wav"
+                sound: "Nothing"
             },
 
             //Challenge 8
@@ -85,7 +86,7 @@ export const scenarios = {
                 emoji: "☢️",
                 challenge: "Pinch Your Nose", // Till the end of Game?? -> Power Restored?
                 defeat: "You fall into a deep and rotting abyss…",
-                sound: "/Sound_Effects/CompleteV2.wav"
+                sound: "Nothing"
             },
 
             //Challenge 9
@@ -94,7 +95,7 @@ export const scenarios = {
                 emoji: "💲💎",
                 challenge: "Pick a New Currency, Everyone go get one!",
                 defeat: "Currency not recognized, try again.",
-                sound: "/Sound_Effects/CompleteV2.wav"
+                sound: "Nothing"
             },
 
             //Challenge 10 
@@ -103,7 +104,7 @@ export const scenarios = {
                 emoji: "💡",
                 challenge: "Lights on, unpinch your nose, type Google into Google",
                 defeat: "Everything goes white around you…",
-                sound: "/Sound_Effects/CompleteV2.wav"
+                sound: "/Sound_Effects/Light_switch.wav"
             }
 
         ]
@@ -185,6 +186,7 @@ export const scenarios = {
                 emoji: "👕",
                 challenge: "Everyone remove one item of clothing!",
                 defeat: "Your vision blurred and you swore that you could see two, no--THREE suns in the sky. The last thing you could think of was 'water' before your vision faded to black.",
+                sound: "None"
             },
 
             //Challenge 8
@@ -193,6 +195,7 @@ export const scenarios = {
                 emoji: "🧭",
                 challenge: "Everyone point North",
                 defeat: "Physically, you felt fine. However, you would probably not feel as fine with the airplane flying downwards where you stood.",
+                sound: "/Sound_Effects/MRI.wav"
             },
 
             //Challenge 9
@@ -200,7 +203,8 @@ export const scenarios = {
                 title: "Weather Warning",
                 emoji: "🌦️⚠️",
                 challenge: "Move away from the Windows (Floor is still Lava)",
-                defeat: "The window began to crack, then it exploded in several thousand pieces of glass shards. If it wasn’t enough that you were getting hailed by glass, the lava underneath finished the job.",
+                defeat: "The window began to crack, then it exploded in several thousand pieces of glass shards. If it wasn't enough that you were getting hailed by glass, the lava underneath finished the job.",
+                sound: "/Sound_Effects/Heavy_wind.wav"
             },
 
             //Challenge 10 
@@ -209,6 +213,7 @@ export const scenarios = {
                 emoji: "🌪️",
                 challenge: "Everyone spin around 5 times",
                 defeat: "You tried to hold onto the ground, but found yourself flying into the sky.",
+                sound: "/Sound_Effects/Tornado.wav"
             }
 
         ]
@@ -252,6 +257,7 @@ export const scenarios = {
                 emoji: "🔇🧏‍♀️",
                 challenge: "Everyone Stay quiet for the rest of the game",
                 defeat: "The shadow king overhears you…",
+                sound: "Nothing"
             },
 
             //Challenge 4 
@@ -383,6 +389,7 @@ export const scenarios = {
                 emoji: "☣️",
                 challenge: "Everyone pair up into Siamese twins or triplets",
                 defeat: "You never did find your clone…",
+                sound: "Nothing"
             },
 
             //Challenge 8
@@ -407,6 +414,7 @@ export const scenarios = {
                 emoji: "⚔️🪖",
                 challenge: "Everyone finds Sticks and Stones",
                 defeat: "An empire 500 years extinct rises up from the grave and flanks you…",
+                sound: "Nothing"
             }
 
         ]
@@ -442,6 +450,7 @@ export const scenarios = {
                 emoji: "🍋🥝",
                 challenge: "Eat a piece of fruit to prevent scurvy",
                 defeat: " Too Bad ",
+                sound: "Nothing"
             },
 
             //Challenge 3
@@ -450,6 +459,7 @@ export const scenarios = {
                 emoji: "🏴‍☠️🦜",
                 challenge: "Sing a Sea Shanty to raise your spirits",
                 defeat: "Singing takes time I get it",
+                sound: "Nothing"
             },
 
             //Challenge 4 
@@ -533,6 +543,7 @@ export const scenarios = {
                 emoji: "🚗🚓",
                 challenge: "Spot a car!",
                 defeat: "Never Learned to Dodge did you",
+                sound: "Nothing"
             },
 
             //Challenge 2
@@ -541,6 +552,7 @@ export const scenarios = {
                 emoji: "🚲",
                 challenge: "Spot a bicycle",
                 defeat: "How would you get around in the apocalypse",
+                sound: "Nothing"
             },
 
             //Challenge 3
@@ -573,6 +585,7 @@ export const scenarios = {
                 emoji: "🤝🏐",
                 challenge: "Choose an object to replace the eaten survivor",
                 defeat: "NOT FRIENDLY",
+                sound: "Nothing"
             },
 
             //Challenge 7
@@ -605,6 +618,7 @@ export const scenarios = {
                 emoji: "✈️🛬",
                 challenge: "Make a giant SOS",
                 defeat: "It wasnt ready in time",
+                sound: "Nothing"
             }
 
         ]

@@ -446,7 +446,11 @@ export function showEvents(events) {
         // 1. Halt whatever was playing previously
         stopGlobalAudio("SWITCH_CHALLENGE");
 
-        if (!soundPath) {
+        if (soundPath === "Nothing") {
+            console.log(`No audio plays for event: ${soundTitle}`);
+            return;
+        }
+        else if (!soundPath) {
             console.error(`No sound path found for event: ${soundTitle}`);
             return;
         }
