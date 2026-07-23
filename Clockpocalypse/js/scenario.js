@@ -241,6 +241,7 @@ export const scenarios = {
                 emoji: "🐝",
                 challenge: "Everyone Smell a flower!",
                 defeat: "You catch a fatal whiff of foxglove…",
+                sound: "/Sound_Effects/Fairy_dust.wav"
             },
 
             //Challenge 2
@@ -249,6 +250,7 @@ export const scenarios = {
                 emoji: "✈️🛸",
                 challenge: "Everyone say a conspiracy theory",
                 defeat: "The shadow people close in on you…",
+                sound: "/Sound_Effects/Dream_of_a_witch_intro.wav"
             },
 
             //Challenge 3
@@ -257,7 +259,7 @@ export const scenarios = {
                 emoji: "🔇🧏‍♀️",
                 challenge: "Everyone Stay quiet for the rest of the game",
                 defeat: "The shadow king overhears you…",
-                sound: "Nothing"
+                sound: "None"
             },
 
             //Challenge 4 
@@ -266,6 +268,7 @@ export const scenarios = {
                 emoji: "☣️🪖",
                 challenge: "Pick the member most likely to join a cult!",
                 defeat: "If you can't win, might as well as join the shadows.",
+                sound: "/Sound_Effects/Dream_of_a_witch_intro.wav"
             },
 
             //Challenge 5 
@@ -274,6 +277,7 @@ export const scenarios = {
                 emoji: "🧢🤖",
                 challenge: "Your Leader needs a new Anti-Radiation Hat",
                 defeat: "The previous you was gone, replaced by a ghoul…",
+                sound: "/Sound_Effects/Dream_of_a_witch_intro.wav"
             },
 
             //Challenge 6
@@ -282,6 +286,7 @@ export const scenarios = {
                 emoji: "🧟🗺️",
                 challenge: "Agree on an Apocolyptic Meeting Point",
                 defeat: "Everything devolves into anarchy, with you becoming surrounded by a warlord…",
+                sound: "/Sound_Effects/Dream_of_a_witch_intro.wav"
             },
 
             //Challenge 7
@@ -290,6 +295,7 @@ export const scenarios = {
                 emoji: "🤰",
                 challenge: "Pick one player to be heavily pregnant",
                 defeat: "You get sent away to somewhere far, far away…",
+                sound: "/Sound_Effects/Dream_of_a_witch_intro.wav"
             },
 
             //Challenge 8
@@ -298,6 +304,7 @@ export const scenarios = {
                 emoji: "👑🗡️",
                 challenge: "Find out whos really pulling the Strings",
                 defeat: "The shadow king remains unfound…",
+                sound: "/Sound_Effects/Dream_of_a_witch_intro.wav"
             },
 
             //Challenge 9
@@ -306,6 +313,7 @@ export const scenarios = {
                 emoji: "👶🏻🐣",
                 challenge: "Your pregnant team member gives birth",
                 defeat: "Darkness engulfs the world…",
+                sound: "/Sound_Effects/Night_on_bald_mountain_intro.wav"
             },
 
             //Challenge 10 
@@ -314,6 +322,7 @@ export const scenarios = {
                 emoji: "👀🧸",
                 challenge: "Your Cult member sacrifices the baby",
                 defeat: "The baby is stolen by the shadow king…",
+                sound: "/Sound_Effects/Night_on_bald_mountain_intro.wav"
             }
 
         ]
@@ -341,6 +350,7 @@ export const scenarios = {
                 emoji: "🤖",
                 challenge: "Everyone Insult an AI",
                 defeat: "Roko will remember this…",
+                sound: "/Sound_Effects/Binary_code.wav"
             },
 
             //Challenge 2
@@ -349,6 +359,7 @@ export const scenarios = {
                 emoji: "🧠",
                 challenge: "Act like Robots to Avoid detection",
                 defeat: "You fail the'which image is a bus' test…",
+                sound: "/Sound_Effects/Binary_code.wav"
             },
 
             //Challenge 3
@@ -357,6 +368,7 @@ export const scenarios = {
                 emoji: "🤖💻",
                 challenge: "Prove you're not a Robot Complete the Captcha",
                 defeat: "Recaptcha verification failed, please try again.",
+                sound: "/Sound_Effects/Lock_turning.wav"
             },
 
             //Challenge 4 
@@ -365,6 +377,7 @@ export const scenarios = {
                 emoji: "👽🛸",
                 challenge: "Elect one of you as the leader of the new planet",
                 defeat: "Disorganized, the aliens take this opportunity to fire a gigantic laser at Earth…",
+                sound: "None"
             },
 
             //Challenge 5 
@@ -373,6 +386,7 @@ export const scenarios = {
                 emoji: "🛸🖖🏻",
                 challenge: "Your leader needs to leave to board the Mothership",
                 defeat: "The leader slips down the stairs…",
+                sound: "None"
             },
 
             //Challenge 6
@@ -381,6 +395,7 @@ export const scenarios = {
                 emoji: "我喜",
                 challenge: "Everyone needs to say a sentence in Mandarin",
                 defeat: "You accidentally speak fluent vietnamese…",
+                sound: "None"
             },
 
             //Challenge 7
@@ -398,6 +413,7 @@ export const scenarios = {
                 emoji: "🤖👑",
                 challenge: "Everyone Complement the Computers",
                 defeat: "You realize that Roko's Basilisk was real all along…",
+                sound: "None"
             },
 
             //Challenge 9
@@ -406,6 +422,7 @@ export const scenarios = {
                 emoji: "✌",
                 challenge: "Everyone Hold hands in a circle",
                 defeat: "You send a nuke, someone sends a nuke, repeat…",
+                sound: "None"
             },
 
             //Challenge 10 
@@ -442,6 +459,7 @@ export const scenarios = {
                 emoji: "💧🫗",
                 challenge: "Players need to drink a combined liter of Water",
                 defeat: "You drowned when you could drink it?",
+                sound: "Nothing"
             },
 
             //Challenge 2
@@ -468,6 +486,7 @@ export const scenarios = {
                 emoji: "⛵",
                 challenge: "Choose Someone to Toss Overboard",
                 defeat: "The Door would not have supported Jack",
+                sound: "Nothing"
             },
 
             //Challenge 5 
@@ -476,6 +495,7 @@ export const scenarios = {
                 emoji: "👺👹",
                 challenge: "Does everyone know a bad word?",
                 defeat: "Your Mom is going to wash your mouth out with Soap",
+                sound: "Nothing"
             },
 
             //Challenge 6
@@ -484,6 +504,7 @@ export const scenarios = {
                 emoji: "😡",
                 challenge: "Every Repent of a sin",
                 defeat: "YOU DID NOT REPENT",
+                sound: "Nothing"
             },
 
             //Challenge 7
@@ -492,6 +513,7 @@ export const scenarios = {
                 emoji: "📖📜",
                 challenge: "Quote the Bible!",
                 defeat: "Did you not pay attention in Sunday School?",
+                sound: "Nothing"
             },
 
             //Challenge 8
@@ -500,6 +522,7 @@ export const scenarios = {
                 emoji: "💪",
                 challenge: "Make a sacrifice",
                 defeat: "The Old Gods Didnt want you anyway",
+                sound: "Nothing"
             },
 
             //Challenge 9
@@ -507,15 +530,17 @@ export const scenarios = {
                 title: "Leper Colony",
                 emoji: "🧑‍🦽🩼",
                 challenge: "Everyone lose a limb!",
-                defeat: " Too Bad ",
+                defeat: "Piece by piece, you fall apart…",
+                sound: "Nothing"
             },
 
             //Challenge 10 
             {
-                title: "Reincarnate", //?? Spelling here or is this a quote I just dont get?
+                title: "Reincarnate",
                 emoji: "☯️🧘",
                 challenge: "Everyone improve your karma!",
-                defeat: " Too Bad ",
+                defeat: "All the sins you've committed culminate in your demise…",
+                sound: "Nothing"
             }
 
         ]
@@ -708,7 +733,7 @@ export const scenarios = {
             {
                 title: "Abandoned Pharmacy",
                 emoji: "🏥",
-                challenge: "Break into the pharmacy store!",
+                challenge: "Get on the other side of the door!",
                 defeat: "Long story short, you never found the cure.",
             },
 
@@ -745,14 +770,16 @@ export const scenarios = {
                 emoji: "❄️🔴",
                 challenge: "Touch a glowing object!",
                 defeat: "You realize living in here and now is better.",
+                sound: "Nothing"
             },
 
             //Challenge 2
             {
                 title: "Lab Breach",
                 emoji: "👺",
-                challenge: "Find the button to release the Yeti!",
-                defeat: "You thought a Yeti would be more dangerous but underestimated the power of being tased.",
+                challenge: "Press a red button!",
+                defeat: "You never did release the Yeti, starting global warming…",
+                sound: "Nothing"
             },
 
             //Challenge 3
@@ -761,6 +788,7 @@ export const scenarios = {
                 emoji: "🥶",
                 challenge: "Find another item of clothing to wear",
                 defeat: "You can't feel your hands anymore as the rest of your body freezes.",
+                sound: "Nothing"
             },
 
             //Challenge 4 
@@ -769,6 +797,7 @@ export const scenarios = {
                 emoji: "❄️❄️",
                 challenge: "Find a lighter",
                 defeat: "Who knew shivering would be so deadly?",
+                sound: "Nothing"
             },
 
             //Challenge 5 
@@ -777,6 +806,7 @@ export const scenarios = {
                 emoji: "🦖",
                 challenge: "Everyone name a dinosaur",
                 defeat: "Unlike a dinosaur, you perish due to being warm blooded…",
+                sound: "Nothing"
             },
 
             //Challenge 6
@@ -785,6 +815,7 @@ export const scenarios = {
                 emoji: "🦍 🌙",
                 challenge: "Act like an ape to blend in",
                 defeat: "King Simius sees through your disguise…",
+                sound: "Nothing"
             },
 
             //Challenge 7
@@ -793,6 +824,7 @@ export const scenarios = {
                 emoji: "🦍 ☀️",
                 challenge: "Groom each other",
                 defeat: "Queen Simias is offended and decides your head would make a good tribute.",
+                sound: "Nothing"
             },
 
             //Challenge 8
@@ -801,6 +833,7 @@ export const scenarios = {
                 emoji: "🦍 ⭐️",
                 challenge: "Split into two warring ape troops",
                 defeat: "Death by Guerilla Warfare.",
+                sound: "Nothing"
             },
 
             //Challenge 9
@@ -809,14 +842,16 @@ export const scenarios = {
                 emoji: "🫂",
                 challenge: "Make peace",
                 defeat: "King Simius fires a fatal bullet from his pistol.",
+                sound: "Nothing"
             },
 
             //Challenge 10 
             {
                 title: "Red Missle Crisis",
                 emoji: "🚀",
-                challenge: "Fire the missle!",
-                defeat: "You become like Arkhipov and save the world...",
+                challenge: "Press a blue button!",
+                defeat: "Your restraint makes you like Arkhipov and saves the world...",
+                sound: "Nothing"
             }
 
         ]
