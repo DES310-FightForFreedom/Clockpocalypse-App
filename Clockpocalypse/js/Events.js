@@ -1,5 +1,11 @@
-export let poolEvents;
-export let exportActiveEvents;
+let currentEventsInstance = null;
+
+export function getActiveEvents(){
+    return currentEventsInstance ? currentEventsInstance.active : [];
+}
+export function getEventsPool(){
+    return currentEventsInstance ? currentEventsInstance.pool : [];
+}
 
 export class Events {
 
@@ -13,8 +19,7 @@ export class Events {
 
         this.active = [];
         this.currentIndex = 0;
-        poolEvents = this.pool;
-        exportActiveEvents = this.active;
+        currentEventsInstance = this;
     }
 
     spawn() {
@@ -46,6 +51,4 @@ export class Events {
         this.active = [];
         this.currentIndex = 0;
     }
-
-
 }

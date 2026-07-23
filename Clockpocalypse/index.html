@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
 
     <meta charset="UTF-8">
@@ -10,7 +9,12 @@
 
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#e41515">
-    <link rel="apple-touch-icon" href="ClockAppIcon demo.png">
+    <link rel="apple-touch-icon" href="Assets/Images/icon-512.png">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Clockpocalypse">
+
 </head>
 
 <body>
@@ -19,6 +23,14 @@
 
     <link rel="stylesheet" href="Style.css">
     <script type="module" src="./js/Main.js"></script>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("./sw.js", { type: "module" });
+            });
+        }
+    </script>
 
 </body>
 

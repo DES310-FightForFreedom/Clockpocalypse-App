@@ -1,6 +1,6 @@
 import { TimerSettings } from "./TimerSettings.js";
 import { Events } from "./Events.js";
-import { showScenario, showDifficulty, goToScenarioSelection, showEvents, showGameScreen } from "./UIManager.js";
+import { showScenario, showEvents, showGameScreen } from "./UIManager.js";
 import { SoundManager } from "./SoundManager.js";
 import { sound_effects } from "./sound_effects.js";
 import { markCompleted } from "./ProgressTracker.js";
@@ -29,11 +29,11 @@ export class GameManager {
         this.siren = null
         this.gameOver = false
         this.events = new Events(scenario.events);
+        scenarioChallenges = this.events.pool;
         this.spawnTimer = null;
         this.scenarioKey = scenarioKey;
 
         currentChallenge = null;
-        scenarioChallenges = [];
         currentScenario = this.scenario;
 
         userScenario = this.scenario.name
@@ -141,7 +141,7 @@ export class GameManager {
         }
 
         this.gameOver = true;
-        markCompleted(this.scenarioKey, this.country?.country);
+        markCompleted(this.scenarioKey, this.country?.country, this.country?.level);
 
         if (this.spawnTimer) {
             clearTimeout(this.spawnTimer);
@@ -199,19 +199,20 @@ export class GameManager {
 
         document.getElementById("app").innerHTML = `
 
-    <h1 class="lose_screen">${event?.title ?? "Game Over"}</h1>
-    <h2 class="lose_screen">${event?.defeat} </h2>
-    <h2 class="lose_screen">You Lose!</h2>
-    <h3 class="lose_screen"> The Clockpocalypse Wins </h3> 
+        <div class="loseScreen">
 
-    <button id="restart"> 
-        Restart
-    </button>
+            <h1 class="lose_screen">${event?.title ?? "Game Over"}</h1>
+            <h2 class="lose_screen">${event?.defeat} </h2>
+        
+            <button id="restart"> 
+                Restart
+            </button>
 
-    <button id="backScenario">
-        New Clockpocalypse
-    </button>
-    `;
+            <button id="backScenario">
+                New Clockpocalypse
+            </button>
+        </div>
+            `;
 
         document
             .getElementById("restart")
@@ -270,9 +271,8 @@ export class GameManager {
     resetGame() {
 
         this.gameOver = false;
-
         this.events = new Events(this.scenario.events);
-
+        scenarioChallenges = this.events.pool;
         this.timer = new TimerSettings(
             this.difficulty.startTime,
             this.sound,
