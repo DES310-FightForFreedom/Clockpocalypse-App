@@ -12,6 +12,7 @@ import { sound_effects } from "./sound_effects.js";
 import { userScenario } from "./GameManager.js";
 import { Events, getActiveEvents } from "./Events.js";
 import { loadSoundSettings, setSoundSetting } from "./SoundManager.js";
+import { currentGameInstance } from "./GameManager.js";
 
 const app = document.getElementById("app");
 
@@ -44,7 +45,6 @@ export function showMenu() {
             showScenario();
         };
 
-
     document
         .getElementById("settings")
         .onclick = () => {
@@ -55,30 +55,10 @@ export function showMenu() {
 export function showSettings(){
     const settings = loadSoundSettings();
 
-    const channels = [
-        {key: "master", label: "Master Volume"},
-        { key: "alarm", label: "Sirens / Alarms" },
-        { key: "ui", label: "UI / Ticks" },
-        { key: "music", label: "Music" },
-        { key: "sfx", label: "SFX" }
-    ];
-
-    let slidersHTML = "";
-    channels.forEach(ch => {
-        const percent = Math.round(settings[ch.key] * 100);
-        slidersHTML += `
-            <div class="settings-row">
-                <label for="vol-${ch.key}">${ch.label}</label>
-                <input type="range" id="vol-${ch.key}" min="0" max="100" value="${percent}" data-channel="${ch.key}">
-                <span class="settings-value" id="val-${ch.key}">${percent}%</span>
-            </div>
-        `;
-    });
-
     app.innerHTML = `
         <div class="settings-screen">
             <h1>Settings</h1>
-            <div class="settings-list">${slidersHTML}</div>
+            <div class="settings-list">${buildVolumeSlidersHTML("vol", settings)}</div>
             <div>
                 <button id="backMenuFromSettings">Back</button>
             </div>
@@ -90,7 +70,7 @@ export function showSettings(){
             const channel = e.target.dataset.channel;
             const value = Number(e.target.value) / 100;
 
-            document.getElementById(`val-${channel}`).innerText = `${e.target.value}%`;
+            document.getElementById(`vol-val-${channel}`).innerText = `${e.target.value}%`;
             setSoundSetting(channel, value);
         };
     });
@@ -99,6 +79,30 @@ export function showSettings(){
         showMenu();
     };
 }
+
+function buildVolumeSlidersHTML(idPrefix, settings){
+    const channels = [
+        { key: "master", label: "Master Volume" },
+        { key: "alarm", label: "Sirens / Alarms" },
+        { key: "ui", label: "UI / Ticks" },
+        { key: "music", label: "Music" },
+        { key: "sfx", label: "SFX" }
+    ];
+
+    let html = "";
+    channels.forEach(ch => {
+        const percent = Math.round(settings[ch.key] * 100);
+        html += `
+            <div class="settings-row">
+                <label for="${idPrefix}-${ch.key}">${ch.label}</label>
+                <input type="range" id="${idPrefix}-${ch.key}" min="0" max="100" value="${percent}" data-channel="${ch.key}">
+                <span class="settings-value" id="${idPrefix}-val-${ch.key}">${percent}%</span>
+            </div>
+        `;
+    });
+    return html;
+}
+
 
 
 // to implement scenarios
@@ -261,6 +265,8 @@ export function showGameScreen() {
     app.innerHTML = `
     <div id="game-screen">
 
+    <button id="in-game-settings" aria-label="Settings">⚙️</button>
+
     <div id="timer-container">
 
         <div id="timer">
@@ -273,8 +279,13 @@ export function showGameScreen() {
         <div id="event-bubble">
         </div>
 
+        <div id="in-game-settings-overlay" class="hidden"></div>
+
     </div>
     `
+    document.getElementById("in-game-settings").onclick = () => {
+        openInGameSettings();
+    };
 }
 
 
@@ -424,4 +435,70 @@ export function stopGlobalAudio(name) {
         console.log("Global audio halted by, ", name);
     }
 }
+
+function openInGameSettings(){
+    if (currentGameInstance) {
+        currentGameInstance.pauseGame();
+    }
+
+    const settings = loadSoundSettings();
+    const overlay = document.getElementById("in-game-settings-overlay");
+
+    overlay.innerHTML= `
+        <div class="settings-modal">
+            <h2>Paused</h2>
+            <div class="settings-list">${buildVolumeSlidersHTML("ingame", settings)}</div>
+            <button id="closeInGameSettings">Resume</button>
+        </div>
+    `;
+    overlay.classList.remove("hidden");
+
+    overlay.querySelectorAll('input[type="range"][data-channel]').forEach(slider => {
+        slider.oninput = (e) => {
+            const channel = e.target.dataset.channel;
+            const value = Number(e.target.value) / 100;
+
+            document.getElementById(`ingame-val-${channel}`).innerText = `${e.target.value}%`;
+            const updated = setSoundSetting(channel, value);
+            applyLiveVolume(channel, updated);
+        };
+    });
+
+    document.getElementById("closeInGameSettings").onclick = () => {
+        closeInGameSettings();
+    };
+}
+
+function closeInGameSettings() {
+    const overlay = document.getElementById("in-game-settings-overlay");
+    overlay.classList.add("hidden");
+    overlay.innerHTML = "";
+
+    if (currentGameInstance) {
+        currentGameInstance.resumeGame();
+    }
+}
+
+function applyLiveVolume(channel, settings) {
+    if (!currentGameInstance) {
+        return;
+    }
+
+ //sets master automatically these three are direct not multiplied
+    if (channel === "master" || channel === "alarm" || channel === "ui") {
+        currentGameInstance.sound.setChannelVolume(channel, settings[channel]);
+    }
+// this is multiplied
+    if (channel === "master" || channel === "sfx") {
+        currentGameInstance.noise.applyVolume(settings);
+    }
+
+    if (channel === "master" || channel === "music") {
+        if (mySounds.currentActiveAudio) {
+            mySounds.currentActiveAudio.volume =
+                Math.max(0, Math.min(1, settings.master * settings.music));
+        }
+    }
+}
+
 

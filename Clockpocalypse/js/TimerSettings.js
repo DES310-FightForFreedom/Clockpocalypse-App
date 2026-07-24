@@ -4,9 +4,14 @@ export class TimerSettings{
         this.time=time;
         this.sound=sound; 
         this.tickEffect=tickEffect;
+        this.callback = null;
+        this.toEnd = null;
     }
 
     start(callback, toEnd){
+
+        this.callback = callback;
+        this.toEnd= toEnd;
 
         this.stop(); 
 
@@ -45,6 +50,16 @@ export class TimerSettings{
             callback(this.time);
 
         },1000);
+    }
+
+    pause(){
+        this.stop();
+    }
+
+    resume(){
+        if(this.callback && this.toEnd){
+            this.start(this.callback, this.toEnd);
+        }
     }
 
     add(seconds){

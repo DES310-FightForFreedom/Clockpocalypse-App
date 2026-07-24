@@ -11,6 +11,7 @@ export let userScenario = null;
 export let currentChallenge;
 export let scenarioChallenges;
 export let currentScenario;
+export let currentGameInstance= null;
 
 export class GameManager {
 
@@ -35,6 +36,7 @@ export class GameManager {
 
         currentChallenge = null;
         currentScenario = this.scenario;
+        currentGameInstance = this;
 
         userScenario = this.scenario.name
 
@@ -266,6 +268,20 @@ export class GameManager {
             return;
         }
         stopGlobalAudio("skip");
+    }
+
+    pauseGame(){
+        if (this.gameOver) {
+            return;
+        }
+        this.timer.pause();
+    }
+    
+    resumeGame(){
+        if (this.gameOver){
+            return;
+        }
+        this.timer.resume();
     }
 
     resetGame() {

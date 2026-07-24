@@ -760,3 +760,40 @@ Styling for Triangles checking off difficulty completed on
     color: #000;
     text-shadow: 0 0 6px var(--accent-red-glow);
 }
+
+/* =========================================================================
+Additions for gains etc
+========================================================================= */
+
+#in-game-settings-overlay.hidden {
+    display: none;
+}
+
+#in-game-settings {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 6;
+    font-size: 20px;
+    padding: 8px 12px;
+}
+
+#in-game-settings-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-modal {
+    background: var(--surface-expanded);
+    border: 1px solid var(--accent-red-dim);
+    border-radius: var(--radius);
+    padding: 24px;
+    max-width: 340px;
+    width: 90%;
+    text-align: center;
+}
