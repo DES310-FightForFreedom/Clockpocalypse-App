@@ -1,3 +1,5 @@
+import { loadSoundSettings } from "./SoundManager.js";
+
 export class sound_effects {
     constructor() {
         this.tracks = {
@@ -9,6 +11,16 @@ export class sound_effects {
 
         //Temp
         this.currentActiveAudio = null;
+
+        this.applyVolume(loadSoundSettings());
+    }
+
+    // combines master volume to sfx specific volume 
+    applyVolume(settings) {
+        const effective = Math.max(0, Math.min(1, settings.master * settings.sfx));
+        Object.values(this.tracks).forEach(track => {
+            track.volume = effective;
+        });
     }
 
     play(name, loop = false) {

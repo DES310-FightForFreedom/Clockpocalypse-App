@@ -1,3 +1,37 @@
+
+const settings_storage = "clockpocalypse_settings";
+
+const defaultSoundSettings = {
+    master: 1,
+    alarm: 1, 
+    ui: 1, 
+    music: 1,
+    sfx: 1,  
+};
+
+export function loadSoundSettings() {
+    try{
+        const raw = localStorage.getItem(settings_storage);
+        if (!raw) return { ...defaultSoundSettings };
+        return { ...defaultSoundSettings, ...JSON.parse(raw) };
+    } catch (e) {
+        console.error("Failed to load sound settings", e);
+        return { ...defaultSoundSettings };
+    }
+}
+
+export function setSoundSetting(channel, value) {
+    const settings = loadSoundSettings();
+    settings[channel] = Math.max(0, Math.min(1, value));
+
+    try {
+        localStorage.setItem(settings_storage, JSON.stringify(settings));  
+    } catch (e) {
+        console.error("Failed to save Sound Settings", e);
+    }
+    return settings;
+}
+
 export class SoundManager {
 
     constructor() {
@@ -28,13 +62,27 @@ export class SoundManager {
         this.uiGain.connect(this.masterGain);
 
         this.masterGain.connect(this.context.destination);
+        
+        const settings = loadSoundSettings();
+        this.masterGain.gain.value = settings.master;
+        this.alarmGain.gain.value= settings.alarm;
+        this.uiGain.gain.value = settings.ui;
 
         this.sounds = {};
 
         this.sirenSource = null;
         this.sirenGain = null;
-
+        
     }
+
+    setChannelVolume(channel, value){
+        const gainNode = this[channel + "Gain"];
+        if(gainNode) {
+            gainNode.gain.value = value;
+        }
+    }
+
+    
 
     async load(name, url) {
 
@@ -102,20 +150,15 @@ export class SoundManager {
     tick() {
 
         let oscillator = this.context.createOscillator();
-
         let gain = this.context.createGain();
 
         oscillator.type = "sine";
-
         oscillator.frequency.value = 900;
-
         gain.gain.value = 0.5;
-
         oscillator.connect(gain);
-        gain.connect(this.sfxGain);
+        gain.connect(this.uiGain);
 
         oscillator.start();
-
         oscillator.stop(this.context.currentTime + 0.05);
 
     }

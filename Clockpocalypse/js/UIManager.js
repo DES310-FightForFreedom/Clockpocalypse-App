@@ -11,6 +11,7 @@ import { currentScenario, GameManager, scenarioChallenges } from "./GameManager.
 import { sound_effects } from "./sound_effects.js";
 import { userScenario } from "./GameManager.js";
 import { Events, getActiveEvents } from "./Events.js";
+import { loadSoundSettings, setSoundSetting } from "./SoundManager.js";
 
 const app = document.getElementById("app");
 
@@ -47,9 +48,58 @@ export function showMenu() {
     document
         .getElementById("settings")
         .onclick = () => {
-            console.log("Settings clicked");
+            showSettings();
         };
 }
+
+export function showSettings(){
+    const settings = loadSoundSettings();
+
+    const channels = [
+        {key: "master", label: "Master Volume"},
+        { key: "alarm", label: "Sirens / Alarms" },
+        { key: "ui", label: "UI / Ticks" },
+        { key: "music", label: "Music" },
+        { key: "sfx", label: "SFX" }
+    ];
+
+    let slidersHTML = "";
+    channels.forEach(ch => {
+        const percent = Math.round(settings[ch.key] * 100);
+        slidersHTML += `
+            <div class="settings-row">
+                <label for="vol-${ch.key}">${ch.label}</label>
+                <input type="range" id="vol-${ch.key}" min="0" max="100" value="${percent}" data-channel="${ch.key}">
+                <span class="settings-value" id="val-${ch.key}">${percent}%</span>
+            </div>
+        `;
+    });
+
+    app.innerHTML = `
+        <div class="settings-screen">
+            <h1>Settings</h1>
+            <div class="settings-list">${slidersHTML}</div>
+            <div>
+                <button id="backMenuFromSettings">Back</button>
+            </div>
+        </div>
+    `;
+
+    document.querySelectorAll('input[type="range"][data-channel]').forEach(slider => {
+        slider.oninput = (e) => {
+            const channel = e.target.dataset.channel;
+            const value = Number(e.target.value) / 100;
+
+            document.getElementById(`val-${channel}`).innerText = `${e.target.value}%`;
+            setSoundSetting(channel, value);
+        };
+    });
+
+    document.getElementById("backMenuFromSettings").onclick = () => {
+        showMenu();
+    };
+}
+
 
 // to implement scenarios
 
@@ -351,6 +401,9 @@ export function showEvents(events) {
         // FIX: Directly spawn from the path passed from the event object
         const newAudio = new Audio(soundPath);
         newAudio.loop = true;
+
+        const settings = loadSoundSettings();
+        newAudio.volume = Math.max(0, Math.min(1, settings.master * settings.music));
 
         mySounds.currentActiveAudio = newAudio;
         activePlayingEventId = eventID; // Mark this card as the active player
