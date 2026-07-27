@@ -3,10 +3,10 @@ import { loadSoundSettings } from "./SoundManager.js";
 export class sound_effects {
     constructor() {
         this.tracks = {
-            complete: new Audio('/Sound_Effects/CompleteV2.wav?' + new Date().getTime()),
-            fail: new Audio('/Sound_Effects/FailV2.wav?' + new Date().getTime()),
-            skip: new Audio('/Sound_Effects/SkipV2.wav?' + new Date().getTime()),
-            victory: new Audio('/Sound_Effects/VictoryV2.wav?' + new Date().getTime())
+            complete: new Audio('./Sound_Effects/CompleteV2.wav?' + new Date().getTime()),
+            fail: new Audio('./Sound_Effects/FailV2.wav?' + new Date().getTime()),
+            skip: new Audio('./Sound_Effects/SkipV2.wav?' + new Date().getTime()),
+            victory: new Audio('./Sound_Effects/VictoryV2.wav?' + new Date().getTime())
         };
 
         //Temp

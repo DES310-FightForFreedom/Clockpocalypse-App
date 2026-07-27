@@ -1,7 +1,7 @@
 import { difficultyFlags } from "./js/DifficultySettings.js";
 import { scenarios } from "./js/scenario.js";
 
-const CACHE_NAME = "clockpocalypse-v1";
+const CACHE_NAME = "clockpocalypse-v1.011";
 
 const CORE_ASSETS = [
     "./",
@@ -20,10 +20,10 @@ const CORE_ASSETS = [
     "./js/ProgressTracker.js",
 
     //
-    "/Sound_Effects/CompleteV2.wav",
-    "/Sound_Effects/FailV2.wav",
-    "/Sound_Effects/SkipV2.wav",
-    "/Sound_Effects/VictoryV2.wav",
+    "./Sound_Effects/CompleteV2.wav",
+    "./Sound_Effects/FailV2.wav",
+    "./Sound_Effects/SkipV2.wav",
+    "./Sound_Effects/VictoryV2.wav",
 
     // Flags + sirens, pulled from existing data
     ...difficultyFlags.flatMap(f => [f.image, f.siren]),
