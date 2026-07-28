@@ -691,7 +691,7 @@ Styling for Triangles checking off difficulty completed on
 
 .scenario-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(130px, 160px));
     gap: 16px 12px;
     justify-items: center;
     margin: 20px auto;
