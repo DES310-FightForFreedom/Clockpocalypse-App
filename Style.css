@@ -52,13 +52,43 @@
  /* End standard text color change  */
 
  #backMenu,
- #backScenarioSelect {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    margin: 0;
-    z-index: 3;
+ #backScenarioSelect,
+ #in-game-settings {
+    top: max(12px, env(safe-area-inset-top));
  }
+
+ #backMenu,
+ #backScenarioSelect{
+    left: max(12px, env(safe-area-inset-left));
+ }
+
+ #in-game-settings {
+    right: max(12px, env(safe-area-inset-right));
+    left: auto;
+    position: fixed;
+    z-index: 6;
+    font-size: 20px;
+    padding: 8px 12px;
+ }
+
+@media (max-width: 480px){
+    #app button{
+        font-size: 12px;
+        padding: 8px 14px;
+    }
+    #in-game-settings{
+        font-size: 18px;
+        padding: 6px 10px;
+    }
+}
+
+#app button, 
+.details button, 
+.tier-folder,
+#app .flag{
+    min-height: 44px;
+    min-width: 44px;
+}
 
 .menu-screen{
     margin-top: 10vh;
@@ -438,7 +468,8 @@
  }
 
  .bubble.expanded {
-     width: min(300px, 75vw);
+     width: 100%;
+     max-width: 320px;
      padding: 16px 18px;
      border-radius: 20px 20px 20px 4px;
      background: var(--surface-expanded);
@@ -499,16 +530,19 @@
 
  #timer-container {
     position: fixed;
-    top: 30px;
+    top: max(12px, env(safe-area-inset-top));
     left: 50%;
     transform: translateX(-50%);
+    width: 100%;
+    padding: 0 60px;
+    box-sizing: border-box;
 
     z-index: 5;
  }
 
  #timer{
      font-family: var(--font-display);
-     font-size: 80px;
+     font-size: clamp(32px, 12vw, 80px);
      color: var(--accent-red);
      opacity: 0.75;
  }
@@ -516,9 +550,6 @@
  @media (max-width: 480px){
     #timer-container{
         top: 15px;
-    }
-    #timer{
-        font-size: 40px;
     }
     #time-change{
         margin-left: 4px;
@@ -529,11 +560,12 @@
 
  #event-bubble {
      position: fixed;
-     top: 150px;
-     left: 30px;
+     top: 130px;
+     left: 12px;
+     right: 12px;
      display: flex;
      flex-direction: column;
-     gap: 20px;
+     gap: 14px;
      z-index: 2;
  }
 
@@ -557,6 +589,17 @@
     margin-top: 12px;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 0 8px;
+}
+
+@media (max-width: 480px){
+    .flag img {
+        width: clamp(70px, 30vw, 140px);
+    }
+    .flag-name {
+        font-size: 12px;
+        padding: 3px 8px;
+    }
 }
 
 .flag img {
@@ -595,9 +638,10 @@
 
 #scenario-folders{
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 0 8px;
 }
 
 /* ==================================================================
@@ -647,11 +691,12 @@ Styling for Triangles checking off difficulty completed on
 
 .scenario-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px 16px;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 16px 12px;
     justify-items: center;
     margin: 20px auto;
     max-width: 700px;
+    padding: 0 12px;
 }
 /* Scenario grid 4x4 */
 
@@ -661,7 +706,8 @@ Styling for Triangles checking off difficulty completed on
 }
 
 .scenario-tile .scenario-select {
-    width: 140px;
+    width: 100%;
+    max-width: 160px;
     min-height: 56px;
     box-sizing: border-box;
     display: flex;
@@ -769,14 +815,7 @@ Additions for gains etc
     display: none;
 }
 
-#in-game-settings {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 6;
-    font-size: 20px;
-    padding: 8px 12px;
-}
+
 
 #in-game-settings-overlay {
     position: fixed;

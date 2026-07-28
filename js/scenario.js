@@ -31,7 +31,7 @@ export const scenarios = {
                 emoji: "🕯️",
                 challenge: "Lights Off! Phone Torches On",
                 defeat: "You bump into something sharp…",
-                sound: "/Sound_Effects/Light_switch.wav"
+                sound: "./Sound_Effects/Light_switch.wav"
 
             },
 
@@ -104,7 +104,7 @@ export const scenarios = {
                 emoji: "💡",
                 challenge: "Lights on, unpinch your nose, type Google into Google",
                 defeat: "Everything goes white around you…",
-                sound: "/Sound_Effects/Light_switch.wav"
+                sound: "./Sound_Effects/Light_switch.wav"
             }
 
         ]
@@ -132,7 +132,7 @@ export const scenarios = {
                 emoji: "☄️💥",
                 challenge: "Players can't look up!",
                 defeat: "The last thing you saw was a fiery red rock consuming everything around your vision.",
-                sound: "/Sound_Effects/MeteorFall.wav"
+                sound: "./Sound_Effects/MeteorFall.wav"
             },
 
             //Challenge 2
@@ -141,7 +141,7 @@ export const scenarios = {
                 emoji: "🫨",
                 challenge: "Everyone hide under the furniture!",
                 defeat: "The ground beneath you cracked, then opened up. Your foot falls in, then the rest of your body.",
-                sound: "/Sound_Effects/Earthquake.wav"
+                sound: "./Sound_Effects/Earthquake.wav"
             },
 
             //Challenge 3
@@ -150,7 +150,7 @@ export const scenarios = {
                 emoji: "🌋",
                 challenge: "Everyone Name a Volcano",
                 defeat: "A mixture of mud and lava swept underneath you--causing you to fall face forward.",
-                sound: "/Sound_Effects/Volcano_eruption.wav"
+                sound: "./Sound_Effects/Volcano_eruption.wav"
             },
 
             //Challenge 4 
@@ -159,7 +159,7 @@ export const scenarios = {
                 emoji: "☁️",
                 challenge: "Everyone Hold your breath!", //How Long
                 defeat: "Dust as high as a skyscraper ran towards you. Once it consumed you, your vision faded.",
-                sound: "/Sound_Effects/Smoke.wav"
+                sound: "./Sound_Effects/Smoke.wav"
             },
 
             //Challenge 5 
@@ -168,7 +168,7 @@ export const scenarios = {
                 emoji: "🏚️",
                 challenge: "Everyone Back under the Furniture",
                 defeat: "The ground beneath you cracked, then opened up. Your foot falls in, then the rest of your body.",
-                sound: "/Sound_Effects/Earthquake.wav"
+                sound: "./Sound_Effects/Earthquake.wav"
             },
 
             //Challenge 6
@@ -177,7 +177,7 @@ export const scenarios = {
                 emoji: "♨️",
                 challenge: "THE FLOOR IS LAVA!??!",
                 defeat: "Your left foot slipped--hurtling you down to the source of the unbearable heat.",
-                sound: "/Sound_Effects/Lava.wav"
+                sound: "./Sound_Effects/Lava.wav"
             },
 
             //Challenge 7
@@ -195,7 +195,7 @@ export const scenarios = {
                 emoji: "🧭",
                 challenge: "Everyone point North",
                 defeat: "Physically, you felt fine. However, you would probably not feel as fine with the airplane flying downwards where you stood.",
-                sound: "/Sound_Effects/MRI.wav"
+                sound: "./Sound_Effects/MRI.wav"
             },
 
             //Challenge 9
@@ -204,7 +204,7 @@ export const scenarios = {
                 emoji: "🌦️⚠️",
                 challenge: "Move away from the Windows (Floor is still Lava)",
                 defeat: "The window began to crack, then it exploded in several thousand pieces of glass shards. If it wasn't enough that you were getting hailed by glass, the lava underneath finished the job.",
-                sound: "/Sound_Effects/Heavy_wind.wav"
+                sound: "./Sound_Effects/Heavy_wind.wav"
             },
 
             //Challenge 10 
@@ -213,7 +213,7 @@ export const scenarios = {
                 emoji: "🌪️",
                 challenge: "Everyone spin around 5 times",
                 defeat: "You tried to hold onto the ground, but found yourself flying into the sky.",
-                sound: "/Sound_Effects/Tornado.wav"
+                sound: "./Sound_Effects/Tornado.wav"
             }
 
         ]
@@ -241,7 +241,7 @@ export const scenarios = {
                 emoji: "🐝",
                 challenge: "Everyone Smell a flower!",
                 defeat: "You catch a fatal whiff of foxglove…",
-                sound: "/Sound_Effects/Fairy_dust.wav"
+                sound: "./Sound_Effects/Fairy_dust.wav"
             },
 
             //Challenge 2
@@ -250,7 +250,7 @@ export const scenarios = {
                 emoji: "✈️🛸",
                 challenge: "Everyone say a conspiracy theory",
                 defeat: "The shadow people close in on you…",
-                sound: "/Sound_Effects/Dream_of_a_witch_intro.wav"
+                sound: "./Sound_Effects/Dream_of_a_witch_intro.wav"
             },
 
             //Challenge 3
@@ -268,7 +268,7 @@ export const scenarios = {
                 emoji: "☣️🪖",
                 challenge: "Pick the member most likely to join a cult!",
                 defeat: "If you can't win, might as well as join the shadows.",
-                sound: "/Sound_Effects/Dream_of_a_witch_intro.wav"
+                sound: "./Sound_Effects/Dream_of_a_witch_intro.wav"
             },
 
             //Challenge 5 
@@ -277,7 +277,7 @@ export const scenarios = {
                 emoji: "🧢🤖",
                 challenge: "Your Leader needs a new Anti-Radiation Hat",
                 defeat: "The previous you was gone, replaced by a ghoul…",
-                sound: "/Sound_Effects/Dream_of_a_witch_intro.wav"
+                sound: "./Sound_Effects/Dream_of_a_witch_intro.wav"
             },
 
             //Challenge 6
@@ -286,7 +286,7 @@ export const scenarios = {
                 emoji: "🧟🗺️",
                 challenge: "Agree on an Apocolyptic Meeting Point",
                 defeat: "Everything devolves into anarchy, with you becoming surrounded by a warlord…",
-                sound: "/Sound_Effects/Dream_of_a_witch_intro.wav"
+                sound: "./Sound_Effects/Dream_of_a_witch_intro.wav"
             },
 
             //Challenge 7
@@ -295,7 +295,7 @@ export const scenarios = {
                 emoji: "🤰",
                 challenge: "Pick one player to be heavily pregnant",
                 defeat: "You get sent away to somewhere far, far away…",
-                sound: "/Sound_Effects/Dream_of_a_witch_intro.wav"
+                sound: "./Sound_Effects/Dream_of_a_witch_intro.wav"
             },
 
             //Challenge 8
@@ -304,7 +304,7 @@ export const scenarios = {
                 emoji: "👑🗡️",
                 challenge: "Find out whos really pulling the Strings",
                 defeat: "The shadow king remains unfound…",
-                sound: "/Sound_Effects/Dream_of_a_witch_intro.wav"
+                sound: "./Sound_Effects/Dream_of_a_witch_intro.wav"
             },
 
             //Challenge 9
@@ -313,7 +313,7 @@ export const scenarios = {
                 emoji: "👶🏻🐣",
                 challenge: "Your pregnant team member gives birth",
                 defeat: "Darkness engulfs the world…",
-                sound: "/Sound_Effects/Night_on_bald_mountain_intro.wav"
+                sound: "./Sound_Effects/Night_on_bald_mountain_intro.wav"
             },
 
             //Challenge 10 
@@ -322,7 +322,7 @@ export const scenarios = {
                 emoji: "👀🧸",
                 challenge: "Your Cult member sacrifices the baby",
                 defeat: "The baby is stolen by the shadow king…",
-                sound: "/Sound_Effects/Night_on_bald_mountain_intro.wav"
+                sound: "./Sound_Effects/Night_on_bald_mountain_intro.wav"
             }
 
         ]
@@ -350,7 +350,7 @@ export const scenarios = {
                 emoji: "🤖",
                 challenge: "Everyone Insult an AI",
                 defeat: "Roko will remember this…",
-                sound: "/Sound_Effects/Binary_code.wav"
+                sound: "./Sound_Effects/Binary_code.wav"
             },
 
             //Challenge 2
@@ -359,7 +359,7 @@ export const scenarios = {
                 emoji: "🧠",
                 challenge: "Act like Robots to Avoid detection",
                 defeat: "You fail the'which image is a bus' test…",
-                sound: "/Sound_Effects/Binary_code.wav"
+                sound: "./Sound_Effects/Binary_code.wav"
             },
 
             //Challenge 3
@@ -368,7 +368,7 @@ export const scenarios = {
                 emoji: "🤖💻",
                 challenge: "Prove you're not a Robot Complete the Captcha",
                 defeat: "Recaptcha verification failed, please try again.",
-                sound: "/Sound_Effects/Lock_turning.wav"
+                sound: "./Sound_Effects/Lock_turning.wav"
             },
 
             //Challenge 4 
