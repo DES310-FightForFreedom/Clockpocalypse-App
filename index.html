@@ -24,13 +24,25 @@
     <link rel="stylesheet" href="Style.css">
     <script type="module" src="./js/Main.js"></script>
 
-    <script>
+    <!-- <script>
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", () => {
                 navigator.serviceWorker.register("./sw.js", { type: "module" });
             });
         }
+    </script> -->
+
+<!-- USING THIS FOR TROUBLE WITH CACHE ABOVE OPTION FOR NORMAL OPERATION -->
+
+    <script>
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.getRegistrations().then((regs) => {
+            regs.forEach((reg) => reg.unregister());
+        });
+        caches.keys().then((keys) => keys.forEach((key) => caches.delete(key)));
+    }
     </script>
+
 
 </body>
 
