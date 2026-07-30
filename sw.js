@@ -1,7 +1,7 @@
 import { difficultyFlags } from "./js/DifficultySettings.js";
 import { scenarios } from "./js/scenario.js";
 
-const CACHE_NAME = "clockpocalypse-v1.011";
+const CACHE_NAME = "clockpocalypse-v1.01111";
 
 const CORE_ASSETS = [
     "./",
@@ -65,28 +65,49 @@ self.addEventListener("activate", (event) => {
     self.clients.claim();
 });
 
+// self.addEventListener("fetch", (event) => {
+//     event.respondWith(
+//         caches.match(event.request).then((cached) => {
+//             return (
+//                 cached ||
+//                 fetch(event.request).then((response) => {
+//                     // Only cache successful, same-origin responses
+//                     if (
+//                         response.ok &&
+//                         response.status === 200 &&
+//                         event.request.url.startsWith(self.location.origin)
+//                     ) {
+//                         const clone = response.clone();
+//                         caches.open(CACHE_NAME).then((cache) =>
+//                             cache.put(event.request, clone)
+//                         );
+//                     }
+//                     return response;
+//                 })
+//             );
+//         })
+//     );
+// });
+
+
+// USE THIS FOR EDITS BECAUSE IT PULLS NETWORK FIRST THEN CACHE> 
 self.addEventListener("fetch", (event) => {
     event.respondWith(
-        caches.match(event.request).then((cached) => {
-            return (
-                cached ||
-                fetch(event.request).then((response) => {
-                    // Only cache successful, same-origin responses
-                    if (
-                        response.ok &&
-                        response.status === 200 &&
-                        event.request.url.startsWith(self.location.origin)
-                    ) {
-                        const clone = response.clone();
-                        caches.open(CACHE_NAME).then((cache) =>
-                            cache.put(event.request, clone)
-                        );
-                    }
-                    return response;
-                })
-            );
-        })
+        fetch(event.request)
+            .then((response) => {
+                // Only cache successful, same-origin responses
+                if (
+                    response.ok &&
+                    response.status === 200 &&
+                    event.request.url.startsWith(self.location.origin)
+                ) {
+                    const clone = response.clone();
+                    caches.open(CACHE_NAME).then((cache) =>
+                        cache.put(event.request, clone)
+                    );
+                }
+                return response;
+            })
+            .catch(() => caches.match(event.request))
     );
 });
-
-
