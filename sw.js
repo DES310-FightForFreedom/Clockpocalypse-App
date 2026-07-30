@@ -74,6 +74,7 @@ self.addEventListener("fetch", (event) => {
                     // Only cache successful, same-origin responses
                     if (
                         response.ok &&
+                        response.status === 200 &&
                         event.request.url.startsWith(self.location.origin)
                     ) {
                         const clone = response.clone();
