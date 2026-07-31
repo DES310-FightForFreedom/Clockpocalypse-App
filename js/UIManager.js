@@ -229,7 +229,6 @@ function renderFolderFlagView() {
         foldersHTML += `
         <button class="tier-folder${isActive ? " active" : ""}" data-tier="${tierKey}" onclick="handleFolderClick(event, '${tierKey}')">
          <span class="tier-badge ${tierKey} folder-icon"></span>
-            ${tierMeta[tierKey].label}
         </button>
         `;
     }
