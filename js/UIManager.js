@@ -335,26 +335,21 @@ export function showEvents(events) {
 
 
                 <div class="details">
-
                     <p>
                         ${event.challenge}
                     </p>
 
+                        <div class="button-row">
+                        <button class="complete">
+                            Complete
+                        </button>
 
-                    <button class="complete">
-                        Complete
-                    </button>
-
-
-                    <button class="skip">
-                        Skip
-                    </button>
-
-
+                        <button class="skip">
+                            Skip
+                        </button>
+                    </div>
                 </div>
-
             </div>
-
         `;
 
         container.appendChild(notification);
