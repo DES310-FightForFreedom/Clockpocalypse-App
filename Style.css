@@ -21,6 +21,9 @@
      --font-display: 'Digital-7', monospace;
      --font-body: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
      --font-label: 'Courier New', Courier, monospace;
+
+     --folder-body: #2b2b28;
+     --folder-shadow: rgba(0, 0, 0, 0.6);
  }
 
 
@@ -55,6 +58,8 @@
  #backScenarioSelect,
  #in-game-settings {
     top: max(12px, env(safe-area-inset-top));
+    position: fixed;
+    z-index: 6;
  }
 
  #backMenu,
@@ -582,14 +587,29 @@
 }
 
 #folder-contents {
+   
+    background: var(--folder-body);
+    border: 3px solid var(--accent-red);
+    border-radius: 0 12px 12px 12px;
+    padding: 24px 12px;
+    margin: -17px auto 0;
+    max-width: 700px;
+    min-height: 55vh;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+
+    box-shadow:
+        0 10px 25px var(--folder-shadow),
+        0 4px 0 -1px rgba(0,0,0,0.4),
+        0 8px 0 -2px var(--accent-red-dim),
+        0 12px 0 -3px rgba(0,0,0,0.3);
+
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 8px;
-    margin-top: 12px;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 0 8px;
+    align-items: flex-start;
+    gap: 8px;
 }
 
 @media (max-width: 480px){
@@ -638,18 +658,21 @@
 
 #scenario-folders{
     display: flex;
-    gap: 6px;
-    flex-wrap: nowrap;
+    gap: 2px;
     justify-content: center;
     padding: 0 8px;
+    position: relative;
+    margin-bottom: 6px;
 }
 
-.tier-folder{
-    flex: 1 1 0;
-    min-width: 0;
-    white-space: nowrap;
-    font-size: 12px;
-    padding: 8px 6px;
+
+#app .tier-folder.active {
+    background: var(--accent-red);
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 3;
+    margin-bottom: -4px;
+    box-shadow: none;
 }
 
 /* ==================================================================
@@ -822,6 +845,29 @@ Styling for Triangles checking off difficulty completed on
 .tier-badge.ultraHard::after {
     color: #000;
     text-shadow: 0 0 6px var(--accent-red-glow);
+}
+
+.tier-folder {
+    width: 72px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    clip-path: polygon(18% 0%, 82% 0%, 100% 100%, 0% 100%);
+    background: var(--accent-red-dim);
+    opacity: 0.6;
+    transform: translateY(0px);
+    transition: all .2s ease;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.3) inset;
+
+}
+
+.tier-badge.folder-icon {
+    opacity: 1;
+    visibility: visible;
+    
 }
 
 /* =========================================================================

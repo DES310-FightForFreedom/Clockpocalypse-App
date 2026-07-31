@@ -216,9 +216,10 @@ function renderFolderFlagView() {
     let foldersHTML = "";
 
     for (const tierKey in tierMeta) {
+        const isOpen = openTier === tierKey;
         foldersHTML += `
-            <button class="tier-folder" onclick="window.toggleFlagTier('${tierKey}')">
-                📁 ${tierMeta[tierKey].label}
+            <button class="tier-folder${isOpen ? " active" : ""}" onclick="window.toggleFlagTier('${tierKey}')" aria-label="${tierMeta[tierKey].label}">
+                <span class="tier-badge ${tierKey} folder-icon"></span>
             </button>
         `;
     }
