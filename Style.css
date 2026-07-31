@@ -479,6 +479,7 @@
      align-items: stretch;
      justify-content: flex-start;
      cursor: default;
+     flex-direction: column;
  }
 
  .bubble.expanded h2 {
@@ -649,16 +650,19 @@
         0 8px 0 -2px var(--accent-red-dim),
         0 12px 0 -3px rgba(0,0,0,0.3);
 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+    justify-items: center;
+    align-items: start;
+    gap: 16px 8px;
 }
 
 @media (max-width: 480px){
+    #app .flag{
+        width: 100px;
+    }
     .flag img {
-        width: clamp(70px, 30vw, 140px);
+        height: 75px;
     }
     .flag-name {
         font-size: 12px;
@@ -667,15 +671,16 @@
 }
 
 .flag img {
-    width: clamp(80px, 25vw, 200px);
-    height: auto;
+    width: 100%;
+    height: 95px;
     object-fit: cover;
     border-radius: var(--radius);
 }
 
 #app .flag {
     cursor: pointer;
-    margin: 10px;
+    width: 130px;
+    margin: 0;
     font-size: 30px;
     border: none;
     background: transparent;
@@ -687,6 +692,11 @@
 }
 
 .flag-name{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    
+
     font-family: var(--font-label);
     font-size: 14px;
     letter-spacing: 0.5px;
@@ -697,7 +707,6 @@
     border-radius: var(--radius);
     padding: 4px 10px;
     margin: 0 0 6px 0;
-
 }
 
 #scenario-folders{
