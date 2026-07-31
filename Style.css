@@ -691,8 +691,8 @@ Styling for Triangles checking off difficulty completed on
 
 .scenario-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 160px));
-    gap: 16px 12px;
+    grid-template-columns: repeat(2, minmax(clamp( 90px, 22vw, 120px), 1fr));
+    gap: 12px 10px;
     justify-items: center;
     margin: 20px auto;
     max-width: 700px;
@@ -702,13 +702,14 @@ Styling for Triangles checking off difficulty completed on
 
 .scenario-tile {
     position: relative;
-    display: inline-block;
+    width: 100%;    
+    max-width: 120px;
 }
 
 .scenario-tile .scenario-select {
     width: 100%;
-    max-width: 160px;
-    min-height: 56px;
+    aspect-ratio: 2/1;
+
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -716,6 +717,8 @@ Styling for Triangles checking off difficulty completed on
     text-align: center;
     white-space: normal;
     line-height: 1.2;
+    overflow: hidden;
+    font-size: clamp(11px, 3vw, 13px);
 }
 
 
