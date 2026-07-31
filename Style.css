@@ -58,8 +58,6 @@
  #backScenarioSelect,
  #in-game-settings {
     top: max(12px, env(safe-area-inset-top));
-    position: fixed;
-    z-index: 6;
  }
 
  #backMenu,
