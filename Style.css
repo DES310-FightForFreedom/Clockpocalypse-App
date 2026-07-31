@@ -638,10 +638,18 @@
 
 #scenario-folders{
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 6px;
+    flex-wrap: nowrap;
     justify-content: center;
     padding: 0 8px;
+}
+
+.tier-folder{
+    flex: 1 1 0;
+    min-width: 0;
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 8px 6px;
 }
 
 /* ==================================================================
