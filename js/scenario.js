@@ -540,7 +540,7 @@ export const scenarios = {
                 emoji: "☯️🧘",
                 challenge: "Everyone improve your karma!",
                 defeat: "All the sins you've committed culminate in your demise…",
-                sound: "./Sound_effects/Nebula.wav" //replace nebula 
+                sound: "./Sound_effects/Nebula.wav"
             }
 
         ]

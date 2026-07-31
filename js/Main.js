@@ -1,21 +1,23 @@
-import {showMenu, showDifficulty, showScenario} from "./UIManager.js";
-import {GameManager} from "./GameManager.js";
+import { showMenu, showDifficulty, showScenario } from "./UIManager.js";
+import { GameManager } from "./GameManager.js";
 import { scenarios } from "./scenario.js";
 import { difficulty } from "./DifficultySettings.js";
-import {difficultyFlags} from "./DifficultySettings.js";
+import { difficultyFlags } from "./DifficultySettings.js";
+
+export let selectCountry;
 
 showMenu();
 
-let selectedScenario= null; 
-let selectedDifficulty= null;
-let selectedFlag= null;
+let selectedScenario = null;
+let selectedDifficulty = null;
+let selectedFlag = null;
 let selectedScenarioKey = null;
 
-window.chooseScenario = function(name){
-    selectedScenario= scenarios[name];
+window.chooseScenario = function (name) {
+    selectedScenario = scenarios[name];
     selectedScenarioKey = name;
-    
-    if(!selectedScenario){
+
+    if (!selectedScenario) {
         console.error("Scenario not found:", name);
         return;
     }
@@ -23,18 +25,18 @@ window.chooseScenario = function(name){
 };
 
 
-window.chooseDifficulty= function(country){
-
+window.chooseDifficulty = function (country) {
     selectedFlag = difficultyFlags.find(flag => flag.country === country);
+    selectCountry = selectedFlag;
 
-    if(!selectedFlag){
+    if (!selectedFlag) {
         console.error("Flag not found:", country);
         return;
     }
 
     selectedDifficulty = difficulty[selectedFlag.level];
-    
-    if(!selectedDifficulty){
+
+    if (!selectedDifficulty) {
         console.error("Difficulty not found:", selectedFlag.level);
         return;
     }
@@ -42,7 +44,7 @@ window.chooseDifficulty= function(country){
 };
 
 
-function startGame(){
+function startGame() {
     let game = new GameManager(
         selectedScenario,
         selectedDifficulty,

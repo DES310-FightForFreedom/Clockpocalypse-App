@@ -1,6 +1,12 @@
 const mySounds = new sound_effects();
 let modernChallenge;
 
+let holdTimer = null;
+const HOLD_DURATION = 1500; // Time in milliseconds (1.5 seconds)
+let isHoldTrigger = false;
+let triviaCountry;
+
+
 // Track which event card is currently playing sound
 let activePlayingEventId = null;
 
@@ -13,10 +19,12 @@ import { userScenario } from "./GameManager.js";
 import { Events, getActiveEvents } from "./Events.js";
 import { loadSoundSettings, setSoundSetting } from "./SoundManager.js";
 import { currentGameInstance } from "./GameManager.js";
+import { selectCountry } from "./Main.js";
+import { trivia } from "./Trivia.js";
 
 const app = document.getElementById("app");
 
-const tierOrder= ["easy", "medium", "hard", "ultraHard"];
+const tierOrder = ["easy", "medium", "hard", "ultraHard"];
 const tierMeta = {
     easy: { label: "Easy", flames: "🔥" },
     medium: { label: "Medium", flames: "🔥🔥" },
@@ -52,7 +60,7 @@ export function showMenu() {
         };
 }
 
-export function showSettings(){
+export function showSettings() {
     const settings = loadSoundSettings();
 
     app.innerHTML = `
@@ -80,7 +88,7 @@ export function showSettings(){
     };
 }
 
-function buildVolumeSlidersHTML(idPrefix, settings){
+function buildVolumeSlidersHTML(idPrefix, settings) {
     const channels = [
         { key: "master", label: "Master Volume" },
         { key: "alarm", label: "Sirens / Alarms" },
@@ -117,9 +125,9 @@ export function showScenario() {
 
         let badgesHTML = "";
         tierOrder.forEach(tier => {
-           const isCompleted = isScenarioTierCompleted(key, tier); 
+            const isCompleted = isScenarioTierCompleted(key, tier);
             badgesHTML += `<span class="tier-badge ${tier}${isCompleted ? " completed" : ""}" title="${tierMeta[tier].label} complete"></span>`;
-            
+
         });
 
         scenarioHTML += `
@@ -201,7 +209,7 @@ function flagButtonHTML(item) {
     const completed = isCountryCompleted(item.country);
 
     return `
-        <button class="flag${completed ? " completed" : ""}" onclick="chooseDifficulty('${item.country}')">
+        <button class="flag${completed ? " completed" : ""}" completed" : ""}" data-country="${item.country}" onclick="chooseDifficulty('${item.country}')">
             ${completed ? '<span class="flag-check">✔</span>' : ""}
             <img src="${item.image}">
             <p class="flag-name">${item.country}</p>
@@ -215,13 +223,22 @@ function renderFolderFlagView() {
 
     let foldersHTML = "";
 
-    for (const tierKey in tierMeta) {
-        const isOpen = openTier === tierKey;
+    //old
+    /*for (const tierKey in tierMeta) {
         foldersHTML += `
-            <button class="tier-folder${isOpen ? " active" : ""}" onclick="window.toggleFlagTier('${tierKey}')" aria-label="${tierMeta[tierKey].label}">
-                <span class="tier-badge ${tierKey} folder-icon"></span>
+            <button class="tier-folder" onclick="window.toggleFlagTier('${tierKey}')">
+                📁 ${tierMeta[tierKey].label}
             </button>
         `;
+    }*/
+
+    //new
+    for (const tierKey in tierMeta) {
+        foldersHTML += `
+        <button class="tier-folder" data-tier="${tierKey}" onclick="handleFolderClick(event, '${tierKey}')">
+          📁 ${tierMeta[tierKey].label}
+        </button>
+      `;
     }
 
     let contentsHTML = "";
@@ -242,6 +259,23 @@ function renderFolderFlagView() {
         <div id="scenario-folders">${foldersHTML}</div>
         ${contentsHTML}
     `;
+
+    const button = container.querySelectorAll(".flag");
+
+    button.forEach((btn) => {
+        const country = btn.dataset.country;
+
+        // Mouse events
+        btn.addEventListener('mousedown', (event) => triviaToggle(event, country));
+        btn.addEventListener('mouseup', (event) => cancelToggle(event));
+        btn.addEventListener('mouseleave', (event) => cancelToggle(event));
+
+        // Touch events
+        btn.addEventListener('touchstart', (event) => triviaToggle(event, country));
+        btn.addEventListener('touchend', (event) => cancelToggle(event));
+        btn.addEventListener('touchcancel', (event) => cancelToggle(event));
+    });
+
 }
 
 
@@ -432,7 +466,7 @@ export function stopGlobalAudio(name) {
     }
 }
 
-function openInGameSettings(){
+function openInGameSettings() {
     if (currentGameInstance) {
         currentGameInstance.pauseGame();
     }
@@ -440,7 +474,7 @@ function openInGameSettings(){
     const settings = loadSoundSettings();
     const overlay = document.getElementById("in-game-settings-overlay");
 
-    overlay.innerHTML= `
+    overlay.innerHTML = `
         <div class="settings-modal">
             <h2>Paused</h2>
             <div class="settings-list">${buildVolumeSlidersHTML("ingame", settings)}</div>
@@ -480,11 +514,11 @@ function applyLiveVolume(channel, settings) {
         return;
     }
 
- //sets master automatically these three are direct not multiplied
+    //sets master automatically these three are direct not multiplied
     if (channel === "master" || channel === "alarm" || channel === "ui") {
         currentGameInstance.sound.setChannelVolume(channel, settings[channel]);
     }
-// this is multiplied
+    // this is multiplied
     if (channel === "master" || channel === "sfx") {
         currentGameInstance.noise.applyVolume(settings);
     }
@@ -497,4 +531,66 @@ function applyLiveVolume(channel, settings) {
     }
 }
 
+export function triviaToggle(event, country) {
+    isHoldTrigger = false; //reset
+
+    //No ghost clicks
+    if (event.type === "touchstart") event.preventDefault();
+
+    cancelToggle();
+
+    const button = event.currentTarget;
+    button.classList.add("is-holding");
+
+    holdTimer = setTimeout(() => {
+        button.classList.remove("is-holding");
+        console.log("Hold-to-toggle activated");
+        triviaPage(country);
+    }, HOLD_DURATION);
+
+}
+
+function cancelToggle(event) {
+    clearTimeout(holdTimer);
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.remove("is-holding");
+    }
+
+}
+
+function triviaPage(country) {
+    const flagObj = difficultyFlags.find(flag => flag.country === country);
+    let triviaObj = trivia[country];
+
+    const triviaText = triviaObj
+
+        ? triviaObj.trivia
+        : "No trivia available for this country yet.";
+
+    app.innerHTML =
+        `
+        <div class="trivia-container">
+            <header class="trivia-header">
+                <h1>Trivia Mode: ${country}</h1>
+            </header>
+
+            <main class="trivia-content">
+                <div class="trivia-content-inner"> ${triviaText} </div>
+            </main>
+            <button id="backToDifficulty" class="btn-back">Back</button>
+        </div>
+    `;
+    document.getElementById("backToDifficulty").onclick = () => {
+        showDifficulty(currentScenarioKey);
+    };
+}
+
+window.handleFolderClick = function (event, tierKey) {
+    if (isHoldTrigger) {
+        isHoldTrigger = false;
+        return;
+    }
+
+    window.toggleFlagTier(tierKey);
+};
 
