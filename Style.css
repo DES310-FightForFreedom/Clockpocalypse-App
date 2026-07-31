@@ -693,7 +693,7 @@ Styling for Triangles checking off difficulty completed on
     display: grid;
     grid-template-columns: repeat(2, clamp( 90px, 22vw, 120px));
     gap: 12px 10px;
-    justify-items: center;
+    justify-content: center;
     margin: 20px auto;
     max-width: 700px;
     padding: 0 12px;
@@ -701,7 +701,7 @@ Styling for Triangles checking off difficulty completed on
 
 @media (min-width: 600px){
     .scenario-grid {
-        grid-template-columns: repeat(4, minmax(clamp(90px, 22vw, 120px), 1fr));
+        grid-template-columns: repeat(4, clamp(90px, 22vw, 120px));
     }
 }
 /* Scenario grid 4x4 */
