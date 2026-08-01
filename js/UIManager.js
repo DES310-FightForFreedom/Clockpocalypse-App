@@ -272,22 +272,14 @@ function renderFolderFlagView() {
 
     let foldersHTML = "";
 
-    //old
-    /*for (const tierKey in tierMeta) {
-        foldersHTML += `
-            <button class="tier-folder" onclick="window.toggleFlagTier('${tierKey}')">
-                📁 ${tierMeta[tierKey].label}
-            </button>
-        `;
-    }*/
-
     //new
     for (const tierKey in tierMeta) {
+        const isActive = tierKey === openTier;
         foldersHTML += `
-        <button class="tier-folder" data-tier="${tierKey}" onclick="handleFolderClick(event, '${tierKey}')">
-          📁 ${tierMeta[tierKey].label}
+        <button class="tier-folder${isActive ? " active" : ""}" data-tier="${tierKey}" onclick="handleFolderClick(event, '${tierKey}')">
+         <span class="tier-badge ${tierKey} folder-icon"></span>
         </button>
-      `;
+        `;
     }
 
     let contentsHTML = "";
