@@ -5,7 +5,8 @@ let holdTimer = null;
 const HOLD_DURATION = 1500; // Time in milliseconds (1.5 seconds)
 let isHoldTrigger = false;
 let triviaCountry;
-
+let triviaCounter = 0;
+let noise = new sound_effects();
 
 // Track which event card is currently playing sound
 let activePlayingEventId = null;
@@ -14,7 +15,7 @@ import { difficultyFlags } from "./DifficultySettings.js";
 import { scenarios } from "./scenario.js";
 import { isScenarioCompleted, isCountryCompleted, isScenarioTierCompleted } from "./ProgressTracker.js";
 import { currentScenario, GameManager, scenarioChallenges } from "./GameManager.js";
-import { sound_effects } from "./sound_effects.js";
+import { sound_effects, stopActiveSirenAudio } from "./sound_effects.js";
 import { userScenario } from "./GameManager.js";
 import { Events, getActiveEvents } from "./Events.js";
 import { loadSoundSettings, setSoundSetting } from "./SoundManager.js";
@@ -34,6 +35,7 @@ const tierMeta = {
 
 //Changes to the add flags and adjust difficulty settings.
 export function showMenu() {
+    stopGlobalAudio("NAVIGATE_MENU");
 
     app.innerHTML = `
         
@@ -43,6 +45,7 @@ export function showMenu() {
             <div class="menu-buttons">
             <button id="start">Start</button>
             <button id="settings">Settings</button>
+            <button id="tutorial">Tutorial</button>
             </div>
         </div>
     `;
@@ -58,6 +61,10 @@ export function showMenu() {
         .onclick = () => {
             showSettings();
         };
+
+    document.getElementById("tutorial").onclick = () => {
+        showTutorial();
+    };
 }
 
 export function showSettings() {
@@ -88,6 +95,45 @@ export function showSettings() {
     };
 }
 
+export function showTutorial() {
+    const BP1 = "An interactive party game with friends, where you try to survive a scenario with challenges. Each country has its unique difficulty. If everyone fails, press the skip button! If everyone succeeds, press the pass button!";
+    const BP2 = "Clicking a flag will bring up the start menu. You can see a bit of trivia on the country's siren, as well have a sound preview.";
+    const BP2NOTE = "Code note: Will rework image once the trivia() menu is completed."
+
+    app.innerHTML = `
+    <div class="tutorial-screen">
+        <h1>Tutorial</h1>
+
+        <section class="tutorial-section">
+            <h2 class="tutorial-header">How to play</h2>
+            <div class="tutorialContainer">
+                <p class="tutorialBPS" id="tutorialBP1">${BP1}</p>
+                <img class="tutorialIMGS" src="Assets/Images/ClockIMGa.png" alt="image">
+            </div>
+        </section>
+
+        <section class="tutorial-section">
+            <h2 class="tutorial-header">Trivia</h2>
+            <div class="tutorialContainer tutorialContainer--stacked">
+                <p class="tutorialBPS" id="tutorialBP2">${BP2}</p>
+                <div class="tutorial-image-row">
+                    <img class="tutorialMiniIMGS" src="Assets/Images/touch_mexico.png" alt="image">
+                    <img class="tutorialIMGS" src="Assets/Images/Trivia-img.png" alt="image">
+                </div>
+            </div>
+            <p class="tutorialBPS tutorial-note">${BP2NOTE}</p>
+        </section>
+
+        <button class="tutorialButton" id="tutorialButton">Back</button>
+    </div>
+    `;
+
+    document.getElementById("tutorialButton").onclick = () => {
+        showMenu();
+    }
+
+}
+
 function buildVolumeSlidersHTML(idPrefix, settings) {
     const channels = [
         { key: "master", label: "Master Volume" },
@@ -116,6 +162,7 @@ function buildVolumeSlidersHTML(idPrefix, settings) {
 // to implement scenarios
 
 export function showScenario() {
+    stopGlobalAudio("NAVIGATE_SCENARIO");
 
     let scenarioHTML = "";
 
@@ -188,6 +235,7 @@ export function showDifficulty(scenarioKey) {
             <h1>Select Difficulty</h1>
 
             <div id="flags"></div>
+            <div id="flags-triva_overlay" class="Difficulty-secret"></div>
 
             <div>
                 <button id="backScenarioSelect">Back</button>
@@ -198,6 +246,7 @@ export function showDifficulty(scenarioKey) {
     document
         .getElementById("backScenarioSelect")
         .onclick = () => {
+            stopGlobalAudio("BACK_TO_SCENARIO");
             showScenario();
         };
 
@@ -242,7 +291,6 @@ function renderFolderFlagView() {
     }
 
     let contentsHTML = "";
-
     if (openTier) {
         const matches = difficultyFlags.filter(
             flag => flag.level === openTier
@@ -252,34 +300,43 @@ function renderFolderFlagView() {
         matches.forEach(item => {
             contentsHTML += flagButtonHTML(item);
         });
-        contentsHTML += `</div>`;
+        contentsHTML += `<div class="trivia-container">
+            <div id="trivia-target" class="trivia-content-inner"> </div>
+        </div>
+        </div>`;
     }
 
+
     container.innerHTML = `
-        <div id="scenario-folders">${foldersHTML}</div>
-        ${contentsHTML}
-    `;
+          <div id="scenario-folders">${foldersHTML}</div>
+          ${contentsHTML}
+      `;
+
+
+    const triviaTarget = document.getElementById("trivia-target");
+    console.log(triviaTarget);
 
     const button = container.querySelectorAll(".flag");
 
     button.forEach((btn) => {
-        const country = btn.dataset.country;
+        //const country = btn.dataset.country;
 
         // Mouse events
-        btn.addEventListener('mousedown', (event) => triviaToggle(event, country));
-        btn.addEventListener('mouseup', (event) => cancelToggle(event));
-        btn.addEventListener('mouseleave', (event) => cancelToggle(event));
-
-        // Touch events
-        btn.addEventListener('touchstart', (event) => triviaToggle(event, country));
-        btn.addEventListener('touchend', (event) => cancelToggle(event));
-        btn.addEventListener('touchcancel', (event) => cancelToggle(event));
+        /*btn.addEventListener('mousedown', (event) => triviaToggle(event, country));
+         btn.addEventListener('mouseup', (event) => cancelToggle(event));
+         btn.addEventListener('mouseleave', (event) => cancelToggle(event));
+ 
+         // Touch events
+         btn.addEventListener('touchstart', (event) => triviaToggle(event, country));
+         btn.addEventListener('touchend', (event) => cancelToggle(event));
+         btn.addEventListener('touchcancel', (event) => cancelToggle(event));*/
     });
 
 }
 
 
 window.toggleFlagTier = function (tierKey) {
+    stopGlobalAudio("TIER_CHANGED");
     openTier = openTier === tierKey ? null : tierKey;
     renderFolderFlagView();
 };
@@ -456,14 +513,16 @@ export function showEvents(events) {
 
 //Global master stop function
 export function stopGlobalAudio(name) {
-    activePlayingEventId = null // Clear active card reference
+    activePlayingEventId = null; // Clear active card reference
 
     if (mySounds.currentActiveAudio) {
         mySounds.currentActiveAudio.pause();
         mySounds.currentActiveAudio.currentTime = 0;
         mySounds.currentActiveAudio = null; // Clear the slot completely
-        console.log("Global audio halted by, ", name);
     }
+
+    stopActiveSirenAudio(name);
+    console.log("Global audio halted by", name);
 }
 
 function openInGameSettings() {
@@ -509,6 +568,16 @@ function closeInGameSettings() {
     }
 }
 
+function openTrivia() {
+    const overlay = document.getElementById("flags-triva_overlay");
+    overlay.classList.add("tier-folder");
+
+    if (currentGameInstance) {
+        currentGameInstance.resumeGame();
+    }
+
+}
+
 function applyLiveVolume(channel, settings) {
     if (!currentGameInstance) {
         return;
@@ -531,34 +600,21 @@ function applyLiveVolume(channel, settings) {
     }
 }
 
-export function triviaToggle(event, country) {
-    isHoldTrigger = false; //reset
+export function triviaEvent(event, country) {
 
-    //No ghost clicks
-    if (event.type === "touchstart") event.preventDefault();
 
-    cancelToggle();
+    app.innerHTML += `
+    <p> apple </p>
+    `;
 
-    const button = event.currentTarget;
-    button.classList.add("is-holding");
-
-    holdTimer = setTimeout(() => {
-        button.classList.remove("is-holding");
-        console.log("Hold-to-toggle activated");
-        triviaPage(country);
-    }, HOLD_DURATION);
 
 }
 
-function cancelToggle(event) {
-    clearTimeout(holdTimer);
-    if (event && event.currentTarget) {
-        event.currentTarget.classList.remove("is-holding");
-    }
+export function cancelTrivia(event) {
 
 }
 
-function triviaPage(country) {
+export function triviaPage(country) {
     const flagObj = difficultyFlags.find(flag => flag.country === country);
     let triviaObj = trivia[country];
 
@@ -567,23 +623,11 @@ function triviaPage(country) {
         ? triviaObj.trivia
         : "No trivia available for this country yet.";
 
-    app.innerHTML =
-        `
-        <div class="trivia-container">
-            <header class="trivia-header">
-                <h1>Trivia Mode: ${country}</h1>
-            </header>
-
-            <main class="trivia-content">
-                <div class="trivia-content-inner"> ${triviaText} </div>
-            </main>
-            <button id="backToDifficulty" class="btn-back">Back</button>
-        </div>
-    `;
-    document.getElementById("backToDifficulty").onclick = () => {
-        showDifficulty(currentScenarioKey);
-    };
+    app.innerHTML = `
+<p> apple pear </p>
+`
 }
+
 
 window.handleFolderClick = function (event, tierKey) {
     if (isHoldTrigger) {

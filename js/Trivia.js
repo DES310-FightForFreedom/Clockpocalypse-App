@@ -47,26 +47,4 @@ export const trivia = {
     Iran: {
         trivia: "As far as disaster alerts go, none is as mechanically perfected like Iran's to be completely impossible for the human brain to adapt to or ignore. This is due to human hearing being fine-tuned to recognize erratic changes in pitch as an immediate threat, like a scream."
     },
-
-
-    /*
-    { country: "Japan", trivia: "A tritone-like buzz created by the famous environmental musician and sound designer Takashi Kokubo. The sound itself is intentionally dissonant–swithcing the brain to an attention state without paralyzing the listener with panic. It also bypasses the brain's usual auditory filters, making it hard to regulate the buzz to background noise." },
-{ country: "", trivia: "" },
-{ country: "Finland", trivia: "" },
-
-{ country: "Mexico", trivia: "" },
-{ country: "Germany", trivia: "" },
-{ country: "Bulgaria", trivia: "" },
-{ country: "United States", trivia: "" },
-{ country: "Russia", trivia: "" },
-{ country: "Saudi Arabia", trivia: "" },
-
-{ country: "United Kingdom", trivia: "" },
-{ country: "Australia", trivia: "" },
-{ country: "Canada", trivia: "" },
-{ country: "China", trivia: "" },
-
-
-{ country: "New Zealand", trivia: "" },
-{ country: "Iran", trivia: "" },*/
 }
