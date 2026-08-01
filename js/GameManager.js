@@ -1,6 +1,9 @@
 import { TimerSettings } from "./TimerSettings.js";
 import { Events } from "./Events.js";
-import { showScenario, showEvents, showGameScreen } from "./UIManager.js";
+import {
+    showScenario, showEvents, showGameScreen, addCompletedMiniChallenge,
+    resetMiniChallenges
+} from "./UIManager.js";
 import { SoundManager } from "./SoundManager.js";
 import { sound_effects } from "./sound_effects.js";
 import { markCompleted } from "./ProgressTracker.js";
@@ -11,7 +14,7 @@ export let userScenario = null;
 export let currentChallenge;
 export let scenarioChallenges;
 export let currentScenario;
-export let currentGameInstance= null;
+export let currentGameInstance = null;
 
 export class GameManager {
 
@@ -81,6 +84,7 @@ export class GameManager {
             this.scenario.name
         );
 
+        resetMiniChallenges(); // Clear previous game icons
         showGameScreen();
 
         let firstEvent = this.events.spawn();
@@ -143,6 +147,7 @@ export class GameManager {
         }
 
         this.gameOver = true;
+        resetMiniChallenges(); // Reset state on game end
         markCompleted(this.scenarioKey, this.country?.country, this.country?.level);
 
         if (this.spawnTimer) {
@@ -187,6 +192,7 @@ export class GameManager {
         }
         console.log("LOSE GAME CALLED")
         this.gameOver = true;
+        resetMiniChallenges(); // Reset state on game end
 
         if (this.spawnTimer) {
             clearTimeout(this.spawnTimer);
@@ -236,7 +242,7 @@ export class GameManager {
 
 
     completeEvent(event) {
-
+        //work here
         this.events.complete(event);
 
         this.timer.add(
@@ -246,6 +252,9 @@ export class GameManager {
         this.showTimeChange(
             this.difficulty.reward
         );
+        // Push mini challenge icon on successful completion
+        addCompletedMiniChallenge(event.emoji);
+
         stopGlobalAudio("complete");
     }
 
@@ -270,15 +279,15 @@ export class GameManager {
         stopGlobalAudio("skip");
     }
 
-    pauseGame(){
+    pauseGame() {
         if (this.gameOver) {
             return;
         }
         this.timer.pause();
     }
-    
-    resumeGame(){
-        if (this.gameOver){
+
+    resumeGame() {
+        if (this.gameOver) {
             return;
         }
         this.timer.resume();

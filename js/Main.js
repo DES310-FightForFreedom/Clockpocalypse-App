@@ -1,4 +1,4 @@
-import { showMenu, showDifficulty, showScenario, triviaEvent, stopGlobalAudio } from "./UIManager.js";
+import { showMenu, showDifficulty, showScenario, stopGlobalAudio } from "./UIManager.js";
 import { GameManager } from "./GameManager.js";
 import { scenarios } from "./scenario.js";
 import { difficulty } from "./DifficultySettings.js";

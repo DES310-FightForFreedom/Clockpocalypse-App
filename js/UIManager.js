@@ -306,23 +306,8 @@ function renderFolderFlagView() {
 
 
     const triviaTarget = document.getElementById("trivia-target");
-    console.log(triviaTarget);
 
     const button = container.querySelectorAll(".flag");
-
-    button.forEach((btn) => {
-        //const country = btn.dataset.country;
-
-        // Mouse events
-        /*btn.addEventListener('mousedown', (event) => triviaToggle(event, country));
-         btn.addEventListener('mouseup', (event) => cancelToggle(event));
-         btn.addEventListener('mouseleave', (event) => cancelToggle(event));
- 
-         // Touch events
-         btn.addEventListener('touchstart', (event) => triviaToggle(event, country));
-         btn.addEventListener('touchend', (event) => cancelToggle(event));
-         btn.addEventListener('touchcancel', (event) => cancelToggle(event));*/
-    });
 
 }
 
@@ -343,6 +328,28 @@ export function goToScenarioSelection() {
     showScenario();
 }
 
+// Add state tracker for completed mini challenges
+let completedMiniChallenges = [];
+
+export function addCompletedMiniChallenge(emoji) {
+    completedMiniChallenges.push(emoji ?? "⚠️");
+    renderMiniChallenges();
+}
+
+export function resetMiniChallenges() {
+    completedMiniChallenges = [];
+    renderMiniChallenges();
+}
+
+function renderMiniChallenges() {
+    const container = document.getElementById("mini-challenges-container");
+    if (!container) return;
+
+    container.innerHTML = completedMiniChallenges
+        .map(emoji => `<div class="mini-challenge-circle">${emoji}</div>`)
+        .join("");
+}
+
 export function showGameScreen() {
     loadScenarioSounds();
 
@@ -360,13 +367,16 @@ export function showGameScreen() {
         <div id="time-change"></div>
     </div>
     
-        <div id="event-bubble">
-        </div>
+        <div id="event-bubble"></div>
+        <!-- Container for completed mini-challenge icons -->
+    <div id="mini-challenges-container"></div>
 
         <div id="in-game-settings-overlay" class="hidden"></div>
 
     </div>
     `
+    resetMiniChallenges();
+
     document.getElementById("in-game-settings").onclick = () => {
         openInGameSettings();
     };
@@ -590,34 +600,6 @@ function applyLiveVolume(channel, settings) {
                 Math.max(0, Math.min(1, settings.master * settings.music));
         }
     }
-}
-
-export function triviaEvent(event, country) {
-
-
-    app.innerHTML += `
-    <p> apple </p>
-    `;
-
-
-}
-
-export function cancelTrivia(event) {
-
-}
-
-export function triviaPage(country) {
-    const flagObj = difficultyFlags.find(flag => flag.country === country);
-    let triviaObj = trivia[country];
-
-    const triviaText = triviaObj
-
-        ? triviaObj.trivia
-        : "No trivia available for this country yet.";
-
-    app.innerHTML = `
-<p> apple pear </p>
-`
 }
 
 
