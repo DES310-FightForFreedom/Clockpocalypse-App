@@ -694,6 +694,9 @@ Tutorial section
      box-sizing: border-box;
 
      z-index: 5;
+
+     /*Establishes a positioning context for the GIFS */
+     /*position: relative;*/
  }
 
  #timer {
@@ -1196,3 +1199,96 @@ Additions for gains etc
          border-width: 1.5px;
      }
  }
+
+ /*Other animations*/
+ /* Ensure letters bursting outward don't get clipped by the timer container */
+ timer-container,
+ #timer {
+     overflow: visible !important;
+ }
+
+ #timer {
+     display: inline-block;
+     white-space: nowrap;
+ }
+
+ /* Individual exploding letter styling */
+ #timer .char {
+     display: inline-block !important;
+     transform-origin: center center;
+     will-change: transform, opacity, filter;
+ }
+
+ #timer .char.explode-letter {
+     animation: timer-explode 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards !important;
+ }
+
+ #timer .char.rain-letter {
+     color: rgba(21, 228, 59, 0.854);
+     /*text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #00ff1a, 0 0 40px #00ff1a, 0 0 80px #00ff1a;*/
+     text-shadow: 0 0 20px #00ff1a, 0 0 40px #00ff1a, 0 0 80px #00ff1a;
+     animation: timer-rain 9.0s cubic-bezier(0.1, 0.8, 0.3, 1) forwards !important;
+ }
+
+ @keyframes timer-explode {
+     0% {
+         transform: translate(0, 0) scale(1) rotate(0deg);
+         opacity: 0.75;
+         /* Preserves your original #timer opacity */
+         filter: blur(0px);
+     }
+
+     50% {
+         opacity: 1;
+         filter: blur(1px);
+     }
+
+     100% {
+         transform: translate(var(--x), var(--y)) scale(var(--scale, 1.8)) rotate(var(--rotate));
+         opacity: 0;
+         filter: blur(6px);
+     }
+ }
+
+ @keyframes timer-rain {
+     0% {
+         transform: translate(0, 0) scale(1) rotate(0deg);
+         opacity: 0.75;
+         filter: blur(0px);
+     }
+
+     50% {
+         opacity: 1;
+         filter: blur(1px);
+     }
+
+     100% {
+         transform: translate(var(--x), var(--y)) scale(var(--scale, 1.8)) rotate(var(--rotate));
+         opacity: 0;
+         filter: blur(6px);
+     }
+ }
+
+ /*
+ .hiddenEffects {
+     display: none;
+ }*/
+
+ /*
+ #explosionGIF {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     max-width: 300px;
+     width: 100%;
+     height: auto;
+     */
+
+ /* Ensures clicks pass through to UI underneath if necessary 
+     pointer-events: none;
+     z-index: 6;
+     */
+ /*Sitting above #timer (z-index: 5) 
+ }*/
+ @keyframes explosion {}

@@ -568,16 +568,6 @@ function closeInGameSettings() {
     }
 }
 
-function openTrivia() {
-    const overlay = document.getElementById("flags-triva_overlay");
-    overlay.classList.add("tier-folder");
-
-    if (currentGameInstance) {
-        currentGameInstance.resumeGame();
-    }
-
-}
-
 function applyLiveVolume(channel, settings) {
     if (!currentGameInstance) {
         return;

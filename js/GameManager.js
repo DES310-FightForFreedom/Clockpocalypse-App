@@ -16,6 +16,98 @@ export let scenarioChallenges;
 export let currentScenario;
 export let currentGameInstance = null;
 
+//Helper functions for the animations
+function explodeTimer(onFail) {
+    const timerDisplay = document.getElementById("timer");
+
+    if (!timerDisplay) {
+        if (onFail) onFail();
+        return;
+    }
+
+
+    const text = timerDisplay.textContent.trim();
+    timerDisplay.innerHTML = "";
+
+    console.log("Exploding timer text: ", text);
+
+    //Wrap each character (including spaces) in a span
+    const letterSpans = text.split("").map((char) => {
+        const span = document.createElement("span");
+        span.textContent = char === " " ? "\u00A0" : char;
+        span.classList.add("char");
+        timerDisplay.appendChild(span);
+        return span;
+    });
+
+    //Assign random explosion physics vector variables to each letter
+    letterSpans.forEach((span) => {
+        const x = (Math.random() - 0.5) * 250 + "px"; // Blow out left/right
+        const y = (Math.random() - 0.5) * 250 + "px"; // Blow out up/down
+        const rotate = (Math.random() - 0.5) * 540 + "deg"; // Spin up to 1.5 rotations
+        const scale = 1.2 + Math.random() * 0.8;
+
+        span.style.setProperty("--x", x);
+        span.style.setProperty("--y", y);
+        span.style.setProperty("--rotate", rotate);
+        span.style.setProperty("--scale", scale);
+
+        // Trigger animation, force browser
+        void span.offsetWidth; // Force CSS reflow
+        span.classList.add("explode-letter");
+    });
+
+    //Delay long enough for the visual burst to play before wiping innerHTML
+    setTimeout(() => {
+        if (onFail) onFail();
+    }, 450); // Matches ~0.5s CSS animation speed
+}
+
+function rainTimer(onComplete) {
+    const timerDisplay = document.getElementById("timer");
+
+    if (!timerDisplay) {
+        if (onComplete) onComplete();
+        return;
+    }
+
+    const text = timerDisplay.textContent.trim();
+    timerDisplay.innerHTML = "";
+
+    console.log("Rain timer text: ", text);
+
+    //Wrap each character (including spaces) in a span
+    const letterSpans = text.split("").map((char) => {
+        const span = document.createElement("span");
+        span.textContent = char === " " ? "\u00A0" : char;
+        span.classList.add("char");
+        timerDisplay.appendChild(span);
+        return span;
+    });
+
+    //Assign random explosion physics vector variables to each letter
+    letterSpans.forEach((span) => {
+        const x = (Math.random() - 0.5) * 550 + "px"; // Blow out left/right
+        const y = (Math.random() - 0.01) * 1900 + "px"; // Blow down far
+        const rotate = (Math.random() - 0.5) * 340 + "deg"; // 
+        const scale = 1.2 + Math.random() * 0.8;
+
+        span.style.setProperty("--x", x);
+        span.style.setProperty("--y", y);
+        span.style.setProperty("--rotate", rotate);
+        span.style.setProperty("--scale", scale);
+
+        // Trigger animation, force browser
+        void span.offsetWidth; // Force CSS reflow
+        span.classList.add("rain-letter");
+    });
+
+    //Delay long enough for the visual burst to play before wiping innerHTML
+    setTimeout(() => {
+        if (onComplete) onComplete();
+    }, 450); // Matches ~0.5s CSS animation speed
+}
+
 export class GameManager {
 
     constructor(
@@ -162,8 +254,9 @@ export class GameManager {
         this.noise.play('victory');
 
         stopGlobalAudio("win");
+        rainTimer(() => {
 
-        document.getElementById("app").innerHTML = `
+            document.getElementById("app").innerHTML = `
 
         <h1 class="victory_screen"> You Survived! </h1>
         <h2 class="victory_screen" id="victory-line">${this.scenario.victory}</h2>
@@ -175,14 +268,16 @@ export class GameManager {
 
         `;
 
-        document
-            .getElementById("backScenario")
-            .onclick = () => {
-                this.cleanrestart();
-                showScenario();
-            };
-        return;
+            document
+                .getElementById("backScenario")
+                .onclick = () => {
+                    this.cleanrestart();
+                    showScenario();
+                };
+            return;
+        });
     };
+
 
 
     loseGame(failedEvent = null) {
@@ -205,7 +300,9 @@ export class GameManager {
 
         const event = failedEvent ?? this.events.active[0];
 
-        document.getElementById("app").innerHTML = `
+        explodeTimer(() => {
+            // This callback runs AFTER the 450ms explosion finishes:
+            document.getElementById("app").innerHTML = `
 
         <div class="loseScreen">
 
@@ -222,21 +319,22 @@ export class GameManager {
         </div>
             `;
 
-        document
-            .getElementById("restart")
-            .onclick = () => {
+            document
+                .getElementById("restart")
+                .onclick = () => {
 
-                this.resetGame();
-                this.start();
-            };
+                    this.resetGame();
+                    this.start();
+                };
 
-        document
-            .getElementById("backScenario")
-            .onclick = () => {
-                this.cleanrestart();
-                showScenario();
-            };
-        stopGlobalAudio("lose");
+            document
+                .getElementById("backScenario")
+                .onclick = () => {
+                    this.cleanrestart();
+                    showScenario();
+                };
+            stopGlobalAudio("lose");
+        });
     }
 
 
@@ -500,3 +598,5 @@ export class GameManager {
         }, 1000);
     }
 }
+
+
