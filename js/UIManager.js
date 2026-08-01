@@ -96,19 +96,18 @@ export function showSettings() {
 }
 
 export function showTutorial() {
-    const BP1 = "An interactive party game with friends, where you try to survive a scenario with challenges. Each country has its unique difficulty. If everyone fails, press the skip button! If everyone succeeds, press the pass button!";
-    const BP2 = "Clicking a flag will bring up the start menu. You can see a bit of trivia on the country's siren, as well have a sound preview.";
-    const BP2NOTE = "Code note: Will rework image once the trivia() menu is completed."
+    const BP1 = "An interactive party game with friends, where you try to survive a scenario with challenges. Each country has its unique difficulty. If everyone fails, press the skip button! If everyone succeeds, press the complete button!";
+    const BP2 = "Did you wonder why Finland's siren sounded like that, or how Russia's siren was made? Clicking a flag will bring up the country's trivia. As well as a sound preview of its siren.";
 
     app.innerHTML = `
     <div class="tutorial-screen">
         <h1>Tutorial</h1>
 
         <section class="tutorial-section">
-            <h2 class="tutorial-header">How to play</h2>
+            <h2 class="tutorial-header">What is Clockpocalyspe?</h2>
             <div class="tutorialContainer">
                 <p class="tutorialBPS" id="tutorialBP1">${BP1}</p>
-                <img class="tutorialIMGS" src="Assets/Images/ClockIMGa.png" alt="image">
+                <img class="tutorialIMGS" src="Assets/Images/tutorialIMG1.png" alt="image">
             </div>
         </section>
 
@@ -117,11 +116,10 @@ export function showTutorial() {
             <div class="tutorialContainer tutorialContainer--stacked">
                 <p class="tutorialBPS" id="tutorialBP2">${BP2}</p>
                 <div class="tutorial-image-row">
-                    <img class="tutorialMiniIMGS" src="Assets/Images/touch_mexico.png" alt="image">
-                    <img class="tutorialIMGS" src="Assets/Images/Trivia-img.png" alt="image">
+                    <img id="bottomTutorialIMG" class="tutorialMiniIMGS" src="Assets/Images/tutorialIMG2.png" alt="image">
+                    <img class="tutorialIMGS" src="Assets/Images/tutorialIMG3.png" alt="image">
                 </div>
             </div>
-            <p class="tutorialBPS tutorial-note">${BP2NOTE}</p>
         </section>
 
         <button class="tutorialButton" id="tutorialButton">Back</button>

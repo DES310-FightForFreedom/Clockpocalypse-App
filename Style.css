@@ -155,9 +155,20 @@ Tutorial section
 */
 
  .tutorial-screen {
-     margin: 2vh auto 0;
+     margin: 2vh 5px;
      padding: 0 20px 24px;
-     max-width: 980px;
+
+     width: 100%;
+     box-sizing: border-box;
+ }
+
+
+ .tutorial-screen h1 {
+     font-family: var(--font-display);
+     color: var(--accent-red);
+     text-align: center;
+     font-size: 55px;
+     margin-bottom: 24px;
  }
 
  .tutorial-section {
@@ -170,12 +181,12 @@ Tutorial section
      text-align: left;
      padding: 0 0 8px 0;
      margin: 0 0 10px;
-     font-size: clamp(22px, 3vw, 28px);
+     font-size: 40px;
  }
 
  .tutorialContainer {
      display: flex;
-     align-items: flex-start;
+     align-items: center;
      gap: 24px;
      padding: 0 8px;
  }
@@ -187,7 +198,7 @@ Tutorial section
 
  .tutorialBPS {
      font-family: var(--font-body);
-     font-size: clamp(16px, 2.1vw, 22px);
+     font-size: 23px;
      color: var(--text-primary);
      margin: 0;
      padding: 0;
@@ -209,18 +220,21 @@ Tutorial section
  }
 
  .tutorialIMGS {
-     height: 180px;
-     width: 200px;
-     object-fit: cover;
+     height: auto;
+     width: 380px;
+     max-width: 40%;
+     flex-shrink: 0;
      border-radius: 8px;
      border: 1px solid rgba(228, 21, 21, 0.421);
  }
 
+
+
+
  .tutorialMiniIMGS {
-     height: 70px;
-     width: 70px;
-     object-fit: cover;
-     border-radius: 8px;
+     height: 120px;
+     width: 140px;
+     border-radius: 7px;
      border: 1px solid rgba(228, 21, 21, 0.421);
  }
 
