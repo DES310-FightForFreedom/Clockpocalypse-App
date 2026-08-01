@@ -725,10 +725,16 @@ Tutorial section
  }
 
  #folder-contents {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     gap: 20px;
+     background: var(--folder-body);
+     border: 3px solid var(--accent-red);
+     border-radius: 0 12px 12px 12px;
+     padding: 24px 12px;
+     margin: -17px auto 0;
+     max-width: 700px;
+     min-height: 55vh;
+     box-sizing: border-box;
+     position: relative;
+     z-index: 2;
 
      box-shadow:
          0 10px 25px var(--folder-shadow),
