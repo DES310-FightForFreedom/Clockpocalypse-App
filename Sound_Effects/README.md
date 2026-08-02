@@ -6,7 +6,7 @@
 
 | Type | In-game Usage | Source         |
 | :--- | :--- | :--- | 
-| Victory | Victory [▶️](https://drive.google.com/file/d/1vCNLmhy2TWWiLYBcGLgI3HwnqeuWEqSl/view?usp=share_link) | https://youtu.be/Oc4Aa0WvVNw?si=VAfc9MPk6rPcEC3e | 
+| Victory | Victory [▶️](https://drive.google.com/file/d/18EPveztk02tkm_lh__y-slmDGTWTwCO-/view?usp=share_link) | https://youtu.be/Oc4Aa0WvVNw?si=VAfc9MPk6rPcEC3e | 
 | Fail | Fail [▶️](https://drive.google.com/file/d/1tuAilaZBjTwWbjzpoZ8Zth2WB6VAO-jy/view?usp=share_link) | https://youtu.be/txouyA__R3c?si=i673O-0yiTsOuWQe | 
 | Skip | Skip [▶️](https://drive.google.com/file/d/1d6sekWdW8oliqiOBc04G-Z3MinW7bDVx/view?usp=share_link) | https://youtu.be/pqEn9icjK0I?si=-EgabPfkcIc0K5hS |
 | Complete | Complete [▶️](https://drive.google.com/file/d/1oA-F-4NPrV0w9KL1oFBSK13HZ3M1oRnY/view?usp=share_link) | https://youtu.be/n4qnDaSidJs?si=RJgD2tnzIHslY5DA |
