@@ -99,6 +99,12 @@
      margin-top: 10vh;
  }
 
+ #header-text {
+     font-size: 40px;
+     text-shadow: 0 0 1px rgba(195, 22, 22, 0.576), 0 0 4px rgba(232, 12, 12, 0.803);
+
+ }
+
  .menu-buttons {
      display: flex;
      flex-direction: column;
@@ -1226,7 +1232,6 @@ Additions for gains etc
 
  #timer .char.rain-letter {
      color: rgba(21, 228, 59, 0.854);
-     /*text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #00ff1a, 0 0 40px #00ff1a, 0 0 80px #00ff1a;*/
      text-shadow: 0 0 20px #00ff1a, 0 0 40px #00ff1a, 0 0 80px #00ff1a;
      animation: timer-rain 9.0s cubic-bezier(0.1, 0.8, 0.3, 1) forwards !important;
  }
@@ -1235,7 +1240,6 @@ Additions for gains etc
      0% {
          transform: translate(0, 0) scale(1) rotate(0deg);
          opacity: 0.75;
-         /* Preserves your original #timer opacity */
          filter: blur(0px);
      }
 
@@ -1269,6 +1273,72 @@ Additions for gains etc
          filter: blur(6px);
      }
  }
+
+
+ .clock-meteor {
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     height: 100%;
+     margin: auto;
+     width: 85vw;
+     display: flex;
+     justify-content: space-between;
+     pointer-events: none;
+     z-index: -4;
+ }
+
+ .clock {
+     position: relative;
+     width: 50px;
+     height: 100%;
+
+ }
+
+ .clock::after {
+     content: '⏱︎';
+     font-size: 65px;
+     color: var(--accent-red);
+
+     display: inline-block;
+     position: absolute;
+     height: 45px;
+     width: 100%;
+     top: -50%;
+     left: 0;
+
+     text-shadow: 0 0 5px var(--accent-red-glow), 0 0 12px rgb(241, 9, 9);
+
+     /*Psuedo random value between -1 and 1*/
+     --raw-rand: sin(var(--i) * 98765.4321 + cos(var(--i) * 12345.6789) * 54321.0);
+
+     /*Normalizes range berween 0 and 1*/
+     --rand: calc((var(--raw-rand) + 1) / 2);
+
+     /*Clock fall ms ranges*/
+     --min-delay: 1ms;
+     --max-delay: 300ms;
+
+     animation-name: dropClock;
+     animation-iteration-count: infinite;
+     animation-duration: 4s;
+     animation-delay: calc(var(--min-delay) + var(--rand) * (var(--max-delay) - var(--min-delay)));
+     animation-fill-mode: forwards;
+     animation-timing-function: linear;
+
+ }
+
+ @keyframes dropClock {
+     0% {
+         top: -50%;
+     }
+
+     100% {
+         top: 110%;
+     }
+ }
+
 
  /*Text animations*/
 

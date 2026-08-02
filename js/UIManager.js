@@ -40,13 +40,27 @@ export function showMenu() {
     app.innerHTML = `
         
         <div class="menu-screen">
-            <h1>Clockpocalypse</h1>
+            <h1 id="header-text">Clockpocalypse</h1>
 
             <div class="menu-buttons">
             <button id="start">Start</button>
             <button id="settings">Settings</button>
             <button id="tutorial">Tutorial</button>
             </div>
+
+            <div class="clock-meteor">
+            <div class="clock" style="--i: 1"></div>
+            <div class="clock" style="--i: 2"></div>
+            <div class="clock" style="--i: 3"></div>
+            <div class="clock" style="--i: 4"></div>
+            <div class="clock" style="--i: 5"></div>
+            <div class="clock" style="--i: 6"></div>
+            <div class="clock" style="--i: 7"></div>
+            <div class="clock" style="--i: 8"></div>
+            <div class="clock" style="--i: 9"></div>
+            
+            </div>
+
         </div>
     `;
 
@@ -72,7 +86,7 @@ export function showSettings() {
 
     app.innerHTML = `
         <div class="settings-screen">
-            <h1>Settings</h1>
+            <h1 id="header-text">Settings</h1>
             <div class="settings-list">${buildVolumeSlidersHTML("vol", settings)}</div>
             <div>
                 <button id="backMenuFromSettings">Back</button>
@@ -101,7 +115,7 @@ export function showTutorial() {
 
     app.innerHTML = `
     <div class="tutorial-screen">
-        <h1>Tutorial</h1>
+        <h1 id="header-text">Tutorial</h1>
 
         <section class="tutorial-section">
             <h2 class="tutorial-header">What is Clockpocalyspe?</h2>
@@ -189,7 +203,7 @@ export function showScenario() {
 
     app.innerHTML = `
         <div>
-            <h1>Select Clockpocalypse</h1>
+            <h1 id="header-text">Select Clockpocalypse</h1>
 
             <div class= "scenario-grid">${scenarioHTML}</div>
 
@@ -230,7 +244,7 @@ export function showDifficulty(scenarioKey) {
 
     app.innerHTML = `
         <div>
-            <h1>Select Difficulty</h1>
+            <h1 id="header-text">Select Difficulty</h1>
 
             <div id="flags"></div>
             <div id="flags-triva_overlay" class="Difficulty-secret"></div>
