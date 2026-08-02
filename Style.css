@@ -1317,8 +1317,8 @@ Additions for gains etc
      --rand: calc((var(--raw-rand) + 1) / 2);
 
      /*Clock fall ms ranges*/
-     --min-delay: 1ms;
-     --max-delay: 300ms;
+     --min-delay: 0s;
+     --max-delay: 3s;
 
      animation-name: dropClock;
      animation-iteration-count: infinite;
