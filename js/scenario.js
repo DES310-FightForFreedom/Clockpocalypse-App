@@ -358,7 +358,7 @@ export const scenarios = {
                 title: "Robot Invasion",
                 emoji: "🧠",
                 challenge: "Act like Robots to Avoid detection",
-                defeat: "You fail the'which image is a bus' test…",
+                defeat: "You fail the 'which image is a bus' test…",
                 sound: "./Sound_Effects/Binary_code.wav"
             },
 

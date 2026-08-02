@@ -207,11 +207,6 @@ Tutorial section
      flex: 1;
  }
 
- .tutorial-note {
-     margin-top: 8px;
-     opacity: 0.8;
- }
-
  .tutorial-image-row {
      display: flex;
      align-items: center;
@@ -228,7 +223,15 @@ Tutorial section
      border: 1px solid rgba(228, 21, 21, 0.421);
  }
 
+ .tutorialIMGS:hover {
+     transform: scale(1);
 
+     max-width: 60%;
+     flex-shrink: 0;
+     border-radius: 8px;
+     border: 1px solid rgba(228, 21, 21, 0.421);
+     box-shadow: 0 0 5px rgba(233, 17, 17, 0.554), 0 0 10px rgba(241, 13, 13, 0.648);
+ }
 
 
  .tutorialMiniIMGS {
@@ -236,6 +239,16 @@ Tutorial section
      width: 140px;
      border-radius: 7px;
      border: 1px solid rgba(228, 21, 21, 0.421);
+ }
+
+ .tutorialMiniIMGS:hover {
+     transform: scale(1.1);
+
+     max-width: 60%;
+     flex-shrink: 0;
+     border-radius: 7px;
+     border: 1px solid rgba(228, 21, 21, 0.421);
+     box-shadow: 0 0 4px rgba(233, 17, 17, 0.554), 0 0 8px rgba(241, 13, 13, 0.648);
  }
 
  .tutorialButton {
@@ -265,27 +278,15 @@ Tutorial section
      font-size: 40px;
      font-family: var(--font-display);
      text-align: center;
-
  }
 
- #victory-line {
-     color: rgb(21, 228, 59);
-     font-family: var(--font-display);
-     font-size: 20px;
-     text-align: center;
-
-     /* Max Width of victory message */
-     max-width: 40ch;
-     margin: 0 auto;
-     overflow-wrap: break-word;
- }
-
- .lose_screen {
+ .lose_sceeen {
      color: var(--accent-red);
      font-family: var(--font-display);
      font-size: 40px;
      text-align: center;
  }
+
 
  .loseScreen {
      margin-top: 13vh;
@@ -1269,26 +1270,83 @@ Additions for gains etc
      }
  }
 
- /*
- .hiddenEffects {
-     display: none;
- }*/
+ /*Text animations*/
 
- /*
- #explosionGIF {
-     position: absolute;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     max-width: 300px;
-     width: 100%;
-     height: auto;
-     */
+ .cursor {
+     position: relative;
+     width: 24em;
+     margin: 0 auto;
+     font-size: 30px;
+     font-family: var(--font-display);
+     display: inline-block;
+     text-align: center;
+     white-space: nowrap;
+     overflow: hidden;
+     transform: translateY(-50%);
 
- /* Ensures clicks pass through to UI underneath if necessary 
-     pointer-events: none;
-     z-index: 6;
-     */
- /*Sitting above #timer (z-index: 5) 
- }*/
- @keyframes explosion {}
+     /* Default text & cursor color using CSS Variable */
+     color: var(--typewriter-color);
+     border-right: 2px solid var(--typewriter-color);
+ }
+
+ .typewriter-container {
+     font-family: var(--font-display);
+     font-size: 30px;
+     text-align: center;
+     margin: 0 auto;
+     max-width: 800px;
+     /* Respects screen borders & wraps naturally */
+     word-wrap: break-word;
+     color: var(--typewriter-color);
+ }
+
+ .typewriter-container::after {
+     content: '|';
+     display: inline-block;
+     margin-left: 2px;
+     color: var(--typewriter-color);
+     animation: blinkingCursor 500ms infinite alternate;
+ }
+
+ .is-victory {
+     --typewriter-color: rgb(21, 228, 59);
+ }
+
+ .is-lose {
+     --typewriter-color: var(--accent-red);
+ }
+
+ .typewriter-animation {
+     animation: typeWriter 5s steps(50) 1s 1 normal both,
+         blinkingCursor 500ms steps(50) infinite normal;
+ }
+
+ #victory-line {
+     --typewriter-color: rgb(21, 228, 59);
+ }
+
+ #lose-line {
+     --typewriter-color: var(--accent-red);
+ }
+
+
+
+ @keyframes typeWriter {
+     from {
+         max-width: 0;
+     }
+
+     to {
+         max-width: 100%;
+     }
+ }
+
+ @keyframes blinkingCursor {
+     from {
+         opacity: 1;
+     }
+
+     to {
+         opacity: 0;
+     }
+ }

@@ -108,6 +108,24 @@ function rainTimer(onComplete) {
     }, 450); // Matches ~0.5s CSS animation speed
 }
 
+function typeWriterEffect(elementId, text, speed = 80) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    element.textContent = "";
+    let index = 0;
+
+    function typeNextChar() {
+        if (index < text.length) {
+            element.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeNextChar, speed); // Speed in ms per character (80ms = consistent typing speed)
+        }
+    }
+
+    typeNextChar();
+}
+
 export class GameManager {
 
     constructor(
@@ -255,11 +273,13 @@ export class GameManager {
 
         stopGlobalAudio("win");
         rainTimer(() => {
+            const victoryMessage = this.scenario.victory;
+            const charCount = victoryMessage.length;
 
             document.getElementById("app").innerHTML = `
 
         <h1 class="victory_screen"> You Survived! </h1>
-        <h2 class="victory_screen" id="victory-line">${this.scenario.victory}</h2>
+        <h2 class="typewriter-container is-victory" id="victory-line">${victoryMessage}</h2>
         
 
         <button id="backScenario">
@@ -267,6 +287,7 @@ export class GameManager {
         </button>
 
         `;
+            typeWriterEffect("victory-line", victoryMessage, 80);
 
             document
                 .getElementById("backScenario")
@@ -302,12 +323,16 @@ export class GameManager {
 
         explodeTimer(() => {
             // This callback runs AFTER the 450ms explosion finishes:
+
+            const defeatMessage = event?.defeat ?? "Game Over";
+            const charCount = defeatMessage.length;
+
             document.getElementById("app").innerHTML = `
 
         <div class="loseScreen">
 
             <h1 class="lose_screen">${event?.title ?? "Game Over"}</h1>
-            <h2 class="lose_screen">${event?.defeat} </h2>
+            <h2 class="typewriter-container is-lose" id="lose-line">${defeatMessage}</h2>
         
             <button id="restart"> 
                 Restart
@@ -318,6 +343,8 @@ export class GameManager {
             </button>
         </div>
             `;
+
+            typeWriterEffect("lose-line", defeatMessage, 80);
 
             document
                 .getElementById("restart")
@@ -337,7 +364,18 @@ export class GameManager {
         });
     }
 
+    displayEndMessage(elementId, messageText, isVictory) {
+        const targetElement = document.getElementById(elementId);
+        const charCount = messageText.length;
 
+        targetElement.textContent = messageText;
+
+        targetElement.style.width = `${charCount}ch`;
+
+        targetElement.className = `cursor typewriter-animation ${isVictory ? 'is-victory' : 'is-lose'}`;
+
+        targetElement.style.animationTimingFunction = `steps(${charCount}), step-end`;
+    }
 
     completeEvent(event) {
         //work here
