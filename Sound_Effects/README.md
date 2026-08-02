@@ -1,14 +1,16 @@
 # All sounds are royalty free
 
 ---
-|            ## General                 |
+
+            ## General                 
 |                                       |
 | Type | In-game Usage | Source         |
-|                                       |
+| :--- | :--- | :--- | 
 | Victory | Victory [Play](https://drive.google.com/file/d/1vCNLmhy2TWWiLYBcGLgI3HwnqeuWEqSl/view?usp=share_link) | https://youtu.be/Oc4Aa0WvVNw?si=VAfc9MPk6rPcEC3e | 
 | Fail | Fail [Play](https://drive.google.com/file/d/1tuAilaZBjTwWbjzpoZ8Zth2WB6VAO-jy/view?usp=share_link) | https://youtu.be/txouyA__R3c?si=i673O-0yiTsOuWQe | 
 | Skip | Skip [Play](https://drive.google.com/file/d/1d6sekWdW8oliqiOBc04G-Z3MinW7bDVx/view?usp=share_link) | https://youtu.be/pqEn9icjK0I?si=-EgabPfkcIc0K5hS |
 | Complete | Complete [Play](https://drive.google.com/file/d/1oA-F-4NPrV0w9KL1oFBSK13HZ3M1oRnY/view?usp=share_link) | https://youtu.be/n4qnDaSidJs?si=RJgD2tnzIHslY5DA |
+
 ---
 
 ---
