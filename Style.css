@@ -775,7 +775,8 @@ Tutorial section
 
  @media (max-width: 480px) {
      #app .flag {
-         width: 100px;
+         width: 100%;
+         max-width: 130px;
      }
 
      .flag img {
@@ -806,6 +807,24 @@ Tutorial section
      .menu-screen {
          margin-top: 6vh;
      }
+
+    .scenario-grid {
+        gap: 26px 12px;
+    }
+
+    .scenario-tile .tier-badges {
+        gap: 2px;
+    }
+
+    .scenario-tile .tier-badge {
+        width: 18px;
+        height: 16px;
+    }
+
+    .scenario-tile .tier-badge::after {
+        font-size: 13px;
+        bottom: 0px;
+    }
 
  }
 
