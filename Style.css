@@ -789,7 +789,7 @@ Tutorial section
      .flag-name {
          font-size: 12px;
          padding: 3px 8px;
-         overflow: wrap;
+         overflow-wrap: break-word;
          white-space: normal;
          box-sizing: border-box;
      }
@@ -954,11 +954,6 @@ Styling for Triangles checking off difficulty completed on
      padding: 0 12px;
  }
 
- @media (max-width: 480px) {
-     .scenario-grid {
-         gap: 18px 16px;
-     }
- }
 
  @media (min-width: 600px) {
      .scenario-grid {
