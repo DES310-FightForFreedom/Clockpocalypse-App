@@ -195,8 +195,10 @@ export class GameManager {
         );
 
         resetMiniChallenges(); // Clear previous game icons
-        showGameScreen();
 
+        showGameScreen(() => {
+            // Any initialization code that needs to run after the game screen is shown
+        
         let firstEvent = this.events.spawn();
 
         if (!firstEvent) {
@@ -227,6 +229,7 @@ export class GameManager {
                 this.loseGame();
             }
         );
+        });
     }
 
     async loadCountrySound() {

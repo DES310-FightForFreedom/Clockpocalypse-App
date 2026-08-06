@@ -25,6 +25,40 @@ import { trivia } from "./Trivia.js";
 
 const app = document.getElementById("app");
 
+// EDITS FOR BUNKER SCREEN=================================================================================================
+
+const bunkerOverlay = document.getElementById("bunker-overlay");
+const DOOR_CLOSE_MS = 450;
+const SEAL_HOLD_MS = 350;
+const DOOR_OPEN_MS = 450;
+
+
+function bunkerTransition(renderFn) {
+    if (!bunkerOverlay) {
+        renderFn();
+        return;
+    }
+
+    bunkerOverlay.style.pointerEvents = "auto";
+    bunkerOverlay.classList.add("closed");
+
+    setTimeout(() => {
+        renderFn();
+
+        setTimeout(() => {
+            bunkerOverlay.classList.remove("closed");
+
+            setTimeout(() => {
+                bunkerOverlay.style.pointerEvents = "none";
+            }, DOOR_OPEN_MS);
+        }, SEAL_HOLD_MS);
+    }, DOOR_CLOSE_MS);
+}
+//EDITS FOR BUNKER SCREEN END HERE=========================================================================================
+
+
+
+
 const tierOrder = ["easy", "medium", "hard", "ultraHard"];
 const tierMeta = {
     easy: { label: "Easy", flames: "🔥" },
@@ -37,6 +71,7 @@ const tierMeta = {
 export function showMenu() {
     stopGlobalAudio("NAVIGATE_MENU");
 
+    bunkerTransition(() => {
     app.innerHTML = `
         
         <div class="menu-screen">
@@ -79,9 +114,11 @@ export function showMenu() {
     document.getElementById("tutorial").onclick = () => {
         showTutorial();
     };
+    });
 }
 
 export function showSettings() {
+    bunkerTransition(() => {
     const settings = loadSoundSettings();
 
     app.innerHTML = `
@@ -107,6 +144,7 @@ export function showSettings() {
     document.getElementById("backMenuFromSettings").onclick = () => {
         showMenu();
     };
+    });
 }
 
 export function showTutorial() {
@@ -176,6 +214,8 @@ function buildVolumeSlidersHTML(idPrefix, settings) {
 export function showScenario() {
     stopGlobalAudio("NAVIGATE_SCENARIO");
 
+    bunkerTransition(() => {
+
     let scenarioHTML = "";
 
     for (const key in scenarios) {
@@ -217,8 +257,8 @@ export function showScenario() {
         .onclick = () => {
             showMenu();
         };
+    });
 }
-
 
 
 //============================================================================================================
@@ -239,6 +279,7 @@ export function loadScenarioSounds() {
 
 export function showDifficulty(scenarioKey) {
 
+    bunkerTransition(() => {
     currentScenarioKey = scenarioKey;
     openTier = "easy";
 
@@ -263,6 +304,7 @@ export function showDifficulty(scenarioKey) {
         };
 
     renderFolderFlagView();
+    });
 }
 
 
@@ -362,7 +404,8 @@ function renderMiniChallenges() {
         .join("");
 }
 
-export function showGameScreen() {
+export function showGameScreen(onReady) {
+    bunkerTransition(() => {
     loadScenarioSounds();
 
     app.innerHTML = `
@@ -392,6 +435,9 @@ export function showGameScreen() {
     document.getElementById("in-game-settings").onclick = () => {
         openInGameSettings();
     };
+    if (onReady) onReady();
+    
+    });
 }
 
 
