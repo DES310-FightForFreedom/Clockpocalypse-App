@@ -777,25 +777,38 @@ Tutorial section
      #app .flag {
          width: 100%;
          max-width: 130px;
+         box-sizing: border-box; 
+         /*  Temporary borderbox */
      }
 
      .flag img {
+        width: 100%;
          height: 75px;
      }
 
      .flag-name {
          font-size: 12px;
          padding: 3px 8px;
+         overflow: wrap;
+         white-space: normal;
+         box-sizing: border-box;
      }
 
      #folder-contents {
          grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-         gap: 12px 6px;
+         gap: 20px 8px;
          min-height: 0;
          max-height: calc(100dvh - 220px);
          overflow-y: auto;
          padding: 16px 8px;
          margin-top: -17px;
+     }
+
+     #folder-contents .flag-check{
+        font-size: 22px;
+        top: -6px;
+        right: -6px;
+        z-index: 2;
      }
 
      .tier-folder {

@@ -561,7 +561,9 @@ export function showEvents(events) {
         newAudio.loop = true;
 
         const settings = loadSoundSettings();
-        newAudio.volume = Math.max(0, Math.min(1, settings.master * settings.music));
+        const effective = Math.max(0, Math.min(1, settings.master * settings.music));
+            newAudio.volume = effective;
+            newAudio.muted = effective === 0;
 
         mySounds.currentActiveAudio = newAudio;
         activePlayingEventId = eventID; // Mark this card as the active player
@@ -643,9 +645,10 @@ function applyLiveVolume(channel, settings) {
     }
 
     if (channel === "master" || channel === "music") {
-        if (mySounds.currentActiveAudio) {
-            mySounds.currentActiveAudio.volume =
-                Math.max(0, Math.min(1, settings.master * settings.music));
+    if (mySounds.currentActiveAudio) {
+        const effective = Math.max(0, Math.min(1, settings.master * settings.music));
+        mySounds.currentActiveAudio.volume = effective;
+        mySounds.currentActiveAudio.muted = effective === 0;
         }
     }
 }

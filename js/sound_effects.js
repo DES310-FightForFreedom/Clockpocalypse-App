@@ -57,6 +57,7 @@ export class sound_effects {
         const effective = Math.max(0, Math.min(1, settings.master * settings.sfx));
         Object.values(this.tracks).forEach(track => {
             track.volume = effective;
+            track.muted = effective === 0;
         });
     }
 

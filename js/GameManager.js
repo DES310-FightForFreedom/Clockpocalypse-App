@@ -150,6 +150,7 @@ export class GameManager {
         currentChallenge = null;
         currentScenario = this.scenario;
         currentGameInstance = this;
+        window.debugGame = this;  //Temporary 
 
         userScenario = this.scenario.name
 
