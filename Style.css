@@ -774,28 +774,32 @@ Tutorial section
  }
 
  @media (max-width: 480px) {
+    #app{
+        background: lime !important;
+    }
+
      #app .flag {
          width: 100%;
-         max-width: 130px;
+         max-width: 124px;
          box-sizing: border-box; 
          /*  Temporary borderbox */
      }
 
      .flag img {
         width: 100%;
-         height: 75px;
+         height: 71px;
      }
 
      .flag-name {
          font-size: 12px;
-         padding: 3px 8px;
+         padding: 3px 7px;
          overflow-wrap: break-word;
          white-space: normal;
          box-sizing: border-box;
      }
 
      #folder-contents {
-         grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+         grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
          gap: 20px 8px;
          min-height: 0;
          max-height: calc(100dvh - 220px);
@@ -805,7 +809,7 @@ Tutorial section
      }
 
      #folder-contents .flag-check{
-        font-size: 22px;
+        font-size: 21px;
         top: -6px;
         right: -6px;
         z-index: 2;
